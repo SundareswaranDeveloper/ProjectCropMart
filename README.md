@@ -42,7 +42,7 @@ CusTrail.jsp : Customer Search Product result page under testing.
 
 navbar.jsp : Common nav bar code page for Farmers.
 
-navCss.jsp : Common nav bar style page for Customers.
+navCss.jsp : Common nav bar style page for Farmers.
 
 SellProduct.jsp : Sell Product registration page for Farmers.
 
