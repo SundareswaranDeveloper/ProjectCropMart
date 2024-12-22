@@ -1,6 +1,9 @@
 package org.newserver;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,10 +38,23 @@ public class CusOrderServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String productid = (String) request.getAttribute("idbuy");
-		String cusid = (String) request.getAttribute("cmid");
+		String productid = (String) request.getParameter("sellid");
+		String cusid = (String) request.getParameter("cmid");
+		String district = (String) request.getParameter("location");
 		Database db = new Database();
-		
+		productid = productid.substring(13);
+		String[] product = new String[6];
+		try {
+			product = db.readSearchProduct(productid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("crtid", cusid );
+		request.setAttribute("location", district );
+		request.setAttribute("data",product );
+		RequestDispatcher dispatcher = request.getRequestDispatcher("CusOrderCon.jsp");
+	    dispatcher.forward(request, response);
 	}
 
 }

@@ -31,11 +31,7 @@ public class Database {
 		}
 		return id;
 	}
-	public static void main(String[] args) throws SQLException {
-		Database db = new Database();
-		String out = db.readId();
-		System.out.println(out);
-	}
+	
 	public boolean readCheck(EntryCheck ec, int h) throws SQLException {
 		System.out.println(ec.getUserid() + " , " + ec.getPassword());
 		boolean result = false;
@@ -414,6 +410,28 @@ public class Database {
 			e.printStackTrace();
 		}
 		return group;
+	}
+	public String[] readSearchProduct(String productId) throws SQLException {
+		String[] product = new String[6];
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			Statement stmt = con.createStatement();
+			ResultSet rstmt = stmt.executeQuery("select * from sell_p where p_id = '" + productId + "';");
+			rstmt.next();
+			product[0]	= rstmt.getString(1);
+			product[1] = String.valueOf(rstmt.getInt(2));
+			product[2] = String.valueOf(rstmt.getInt(3));
+			product[3]	= String.valueOf(rstmt.getInt(4));
+			product[4] = rstmt.getString(6);
+			product[5] = rstmt.getString(7);
+			product[5] = product[5].replace("\\", "\\\\");
+			return product;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			return product;
 	}
 	
 }

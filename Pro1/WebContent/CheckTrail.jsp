@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <title>Insert title here</title>
 
 <style type="text/css">
@@ -44,7 +45,7 @@ header nav ul li {
 
 header nav ul li button {
     color: white;
-    background-color: inherit;
+    background-color:  #333;
     border: 1px solid #333;
     text-decoration: none;
     font-weight: bold;
@@ -56,7 +57,7 @@ header nav ul li button:hover {
 
 	
 	.products {
-    padding: 50px 20px;
+    padding: 20px;
     text-align: center;
 }
 
@@ -122,6 +123,7 @@ header nav ul li button:hover {
     font-size: 18px;
     color: darkgreen;
     background-color: skyblue;
+   
 }
 .img-new{
 	width: 100%;
@@ -135,9 +137,6 @@ header nav ul li button:hover {
         <div class="logo">
             <h1>CROP MART</h1>
         </div>
-        
-            
-        
         <form action="SearchServlet" method="post">
             <label>Delivery Location :</label>
             <input type="hidden" id="sid" name="cid">
@@ -147,10 +146,8 @@ header nav ul li button:hover {
         </form>
         <nav>
             <ul>
-              
                 <li><button>My Products </button></li>
-                <li><button>My Cart</button></li>
-               
+                <li><button>My Cart</button></li>   
             </ul>
             
         </nav>
@@ -170,8 +167,9 @@ header nav ul li button:hover {
     </div>
     <form action="CusOrderServlet" method="post">
 <section class="products">
-		<input type="hidden" id="idbuy">
+		<input type="hidden" id="idbuy" name="sellid">
 		<input type="hidden" id="cusid" name="cmid">
+		<input type="hidden" value="${slocation}" name="location">
         <h2>Products starts from Quantity 5 Kg</h2>
         <div class="product-list" id="parent">
         
@@ -391,7 +389,7 @@ header nav ul li button:hover {
 	function call(element){
 	    	var parentDiv = element.parentElement;
 	    	var headDiv = parentDiv.parentElement;
-	    	var buyId = head.querySelector("h4").textContent;
+	    	var buyId = headDiv.querySelector("h4").textContent;
 	    	document.getElementById("idbuy").value = buyId;  	
 	    }
 	   	

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <title>Insert title here</title>
 <style type="text/css">
 		/* Basic Reset */
@@ -12,15 +13,24 @@
       padding: 0;
       box-sizing: border-box;
     }
-    
-
+    body{
+    background-color:  #FAF3E0;
+    }
+	#title{
+	 display : block;
+	 text-align : center;
+	 background-color:#F3E5F5; 
+  	 color: #1E3A8A; 
+	 font-size: 32px;
+	
+	}
     /* Navbar Styles */
     .navbar {
       display: flex;
      
       justify-content: space-between;
       align-items: center;
-      background-color: lawngreen;
+      background-color: #009688;
       padding: 10px 20px;
     }
 
@@ -31,23 +41,22 @@
 
 
    #brand{
-   	color: darkgreen;
-   	font-size: 25px;
+   	color: #32CD32;
+   	font-size: 32px;
    }
    #cen{
     flex-basis: 60%;
-    background-color: darkgreen;
+    background-color: #388E3C;
     text-align: center;
+    border-radius: 20px;
    }
    #con{
    	width: fit-content;
    	padding: 10px;
    	font-size: 32px;
    	color: lawngreen;
-   	
-   	border-radius: 10%;
-   }
    
+   }
     .navbar .user {
      align-items: center;
 
@@ -56,8 +65,7 @@
       display: flex;
       justify-content: center;
       padding: 20px;
-      margin-top: 10px;
-      
+      margin-top: 10px; 
     }
 
     /* Individual div inside the container */
@@ -72,9 +80,8 @@
 
     /* Image styles */
     .box img {
-      width: 100%; /* Adjust according to your image aspect ratio */
+      width: 100%; 
       height: auto;
-      max-height: 150px;
       margin-bottom: 15px;
       border-radius: 5px;
     }
@@ -88,13 +95,9 @@
     .input-group{
       display: flex;
       flex-direction: row;
-      margin-bottom: 15px;
-      
-     
+      margin-bottom: 15px;    
       justify-content: center;
       align-items: center;
-
-
     }
     table button{
       color: darkgreen;
@@ -108,7 +111,7 @@
       font-size: 20px;
       width: fit-content;
       padding: 10px;
-      color: lightgreen;
+      color:  #9E2A2F;
     }
     table input{
       border-radius: 10px;
@@ -121,7 +124,7 @@
     text-align: center;
     font-size: 32px;
     color: springgreen;
-    background-color: beige;
+    background-color:  #0288D1;
    }
    #tab{
     width: fit-content;
@@ -138,26 +141,26 @@
     </div>
 
     <div id="cen" >
-    	<label id="con">Fill below details to Place Order</label>
+    	<label id="con">Order Confirmation Section</label>
     </div>
 
     <!-- User Image on the right -->
     <div class="user">
-    	<h1>hii</h1>
       <i class="fa-solid fa-user"></i>
       <label id="hide">${crtid}</label>
     </div>
   </div>
   <form>
+  <label id="title"> Fill below details to Place Order</label>
   <div class="sub"> Product Details</div>
   <div class="container"> 
     <div class="box">
-      <img src="Vegeatables.png" alt="Image" >
-      <label>Product Name : </label>
-      <label>Product Id : </label>
-      <label>Expiry Date : </label>
-      <label>Quantity : </label>
-      <label>Price : </label>
+      <img id="product_image" alt="Image" >
+      <label id="product_name"></label>
+      <label id="product_id"></label>
+      <label id="product_expiry"></label>
+      <label id="product_quantity"></label>
+      <label id="product_price"></label>
 
     </div> 
   </div>
@@ -186,7 +189,7 @@
   </tr>
    <tr>
     <td><label> District Name</label> </td>
-    <td><label> Tenkasi </label></td>
+    <td><label>${location}</label></td>
   </tr>
   <tr>
     <td colspan ="2"><input type="checkbox"> <label>Trust me, above given details are true  </label></td>
@@ -197,17 +200,18 @@
   </tr>
 
 </table>
-
-  
-  
-  <label style="visibility: hidden;" id="cm">${crtid}</label>
-  
-        
-
-  
+  <input type="hidden" value="${crtid}" name="cmid">
   </form>
   <script type="text/javascript">
-	
-	</script>
+//Convert the Java array into a comma-separated string
+  var product_ary = "<%= String.join(",", (String[]) request.getAttribute("data")) %>";
+  product_ary = product_ary.split(",");
+  document.getElementById("product_name").textContent = "Name : " + product_ary[0];
+  document.getElementById("product_id").textContent = "Id : " + product_ary[1];
+  document.getElementById("product_quantity").textContent = "Quantity : " +  product_ary[2];
+  document.getElementById("product_price").textContent = "Price : " +  product_ary[3];
+  document.getElementById("product_expiry").textContent = "Expiry Date : " +  product_ary[4];
+  document.getElementById("product_image").src = product_ary[5];
+  </script>
 </body>
 </html>
