@@ -5,11 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<title>Insert title here</title>
+<title>Customer Home Page</title>
 <style type="text/css">
-        
-        /* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -17,8 +14,6 @@ body {
     box-sizing: border-box;
     background-color: #f4f4f4;
 }
-
-/* Header Styles */
 header {
     background-color: #333;
     color: white;
@@ -27,214 +22,207 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-
 header .logo h1 {
     margin: 0;
+    font-size: 32px;
+    color: limegreen;
+    padding: 5px;
 }
-
+form label{
+	color : lightgreen;
+	font-weight: bold;
+	font-size : 25px;
+	padding : 5px;
+}
+form input{
+	font-size: 22px;
+	border-radius:20px;
+	color : darkgreen;
+	padding: 5px;
+}
+#search-button{
+	 padding: 10px 20px;
+	 background-color:#5FF1C9;
+	 color: #228B22;
+	 border: none;
+	 font-size: 25px;
+	 cursor: pointer;
+	 border-radius: 20px;
+}
+#search-button:hover{
+	 background-color:  #D1F7C4;
+	 color: #1C1C1C;
+}
+.user{
+	font-size : 25px;
+	color : blue;
+}
 header nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
 }
-
 header nav ul li {
     margin-left: 20px;
 }
-
 header nav ul li button {
-    color: white;
+    color: gold;
+    font-size : 25px;
     background-color: #333;
     border: 1px solid #333;
     text-decoration: none;
     font-weight: bold;
 }
-
 header nav ul li button:hover {
     text-decoration: underline;
 }
-
-/* Hero Section */
-.hero {
-    background-color: #4CAF50;
-    color: white;
+#head{
     text-align: center;
-    padding: 50px 20px;
+	background-color: lawngreen;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	padding: 20px;
 }
-
-.hero h2 {
-    margin: 0;
-    font-size: 36px;
+.child{
+    flex-basis: 40%;
+    flex-grow: 1;
 }
-
-.hero p {
-    font-size: 18px;
-    margin-top: 10px;
+#cover{
+	border-radius: 20%;
+    height: 450px;
 }
-
-.hero button {
-    padding: 10px 20px;
-    background-color: white;
-    color: #4CAF50;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
+#head img{
+	border-radius: 20%;
+	height: 450px;
 }
-
-.hero button:hover {
-    background-color: #45a049;
+.image-container {
+	position: relative;
+	display: inline-block;
 }
-
-/* Category Section */
+.image {
+     display: block;  
+}
+.text {
+     position: absolute;
+     width: 70%;
+     top: 60%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     color: white; 
+     font-size: 20px; 
+     font-weight: bold; 
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
+}
+.extra{
+     top:50%;
+     color: beige;
+     font-weight: bold;
+     letter-spacing: 1px;
+}
 .categories {
-    padding: 50px 20px;
+    padding: 20px;
     text-align: center;
+    background-color: #fff;
 }
-
 .categories h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    margin-bottom: 30px;
 }
-
 .category-list {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    justify-content: space-around;
 }
-
 .category-card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    padding: 15px;
     text-align: center;
+    flex-basis: 28%;
+    flex-grow: 1;
+    padding: 10px;
 }
-
+.category-card label{
+    display: block;
+    font-size: 25px;
+    padding: 5px;
+}
 .category-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+
 }
-
-.category-card h3 {
-    margin: 10px 0;
-}
-
-
-.features {
-    padding: 50px 20px;
+#features-list{
     text-align: center;
+    margin: 10px;
+    padding: 10px;
 }
-
-.features h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
+#features-list h1{
+    color: lawngreen;
+    font-size: 32px;
 }
+#features-list h2{
+    margin: 5px;
+    padding: 10px 5px;
+    color: blue;
+    font-size: 22px;
+    background-color: beige;
+    border-radius: 20px;
 
-.features-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-   
-    padding: 15px;
-    text-align: center;
 }
-
-.features-list img {
-    width: 200px;
-    border-radius: 8px;
-}
-
-.features-list h3 {
-    margin: 10px 0;
-}
-
-
-
-
-
-    </style>
+</style>
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <div class="logo">
             <h1>CROP MART</h1>
         </div>
-        
-            
-        
         <form action="SearchServlet" method="post">
-            <label>Delivery Location :</label>
             <input type="hidden" id="sid" name="cid">
-            <input type="text" name="cond1">
-            <input type="text" name="cond2" value="Search Products ...">
-            <input type="submit" value="Search" >
+            <label>Search Products here</label>
+            <input type="text" name="cond2" value="ex: Apple">
+            <label>Delivery District :</label>
+            <input type="text" name="cond1" value="ex: Tenkasi">
+            <input type="submit" id="search-button" value="Search" >
         </form>
         <nav>
             <ul>
-              
                 <li><button>My Products </button></li>
-                <li><button>My Cart</button></li>
-               
-            </ul>
-            
+                <li><button>My Cart</button></li>         
+            </ul>   
         </nav>
-        <div>
-        <i class="fa-solid fa-user"></i>
-        <label id="hide">${crtid}</label>
-    </div>
+        <div class="user">
+        	<i class="fa-solid fa-user"></i>
+        	<label id="hide">${crtid}</label>
+    	</div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h2>Fresh & Organic Groceries Delivered to Your Door</h2>
-        <p>Shop the best produce, dairy, snacks, and more from local farms and markets.</p>
-        <button>Shop Now</button>
-    </section>
-
-    <!-- Product Categories Section -->
+    <div id="head">
+		<div class="child"><img src="C:\Users\Mani\OneDrive\Desktop\Project\Cover.png" ></div>
+		<div id="cover" class="image-container child">
+            <div><img src="C:\Users\Mani\OneDrive\Desktop\Project\cover2.jpg" class="image" ></div>
+        <h1 class="text extra">Crop Mart</h1>
+		<h2 class="text">" A destination to buy Organic products from Farmers and delivered to your door steps "</h2></div>
+	</div>
     <section class="categories">
-        <h2>Categories</h2>
+        <h2>Product Categories</h2>
         <div class="category-list">
             <div class="category-card">
-                <img src="https://via.placeholder.com/150?text=Fruits" alt="Fruits">
-                <h3>Fruits</h3>
+                <img src="C:\Users\Mani\OneDrive\Desktop\Project\Vegeatables.png" alt="Category 1">
+                <label>Vegeatables</label>
             </div>
             <div class="category-card">
-                <img src="https://via.placeholder.com/150?text=Vegetables" alt="Vegetables">
-                <h3>Vegetables</h3>
+                <img src="C:\Users\Mani\OneDrive\Desktop\Project\Fruits.jpeg" alt="Category 2">
+                <label>Fruits</label>
             </div>
             <div class="category-card">
-                <img src="https://via.placeholder.com/150?text=Dairy" alt="Dairy">
-                <h3>Crops</h3>
+                <img src="C:\Users\Mani\OneDrive\Desktop\Project\Crops.png" alt="Category 3">
+                <label>Crops</label>
             </div>
         </div>
     </section>
-    <section class="features">
-        <h2>Features</h2>
-        <div class="features-list">
-            
-                <img src="https://via.placeholder.com/150?text=Fruits" alt="Fruits">
-                <h3>Buy Products from Farmer and Product Quantity minimum 5 Kg around your Delivery Location maximum 20km.</h3>
-            
-            
-                <img src="https://via.placeholder.com/150?text=Vegetables" alt="Vegetables">
-                <h3>Buy Products from Farmer and Product Quantity minimum 50 Kg around your Delivery Location minimum 21km .</h3>
-            
-            
-        </div>
+    <section id="features-list">
+        <h1>Features</h1>
+        <h2>You can purchase the product from a minimum quantity of 5 kg if your delivery district is the same as the product farmer's district.</h2>
+        <h2>You can purchase the product from a minimum quantity of 50 kg if your delivery district is different from the product farmer's district.</h2>
     </section>
    <script type="text/javascript">
     var cmid = document.getElementById("hide").textContent;
