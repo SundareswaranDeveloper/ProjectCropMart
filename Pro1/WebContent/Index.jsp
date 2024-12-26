@@ -5,144 +5,104 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome Page</title>
+<title>Crop Mart Welcome Page</title>
 <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Crop Mart</title>
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap" rel="stylesheet">
-
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crop Mart</title>
+<style type="text/css">
 	body{
-		background:#32CD32;
+		margin: 0;
+		background-color: #FAF3E0;
 	}
-	a{
-		color: #b0e892;
-		text-decoration-color: skyblue;
-		text-decoration-thickness: 2px;
+	h2{
+		color:  #2C3E50;
+		text-align: center;
+		font-size: 25px;
+	}
+	.hero {
+	    background-color: #F5F1E3 ;
+	    color: white;
+	    text-align: center;
+	    padding: 40px 20px;
+	}
+	.hero h1{
+		font-size: 32px;
+		color:limegreen;
 
 	}
-	p {
-		color: #b0e892;
+	.hero h2 {
+	    font-size: 28px;
+	    color:  #D1A054 ;
+	}
+	.hero button {
+	    padding: 10px 20px;
+	    background-color:#5FF1C9;
+	    color: #228B22;
+	    border: none;
+	    font-size: 25px;
+	    cursor: pointer;
+	    margin-top: 20px;
+	    border-radius: 20px;
+	}
+
+	.hero button:hover {
+	    background-color:  #D1F7C4;
+	    color: #1C1C1C;
 	}
 	.container{
 		display: flex;
 		flex-wrap: wrap;
-		
 		justify-content: space-around;
 		gap: 10px;
 	}
-	.b1 h1{
-		display: block;
-		width: 205px;
-		margin: 20px auto 20px auto;
-	 	font-family: "Old Standard TT", serif;
-	  	font-weight: 800;
-	 	font-style: normal;
-	 	border: 2px solid #DAA520;
-		border-radius: 20px;
-		background-color:  #808000;
-		padding: 20px 20px 20px 20px;
-
-	}
-	.b2 h2{
-		color:  #8B4513;
-	}
-	.b1{
-		margin: 20px 10px;
-		width: 80%;
-		
-		
-		color: #32CD32;
-		flex-grow: 1;
-	}
-	.b2{
+	.box{
 		margin: 10px ;
 		padding: 10px;
 		border: 2px solid #DAA520 ;
 		width: 25%;
-		color: #98FF98;
-		background: #FF7F50 ;
+		background-color:#F9D5D3;
 		border-radius: 20px;
 		flex-grow: 1;
-
 	}
-	/*.b3{
-		width: 33%;
-
+	.box h2{
+		color: #2C6E49;
 	}
-	.b4{
-		width: 33%;
-	}*/
-	.b5 p {
-	display: inline;
-	color: #8B4513;
-	}
-	.b5{
-		text-align: center;
-		width: 80%;
-		flex-grow: 1;
-	}
-	.b6{
-		text-align: center;
-		width: 80%;
-		flex-grow: 1;
-	}
-	#bc{
-		color:#32CD32;
-		background-color:  #808000;
+	.box p{
+		color: #0F4C75;
 		font-size: 20px;
-		border: 1px solid #DAA520;
-		border-radius: 20px;
-		padding: 10px 5px;
+		padding: 2px;
 	}
 </style>
 </head>
 <body>
-	<div class="container">
-	<div class="b1"><div class="lo"> <h1>CROP MART</h1> </div></div>
-	<div class="b2">
-		
-		<div> <h2>About us</h2> </div>
-		<p> Crop Mart is the Platform for Farmers to Sell their Products to Customers. </p>
-		<p> Crop Mart supports Customers to buy Fresh Products from Farmers. </p>
-		<p> Crop Mart is the Idea to Digitalize the Farmer Product to World.</p>
-
+	<section class="hero">
+		<h1>CROP MART</h1>
+        <h2>" A e-commerce system for Farmers to sell their products and Customers to purchase their required products "</h2>
+        <button onclick="log()">Get Started</button>
+    </section>
+    <h2>How to Start?</h2>
+    <div class="container">
+	    <div class="box">
+			<h2> I'm Farmer</h2> 
+			<p> Click the "Get Started" button.</p>
+			<p> Click "Create ID for Farmer". </p>
+			<p> Register your details and Create Cropmart ID.</p> 
+			<p> Log in with your ID.</p> 
+			<p> Explore Cropmart! </p> 
+		</div>
+		<div class="box">
+			<h2> I'm Customer</h2> 
+			<p> Click the "Get Started" button.</p>
+			<p> Click "Create ID for Customer". </p>
+			<p> Register your details and Create Cropmart ID. </p> 
+			<p> Log in with your ID. </p> 
+			<p> Explore Cropmart! </p> 
+		</div>
 	</div>
-	<div class="b2">
-		<div> <h2> I'm Farmer , How to use </h2> </div>
-		<div><p> Welcome to Crop Cart, you are the Backbone for Us! </p></div>
-		<div><p> Read and Agree Terms and Conditions then click Get Started </p></div>
-		<div> <p> Create Farmer Account </p> </div>
-		<div> <p> Post your Products  </p> </div>
-		<div> <p> Check received Orders by click Show Customer Orders </p> </div>
-		<div> <p> Enjoy the Crop Mart World </p> </div>
-	</div>
-	<div class="b2">
-		<div> <h2> I'm Customer , How to use </h2> </div>
-		<div> <p> Welcome to Crop Cart, Read and Agree Terms and Conditions then click Get Started </p> </div>
-		<div> <p> Create New Account  </p> </div>
-		<div> <p> Search your Product and Place an Order </p> </div>
-		<div> <p> Enjoy the Crop Mart World </p> </div> 
-	</div>
-	<div class="b5">
-		<div> <input type="checkbox" >  <p> I agree <a href="#">Terms and Conditions</a> </p></div>
-	</div>
-	<div class="b6">
-		<div> <button onclick="log()" id="bc"> Get Started </button> </div>
-	</div>
-</div>
-<div>
-
-
-</div>
-<script>
+	<script>
 	function log(){
 		open("Log.jsp");
 	}
-</script>
+	</script>
 </body>
 </html>
