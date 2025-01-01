@@ -1,0 +1,48 @@
+create database farmer;
+use farmer;
+
+-- id_sf : table id_sf is used to store initial Cropmart ID for Farmers.
+create table id_sf(fn varchar(10));
+insert into id_sf values("FA0001"),("FA0002"),("FA0003"),("FA0004"),("FA0005"),("FA0006"),("FA0007"),("FA0008"),("FA0009"),("FA0010");
+select * from id_sf;
+
+-- id_sc : table id_sc is used to store initial Cropmart ID for Customers.
+create table id_sc(cn varchar(10));
+insert into id_sc values("CA5001"),("CA5002"),("CA5003"),("CA5004"),("CA5005"),("CA5006"),("CA5007"),("CA5008"),("CA5009"),("CA5010");
+select * from id_sc;
+
+-- f_id : table f_id is used to store user farmer ID and password.
+create table f_id(fid varchar(10) primary key, fid_pass varchar(100), fdata int);
+select * from f_id;
+
+-- c_id : table c_id is used to store user customer ID and password.
+create table c_id (cid varchar(10),cidpass varchar(100));
+select * from c_id;
+
+-- fdata : table fdata is used to store new farmer details.
+create table fdata(f_sno int auto_increment primary key, name varchar(15), mobile int  , landno varchar(25),landaddress varchar(100),landlocation varchar(100),houseaddress varchar(100) );
+select * from fdata;
+
+-- cdata : table cdata is used to store new customer details.
+create table cdata(c_id int primary key auto_increment ,c_name varchar(25),c_ph bigint,c_address varchar(100));
+select * from cdata;
+
+-- A_Tips : table A_Tips is used to store Farmer tips data.
+create table A_Tips(t_id int auto_increment primary key, t_c varchar(200));
+insert into A_Tips(t_c) values ("Water Management: Use techniques like drip irrigation and rainwater harvesting to conserve water. This is especially important for areas experiencing water scarcity.");
+insert into A_Tips(t_c) values ("December is comming , cultivate the fields Safe!!");
+select * from A_Tips;
+
+-- m_corner : table m_corner is used to store motivational corner data for farmer.
+create table m_corner(m_id int auto_increment primary key, m_c varchar(200));
+insert into m_corner(m_c) values ("The discovery of agriculture was the first big step toward a civilized life.");
+select * from m_corner;
+
+-- g_scheme : table g_scheme is used to store government scheme data for farmer.
+create table g_scheme(g_id int auto_increment primary key, g_c varchar(200));
+insert into g_scheme(g_c) values ("Do You Know : INDIA has 1000 + Government Schemes for Farmers!");
+select * from g_scheme;
+
+-- sell_p : table sell_p is used to store sell product details data given from farmer.
+create table sell_p(p_name varchar(20), p_id int auto_increment primary key, p_quntity int, p_price float , p_sales_ed varchar(25) , p_expiry_d varchar(25), p_image varchar(1000), cmid varchar(10), p_location varchar(100));
+select * from sell_p;
