@@ -14,7 +14,7 @@ Project Link :
 
 Developing a Project Crop Mart, shared in my Github account SundareswaranDeveloper and the link shown below.
 
-Github : https://github.com/SundareswaranDeveloper/ProjectCropMart/tree/master
+Github : https://github.com/SundareswaranDeveloper/ProjectCropMart
 
 General File Information :
 
