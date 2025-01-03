@@ -14,7 +14,7 @@ Project Link :
 
 Developing a Project Crop Mart, shared in my Github account SundareswaranDeveloper and the link shown below.
 
-Github : https://github.com/SundareswaranDeveloper/ProjectCropMart/tree/master
+Github : https://github.com/SundareswaranDeveloper/ProjectCropMart
 
 General File Information :
 
@@ -92,3 +92,4 @@ GovernmentServlet.java :  Act as Servlet fetch data from admin database about Go
 
 CusOrderServlet : Act as Servlet responsible to store Customer Order product details and Customer Delivery Details to admin Database under testing.
 
+MySql__Database_Queries.txt : This file is used to show the MySql Database Queries and give information about the data table structure .
