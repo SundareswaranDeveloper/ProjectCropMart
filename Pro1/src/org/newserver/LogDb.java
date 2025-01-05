@@ -1,3 +1,4 @@
+// check MySql_Database_Queries.txt file to understand about table structure and information.
 package org.newserver;
 
 import java.sql.Connection;
