@@ -46,3 +46,7 @@ select * from g_scheme;
 -- sell_p : table sell_p is used to store sell product details data given from farmer.
 create table sell_p(p_name varchar(20), p_id int auto_increment primary key, p_quntity int, p_price float , p_sales_ed varchar(25) , p_expiry_d varchar(25), p_image varchar(1000), cmid varchar(10), p_location varchar(100));
 select * from sell_p;
+
+-- Customer_Orders : table Customer_Orders is used to store customer order product details and customer delivery address details.
+create table Customer_Orders(order_id varchar(10) primary key, product_id int, customer_name varchar(15), c_mobile bigint, delivery_address varchar(100), pincode varchar(15), landmark varchar(50));
+select * from Customer_Orders;
