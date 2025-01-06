@@ -150,7 +150,9 @@
       <label id="hide">${crtid}</label>
     </div>
   </div>
-  <form>
+  <form action="ConfirmCustomerOrder" method="post">
+  <input type="hidden" value="${crtid}" name="cropmart_id">
+  <input type="hidden" id="reference_id" name="p_id">
   <label id="title"> Fill below details to Place Order</label>
   <div class="sub"> Product Details</div>
   <div class="container"> 
@@ -169,11 +171,11 @@
 <table id="tab">
   <tr>
     <td><label>Customer Name</label>  </td>
-    <td><input type="text" name="product"></td>
+    <td><input type="text" name="customer_name"></td>
   </tr>
    <tr>
     <td><label>Phone Number</label></td>
-    <td><input type="number" name="number"></td>
+    <td><input type="number" name="mobile_number"></td>
   </tr>
    <tr>
     <td><label >Address</label></td>
@@ -185,7 +187,7 @@
   </tr>
    <tr>
     <td><label>Landmark </label> </td>
-    <td><input type="text" name="mark"></td>
+    <td><input type="text" name="landmark"></td>
   </tr>
    <tr>
     <td><label> District Name</label> </td>
@@ -195,7 +197,7 @@
     <td colspan ="2"><input type="checkbox"> <label>Trust me, above given details are true  </label></td>
   </tr>
    <tr>
-    <td><button type="submit" id="form-button">Place Order</button></td>
+    <td><button type="submit" onclick="success()" id="form-button">Place Order</button></td>
     <td><button type="submit" id="form-button">Cancel Order</button></td>
   </tr>
 
@@ -203,11 +205,15 @@
   <input type="hidden" value="${crtid}" name="cmid">
   </form>
   <script type="text/javascript">
+  function success(){
+	  alert("Order Request sent successfully");
+  }
 //Convert the Java array into a comma-separated string
   var product_ary = "<%= String.join(",", (String[]) request.getAttribute("data")) %>";
   product_ary = product_ary.split(",");
   document.getElementById("product_name").textContent = "Name : " + product_ary[0];
   document.getElementById("product_id").textContent = "Id : " + product_ary[1];
+  document.getElementById("reference_id").value = product_ary[1];
   document.getElementById("product_quantity").textContent = "Quantity : " +  product_ary[2];
   document.getElementById("product_price").textContent = "Price : " +  product_ary[3];
   document.getElementById("product_expiry").textContent = "Expiry Date : " +  product_ary[4];
