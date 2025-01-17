@@ -59,7 +59,16 @@ public class FarmContol extends HttpServlet {
 		}else if(a==5) {
 			request.setAttribute("crtid",id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("GovernmentServlet");
-		    dispatcher.forward(request, response);		}else {
+		    dispatcher.forward(request, response);		
+		}else if(a==6) {
+			request.setAttribute("crtid",id);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("CustomerMyOrders");
+		    dispatcher.forward(request, response);		
+		}else if(a==7) {
+			request.setAttribute("crtid",id);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("CustomerMyCart");
+		    dispatcher.forward(request, response);		
+		}else {
 			response.sendRedirect("Index.jsp");
 		}
 	}

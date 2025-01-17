@@ -178,17 +178,21 @@ header nav ul li button:hover {
         </div>
         <form action="SearchServlet" method="post">
             <input type="hidden" id="sid" name="cid">
-            <label>Search Products here</label>
+            <label>Buy Products here</label>
             <input type="text" name="cond2" value="ex: Apple">
             <label>Delivery District :</label>
             <input type="text" name="cond1" value="ex: Tenkasi">
             <input type="submit" id="search-button" value="Search" >
         </form>
         <nav>
+        	<form action="FarmContol" method="post">
+        	<input type="hidden" name="secret" id="nav-cmid">
+      		<input type="hidden" name="avalue" id="nav-key">
             <ul>
-                <li><button>My Products </button></li>
-                <li><button>My Cart</button></li>         
-            </ul>   
+                <li><button type="submit" onclick="keyvalue1()">My Products </button></li>
+                <li><button type="submit" onclick="keyvalue2()">My Cart</button></li>         
+            </ul> 
+            </form>  
         </nav>
         <div class="user">
         	<i class="fa-solid fa-user"></i>
@@ -227,6 +231,15 @@ header nav ul li button:hover {
    <script type="text/javascript">
     var cmid = document.getElementById("hide").textContent;
 	document.getElementById("sid").innerText = cmid;
+	document.getElementById("nav-cmid").innerText = cmid;
+	var a = 0;
+	function keyvalue1(){
+		a = 6;
+		document.getElementById("nav-key").innerText = a;
+	}function keyvalue2(){
+		a = 7;
+		document.getElementById("nav-key").innerText = a;
+	}
    </script>
 </body>
 </html>

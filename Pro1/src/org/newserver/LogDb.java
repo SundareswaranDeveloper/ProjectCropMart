@@ -2,11 +2,15 @@
 package org.newserver;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class LogDb {
 
@@ -175,9 +179,13 @@ public class LogDb {
 		return result;
 	}
 
-	public boolean order_insert(Integer product_id, String customer_name, Long phone_number, String address, String pincode, String landmark) throws SQLException {
+	public boolean order_insert(Integer product_id, String customer_name, Long phone_number, String address, String pincode, String landmark, String cmid) throws SQLException {
 		// TODO Auto-generated method stub
 		boolean result = false;
+		LocalDate local_date = LocalDate.now();
+		Date date = Date.valueOf(local_date);
+		LocalTime local_time = LocalTime.now();
+		Time time = Time.valueOf(local_time);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
@@ -191,7 +199,11 @@ public class LogDb {
 			}else {
 				order_id = order_id + (key+1);
 			}
-			String query = "insert into Customer_Orders values (?,?,?,?,?,?,?);";
+			Statement stmt = con.createStatement();
+			ResultSet rstmt = stmt.executeQuery("select cmid from sell_p where p_id = '" + product_id + "';");
+			rstmt.next();
+			String f_cmid = rstmt.getString(1);
+			String query = "insert into Customer_Orders values (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, order_id);
 			ps.setInt(2, product_id);
@@ -200,8 +212,17 @@ public class LogDb {
 			ps.setString(5, address);
 			ps.setString(6, pincode);
 			ps.setString(7, landmark);
-			int row = ps.executeUpdate();
-			if (row > 0) {
+			ps.setString(8, cmid);
+			ps.setDate(9, date);
+			ps.setTime(10, time);
+			int row1 = ps.executeUpdate();
+			String command = "insert into Order_Status(order_id,c_cmid,f_cmid) values (?,?,?);";
+			PreparedStatement pstmt = con.prepareStatement(command);
+			pstmt.setString(1, order_id);
+			pstmt.setString(2, cmid);
+			pstmt.setString(3, f_cmid);
+			int row2 = pstmt.executeUpdate();
+			if (row1 > 0 && row2 > 0) {
 				result = true;
 			}
 			con.close();
