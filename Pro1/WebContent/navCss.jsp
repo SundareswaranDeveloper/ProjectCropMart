@@ -1,37 +1,27 @@
-/* Basic Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
-
-    /* Navbar Styles */
     .navbar {
       display: flex;
-      
       justify-content: space-between;
       align-items: center;
       background-color: lawngreen;
       padding: 10px 20px;
     }
-
-    /* Logo styles */
     .navbar .logo img {
-      height: 40px; /* Adjust the size of your logo */
+      height: 40px; 
     }
     .navbar .logo img:hover {
-      height: 40px; /* Adjust the size of your logo */
+      height: 40px; 
     }
-
-    /* Navigation Links (labels) */
     .navbar .nav-links {
       display: flex;
       justify-content: space-around;
       flex-grow: 1;
       text-align: center;
     }
-
     .navbar .nav-links button {
       color:darkgreen;
       text-decoration: none;
@@ -41,9 +31,8 @@
       outline: none;
       background-color :lawngreen; 
     }
-
     .navbar .nav-links button:hover {
-    color:lawngreen;
+      color:lawngreen;
       background-color: darkgreen;
       border-bottom: 3px solid darkgreen;
     }
