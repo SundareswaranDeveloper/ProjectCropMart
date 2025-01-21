@@ -540,4 +540,109 @@ public class Database {
 		return group;
 	}
 	
+	public String[][] readFarmerOrders(String cmid) throws SQLException {
+		String id = "Loading...Your Orders....";
+		System.out.println(id);
+		String[][] group = new String[21][];
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			Statement stmt = con.createStatement();
+			ResultSet rstmt = stmt.executeQuery("select count(order_id) from Order_Status where f_cmid = '" + cmid + "';" );
+			rstmt.next();
+			System.out.println("count " + rstmt.getInt(1));
+			int n = rstmt.getInt(1);
+			System.out.println("count --> " + n);
+			String[] total = new String[1];
+			total[0] = String.valueOf(n);
+			String[] productname = new String[n];
+			String[] productid = new String[n];
+			String[] productqty = new String[n];
+			String[] productprice = new String[n];
+			String[] productex = new String[n];
+			String[] productimg = new String[n];
+			String[] cus_name = new String[n];
+			String[] cus_mobile = new String[n];
+			String[] cus_address = new String[n];
+			String[] cus_pincode = new String[n];
+			String[] cus_landmark = new String[n];
+			String[] order_id = new String[n];
+			String[] order_status = new String[n];
+			String[] order_date = new String[n];
+			String[] order_time = new String[n];
+			String[] order_delivery = new String[n];
+			String[] cus_otp = new String[n];
+			String[] cus_reason = new String[n];
+			String[] delivery_date = new String[n];
+			String[] delivery_time = new String[n];
+
+			ResultSet rset = stmt.executeQuery("select * from Order_Status where f_cmid = '" + cmid + "';" );
+			int i = 0;
+			while(rset.next()) {
+				order_id[i]	= rset.getString(1);
+				order_status[i] = rset.getString(4);
+				cus_reason[i] = rset.getString(7);
+				order_delivery[i]	= rset.getString(8);
+				cus_otp[i] = String.valueOf(rset.getInt(9));
+				delivery_date[i] = rset.getDate(11).toString();
+				delivery_time[i] = rset.getTime(12).toString();
+				i = i + 1;	
+			}
+			
+			for(int c=0;c<= order_id.length-1;c++) {
+				String o_id = order_id[c];
+				ResultSet rs = stmt.executeQuery("select * from Customer_Orders where order_id = '" + o_id +"';" );
+				rs.next();
+				productid[c] = String.valueOf(rs.getInt(2));
+				cus_name[c] = rs.getString(3);
+				cus_mobile[c]	= String.valueOf(rs.getLong(4));
+				cus_address[c] = rs.getString(5);
+				cus_pincode[c] = rs.getString(6);
+				cus_landmark[c] = rs.getString(7);
+				order_date[c] = rs.getDate(9).toString();
+				order_time[c] = rs.getTime(10).toString();
+			}
+			
+			for(int z=0;z<=productid.length-1;z++) {
+				String product = productid[z];
+				ResultSet set = stmt.executeQuery("select * from sell_p where p_id = '" + product + "';" );
+				set.next();
+				productname[z]	= set.getString(1);
+				productqty[z] = String.valueOf(set.getInt(3));
+				productprice[z]	= String.valueOf(set.getFloat(4));
+				productex[z] = set.getString(6);
+				productimg[z] = set.getString(7);
+				productimg[z] = productimg[z].replace("\\", "\\\\");
+			}
+			con.close();
+			group[0] = total;
+			group[1] = productname;
+			group[2] = productid;
+			group[3] = productqty;
+			group[4] = productprice;
+			group[5] = productex;
+			group[6] = productimg;
+			group[7] = cus_name;
+			group[8] = cus_mobile;
+			group[9] = cus_address;
+			group[10] = cus_pincode;
+			group[11] = cus_landmark;
+			group[12] = order_id;
+			group[13] = order_status;
+			group[14] = order_date;
+			group[15] = order_time;
+			group[16] = order_delivery;
+			group[17] = cus_otp;
+			group[18] = cus_reason;
+			group[19] = delivery_date;
+			group[20] = delivery_time;
+			return group;	
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return group;
+	}
+	
 }

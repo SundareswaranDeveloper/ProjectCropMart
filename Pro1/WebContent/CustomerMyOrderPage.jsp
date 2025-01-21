@@ -119,9 +119,7 @@ header nav ul li button:hover {
     width: 200px;
     margin: 5px auto 5px auto;
 }
-.disable-button{
-	pointer-events : none;
-}
+
 .cancel-button{
 	display: block;
 	width: fit-content;
@@ -137,6 +135,25 @@ header nav ul li button:hover {
 .cancel-button:hover{
 	 background-color:  #D1F7C4;
 	 color: #1C1C1C;
+}
+.cancel-label{
+	color: darkgreen;
+}
+.field-input {
+	display: block;
+	font-size: 23px;
+	border: 2px solid green;
+	border-radius: 20px;
+	margin : 5px auto 5px auto;
+	width: 200px;
+	background-color: #E0E0E0;
+	}
+.order-guide{
+	color: blue;
+	background-color: lightgrey;
+}
+.display-hide{
+	display : none;	
 }
 
     </style>
@@ -362,59 +379,101 @@ header nav ul li button:hover {
     	var o_status = document.createElement("label");
     	var o_date = document.createElement("label");
     	var o_time = document.createElement("label");
-    	var o_cancel = document.createElement("button");
     	o_id.textContent = "Order ID : " + order_id[i];
     	o_status.textContent = "Order Status : " + order_status[i]; 
     	o_date.textContent = "Order Date : " + order_date[i]; 
     	o_time.textContent = "Order Time : " + order_time[i];
-    	o_cancel.textContent = "Cancel Order";
     	divorder.appendChild(o_id);
     	divorder.appendChild(o_status);
     	divorder.appendChild(o_date);
     	divorder.appendChild(o_time);
-    	if(status.charAt(0) == 'A') {
-    		var o_delivery = document.createElement("label");
-        	var o_otp = document.createElement("label");
-        	o_delivery.textContent = "Excepted Delivery Date : " + order_delivery[i]; 
-        	o_otp.textContent = "OTP : " + cus_otp[i]; 
-        	divorder.appendChild(o_delivery);
-        	divorder.appendChild(o_otp);
-		} else if(status.charAt(0) == 'C') {
-			var o_reason = document.createElement("label");
-        	o_reason.textContent = "Order Cancel Reason : " + cus_reason[i];
-        	o_cancel.textContent = "Order Cancelled!";
-        	o_cancel.classList.add("disable-button");
-        	divorder.appendChild(o_reason);
-		}else if(status.charAt(0) == 'D'){
-			var o_delivery = document.createElement("label");
-        	var o_otp = document.createElement("label");
-        	o_delivery.textContent = "Excepted Delivery Date : " + order_delivery[i]; 
-        	o_otp.textContent = "OTP : " + cus_otp[i]; 
-        	var d_date = document.createElement("label");
-        	var d_time = document.createElement("label");
-        	d_date.textContent = "Delivered Date : " + delivery_date[i]; 
-        	d_time.textContent = "Delivered Time : " + delivery_time[i]; 
-        	o_cancel.textContent = "Order Delivered Successfully";
-        	o_cancel.classList.add("disable-button");
-        	divorder.appendChild(o_delivery);
-        	divorder.appendChild(o_otp);
-        	divorder.appendChild(d_date);
-        	divorder.appendChild(d_time);
+    	
+		if (status.charAt(0) == 'O' || status.charAt(0) == 'A') {
+				let formstatus = document.createElement("form");
+				formstatus.setAttribute("action", "FarmerOrderStatus");
+				formstatus.setAttribute("method", "POST");
+
+				var formcmid = document.createElement("input");
+				formcmid.value = "${crtid}";
+				formcmid.classList.add("display-hide");
+				formcmid.setAttribute("name", "cropmartid");
+				var guideway = document.createElement("input");
+				guideway.classList.add("display-hide");
+				guideway.setAttribute("name", "clue");
+				guideway.id = "orderdeliver";
+
+				var demoid = document.createElement("input");
+				demoid.value = order_id[i];
+				demoid.classList.add("display-hide");
+				demoid.setAttribute("name", "order-id-demo");
+
+				var info = document.createElement("label");
+				info.textContent = "Enter below details to Cancel Order";
+				info.classList.add("order-guide");
+
+				var cancelreason = document.createElement("label");
+				cancelreason.textContent = " Cancel Order Reason  ";
+				cancel_input = document.createElement("input");
+				cancel_input.setAttribute("type", "text");
+				cancel_input.setAttribute("name", "cancelreason");
+				cancel_input.classList.add("field-input");
+				var cancelbutton = document.createElement("button");
+				cancelbutton.setAttribute("onclick", "change()");
+				cancelbutton.setAttribute("type", "submit");
+				cancelbutton.textContent = "Cancel Order";
+				cancelbutton.classList.add("cancel-button");
+				cancelreason.classList.add("cancel-label");
+				if(status.charAt(0) == 'A'){
+					var o_delivery = document.createElement("label");
+					var o_otp = document.createElement("label");
+					o_delivery.textContent = "Excepted Delivery Date : " + order_delivery[i];
+					o_otp.textContent = "OTP : " + cus_otp[i];
+					divorder.appendChild(o_delivery);
+					divorder.appendChild(o_otp);
+				}
+				formstatus.appendChild(formcmid);
+				formstatus.appendChild(guideway);
+				formstatus.appendChild(demoid);
+				formstatus.appendChild(info);
+				formstatus.appendChild(cancelreason);
+				formstatus.appendChild(cancel_input);
+				formstatus.appendChild(cancelbutton);
+				divorder.appendChild(formstatus);
+				
+			}
+			else if (status.charAt(0) == 'C') {
+				var o_reason = document.createElement("label");
+				o_reason.textContent = "Order Cancel Reason : " + cus_reason[i];
+				divorder.appendChild(o_reason);
+			} else if (status.charAt(0) == 'D') {
+				var o_delivery = document.createElement("label");
+				var o_otp = document.createElement("label");
+				o_delivery.textContent = "Excepted Delivery Date : " + order_delivery[i];
+				o_otp.textContent = "OTP : " + cus_otp[i];
+				var d_date = document.createElement("label");
+				var d_time = document.createElement("label");
+				d_date.textContent = "Delivered Date : " + delivery_date[i];
+				d_time.textContent = "Delivered Time : " + delivery_time[i];
+				divorder.appendChild(o_delivery);
+				divorder.appendChild(o_otp);
+				divorder.appendChild(d_date);
+				divorder.appendChild(d_time);
+			}
 		}
-    	o_cancel.classList.add("cancel-button");
-    	divorder.appendChild(o_cancel);
-	}
-    var cmid = document.getElementById("hide").textContent;
-    document.getElementById("nav-cmid").innerText = cmid;
-	var a = 0;
-	function keyvalue1(){
-		a = 6;
-		document.getElementById("nav-key").innerText = a;
-	}function keyvalue2(){
-		a = 7;
-		document.getElementById("nav-key").innerText = a;
-	}
-    
+		var cmid = document.getElementById("hide").textContent;
+		document.getElementById("nav-cmid").innerText = cmid;
+		var a = 0;
+		function keyvalue1() {
+			a = 6;
+			document.getElementById("nav-key").innerText = a;
+		}
+		function keyvalue2() {
+			a = 7;
+			document.getElementById("nav-key").innerText = a;
+		}
+		function change() {
+			document.getElementById("orderdeliver").innerText = "5";
+		}
 	</script>
     </body>
 </html>
