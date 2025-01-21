@@ -232,5 +232,108 @@ public class LogDb {
 		}
 		return result;
 	}
+	
+	public boolean order_accept(String deliverydate, String orderid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "update Order_Status set status = ?,ex_delivery_date = ? where order_id = '" + orderid + "';";
+			PreparedStatement ps = con.prepareStatement(query);
 
+			ps.setString(1, "Accepted by Farmer");
+			ps.setString(2,deliverydate);
+			
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean order_delivery(Integer otp, String orderid) throws SQLException {
+		LocalDate local_date = LocalDate.now();
+		Date date = Date.valueOf(local_date);
+		LocalTime local_time = LocalTime.now();
+		Time time = Time.valueOf(local_time);
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select c_otp from Order_Status where order_id = '"+ orderid +"';");
+			rs.next();
+			int cus_otp = rs.getInt(1);
+			if(cus_otp == otp) {
+				String query = "update Order_Status set status = ?,f_otp = ?,delivery_date = ?,delivery_time = ? where order_id = '" + orderid + "';";
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setString(1, "Delivery Successfull!");
+				ps.setInt(2, otp);
+				ps.setDate(3, date);
+				ps.setTime(4, time);
+				int rset = ps.executeUpdate();
+				if (rset > 0) {
+					result = true;
+				}
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean order_cancel(String reason, String orderid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "update Order_Status set status = ?,f_cancel = ?,cancel_reason = ? where order_id = '" + orderid + "';";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setString(1, "Cancelled by Farmer");
+			ps.setBoolean(2,true);
+			ps.setString(3,reason);
+			
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean order_cancel_cus(String reason, String orderid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "update Order_Status set status = ?,c_cancel = ?,cancel_reason = ? where order_id = '" + orderid + "';";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setString(1, "Cancelled by Customer");
+			ps.setBoolean(2,true);
+			ps.setString(3,reason);
+			
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
 }
