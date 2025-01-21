@@ -49,7 +49,7 @@ public class ConfirmCustomerOrder extends HttpServlet {
 		LogDb db = new LogDb();
 		boolean upload = false;
 		try {
-			upload = db.order_insert(product_id,Customer_name,phone_number,address,pincode,landmark);
+			upload = db.order_insert(product_id,Customer_name,phone_number,address,pincode,landmark,cmid);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

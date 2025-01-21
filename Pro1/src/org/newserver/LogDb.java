@@ -2,11 +2,15 @@
 package org.newserver;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class LogDb {
 
@@ -175,9 +179,13 @@ public class LogDb {
 		return result;
 	}
 
-	public boolean order_insert(Integer product_id, String customer_name, Long phone_number, String address, String pincode, String landmark) throws SQLException {
+	public boolean order_insert(Integer product_id, String customer_name, Long phone_number, String address, String pincode, String landmark, String cmid) throws SQLException {
 		// TODO Auto-generated method stub
 		boolean result = false;
+		LocalDate local_date = LocalDate.now();
+		Date date = Date.valueOf(local_date);
+		LocalTime local_time = LocalTime.now();
+		Time time = Time.valueOf(local_time);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
@@ -191,7 +199,11 @@ public class LogDb {
 			}else {
 				order_id = order_id + (key+1);
 			}
-			String query = "insert into Customer_Orders values (?,?,?,?,?,?,?);";
+			Statement stmt = con.createStatement();
+			ResultSet rstmt = stmt.executeQuery("select cmid from sell_p where p_id = '" + product_id + "';");
+			rstmt.next();
+			String f_cmid = rstmt.getString(1);
+			String query = "insert into Customer_Orders values (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, order_id);
 			ps.setInt(2, product_id);
@@ -200,8 +212,17 @@ public class LogDb {
 			ps.setString(5, address);
 			ps.setString(6, pincode);
 			ps.setString(7, landmark);
-			int row = ps.executeUpdate();
-			if (row > 0) {
+			ps.setString(8, cmid);
+			ps.setDate(9, date);
+			ps.setTime(10, time);
+			int row1 = ps.executeUpdate();
+			String command = "insert into Order_Status(order_id,c_cmid,f_cmid) values (?,?,?);";
+			PreparedStatement pstmt = con.prepareStatement(command);
+			pstmt.setString(1, order_id);
+			pstmt.setString(2, cmid);
+			pstmt.setString(3, f_cmid);
+			int row2 = pstmt.executeUpdate();
+			if (row1 > 0 && row2 > 0) {
 				result = true;
 			}
 			con.close();
@@ -211,5 +232,108 @@ public class LogDb {
 		}
 		return result;
 	}
+	
+	public boolean order_accept(String deliverydate, String orderid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "update Order_Status set status = ?,ex_delivery_date = ? where order_id = '" + orderid + "';";
+			PreparedStatement ps = con.prepareStatement(query);
 
+			ps.setString(1, "Accepted by Farmer");
+			ps.setString(2,deliverydate);
+			
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean order_delivery(Integer otp, String orderid) throws SQLException {
+		LocalDate local_date = LocalDate.now();
+		Date date = Date.valueOf(local_date);
+		LocalTime local_time = LocalTime.now();
+		Time time = Time.valueOf(local_time);
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select c_otp from Order_Status where order_id = '"+ orderid +"';");
+			rs.next();
+			int cus_otp = rs.getInt(1);
+			if(cus_otp == otp) {
+				String query = "update Order_Status set status = ?,f_otp = ?,delivery_date = ?,delivery_time = ? where order_id = '" + orderid + "';";
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setString(1, "Delivery Successfull!");
+				ps.setInt(2, otp);
+				ps.setDate(3, date);
+				ps.setTime(4, time);
+				int rset = ps.executeUpdate();
+				if (rset > 0) {
+					result = true;
+				}
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean order_cancel(String reason, String orderid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "update Order_Status set status = ?,f_cancel = ?,cancel_reason = ? where order_id = '" + orderid + "';";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setString(1, "Cancelled by Farmer");
+			ps.setBoolean(2,true);
+			ps.setString(3,reason);
+			
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean order_cancel_cus(String reason, String orderid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "update Order_Status set status = ?,c_cancel = ?,cancel_reason = ? where order_id = '" + orderid + "';";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setString(1, "Cancelled by Customer");
+			ps.setBoolean(2,true);
+			ps.setString(3,reason);
+			
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
 }

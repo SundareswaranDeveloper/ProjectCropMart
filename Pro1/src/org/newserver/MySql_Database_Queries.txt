@@ -48,5 +48,11 @@ create table sell_p(p_name varchar(20), p_id int auto_increment primary key, p_q
 select * from sell_p;
 
 -- Customer_Orders : table Customer_Orders is used to store customer order product details and customer delivery address details.
-create table Customer_Orders(order_id varchar(10) primary key, product_id int, customer_name varchar(15), c_mobile bigint, delivery_address varchar(100), pincode varchar(15), landmark varchar(50));
+create table Customer_Orders(order_id varchar(10) primary key, product_id int, customer_name varchar(15), c_mobile bigint, delivery_address varchar(100), pincode varchar(15),
+	landmark varchar(50), c_cmid varchar(10), o_date date, o_time time);
 select * from Customer_Orders;
+
+-- Order_Status : table Order_Status is used to store customer order product delivery status details.
+create table Order_Status(order_id varchar(10) primary key, c_cmid varchar(10), f_cmid varchar(10), status varchar(50) default("Order Request sent!"), c_cancel boolean default(false),
+ f_cancel boolean default(false), cancel_reason varchar(100) default("null"), ex_delivery_date varchar(10) default("01-01-2025"), c_otp int default(0) , f_otp int default(0), delivery_date date default '2025-01-01', delivery_time time  default '12:00:00');
+select * from Order_Status;
