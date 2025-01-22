@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%// String cid = request.getParameter("crtid");
-    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<title>Insert title here</title>
+<title>Farmer/Sell Product</title>
 <style type="text/css">
 	<%@ include file="navCss.jsp" %>
 	
 		body{
-			background-color: #1d2f23;
+			background-color: #ECEFF1 ;
 			
 		}
-		
+		#nav-one{
+			border-top : 2px solid #16A085;
+			border-bottom : 2px solid #16A085;
+		}
 
 		.contain{
 			display: block;
@@ -23,11 +24,11 @@
 			width: 500px ;
 		}
 		
-		#tit{
+		#title-head{
 			display: block;
 			font-size: 25px;
 			text-align: center;
-			color: darkgreen;
+			color:  #4E342E ;
 		}
 		#form-button{
 			background-color: #792099;
@@ -53,7 +54,7 @@
 			font-size: 20px;
 			width: 40%;
 			padding: 10px;
-			color: lightgreen;
+			color: #388E3C;
 		}
 		.input-group input{
 			border-radius: 10px;
@@ -66,13 +67,6 @@
 			width: 50%;
 			color: blue;
 		}
-		#dis{
-		display:block;
-		}
-		#highlight{
-		
-		border-bottom: 2px solid brown;
-		}
 	</style>
 </head>
 <body>
@@ -81,7 +75,7 @@
 	<div class="contain">
 	<form action="SellServlet" id="form" method="post">
 			
-			<label id="tit"> Fill below Details to publish your Product </label>
+			<label id="title-head"> Fill below Details to publish your Product </label>
 			<div class="input-group">
 				<label >Product Name</label>
 				<input type="text" name="product">
@@ -109,7 +103,7 @@
 			<label style="visibility: hidden;" id="cm">${crtid}</label>
 			<input type="hidden" id="store" name="mart" >
 			
-			<button type="submit" id="form-button">Register</button>
+			<button type="submit" id="form-button">Sell Product</button>
 			
 
 		
@@ -117,8 +111,8 @@
 	</div>
 	
 	<script type="text/javascript">
-				var abc = document.getElementById("cm").textContent;
-				document.getElementById("store").innerText = abc;
-			</script>
+		var abc = document.getElementById("cm").textContent;
+		document.getElementById("store").innerText = abc;
+	</script>
 </body>
 </html>
