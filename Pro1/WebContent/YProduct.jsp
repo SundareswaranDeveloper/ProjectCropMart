@@ -1,151 +1,139 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<% String pi1 = (String) request.getAttribute("pi1n");
-String pn1 = (String)request.getAttribute("pn1n");
-Integer pq1 = (Integer)request.getAttribute("pq1n");
-Float pp1 = (Float)request.getAttribute("pp1n");
-String pi2 = (String) request.getAttribute("pi2n");
-String pn2 = (String)request.getAttribute("pn2n");
-Integer pq2 = (Integer)request.getAttribute("pq2n");
-Float pp2 = (Float)request.getAttribute("pp2n");
-String pi3 = (String) request.getAttribute("pi3n");
-String pn3 = (String)request.getAttribute("pn3n");
-Integer pq3 = (Integer)request.getAttribute("pq3n");
-Float pp3 = (Float)request.getAttribute("pp3n");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<title>Insert title here</title>
-<title></title>
+<title>Farmer/My Products</title>
 
   <style>
     <%@ include file="navCss.jsp" %>
-/* -----------------------------------*/
-    /* Centered Heading */
+    body{
+		background-color:  #FFEBEE;
+    }
+    #nav-two{
+    	border-top : 2px solid #16A085;
+		border-bottom : 2px solid #16A085;
+	}
     h1 {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 32px;
+		text-align: center;
+		margin-top: 20px;
+      	font-size: 32px;
     }
-
-    /* Container for the divs */
-    .container {
-      display: flex;
-      justify-content: space-around;
-      padding: 20px;
-      margin-top: 20px;
-      flex-wrap : wrap;
-    }
-
-    /* Individual div inside the container */
-    .box {
-      width: 30%;
-      text-align: center;
-      padding: 15px;
-      margin-top: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-    }
-
-    /* Image styles */
-    .box img {
-      width: 100%; /* Adjust according to your image aspect ratio */
-      height: auto;
-      max-height: 150px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-    }
-
-    /* Label styles inside the div */
-    .box label {
-      display: block;
-      margin: 5px 0;
-      font-size: 14px;
-    }
-
-    /* Button styles */
-    .box button {
-      background-color: #333;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    /* Button hover effect */
-    .box button:hover {
-      background-color: #555;
-    }
-    #hii{
-    	visibility: hidden;
-    }
-    .disappear{
-    display: none;
-    }
-    #demo{
-    display: block;
-    }
+	.product-list {
+		display: flex;
+	    justify-content: space-around;
+	    gap: 20px;
+	    flex-wrap: wrap;
+	}
+	.product-card {
+		background-color: white;
+	    border-radius: 8px;
+	    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	    width: 250px;
+	    padding: 15px;
+	    text-align: center;
+	}
+	.product-card img {
+	    width: 100%;
+	    height: auto;
+	    border-radius: 8px;
+	}
+	.product-card h3 {
+	    margin: 10px 0;
+	}
+	.product-card p {
+	    color: #888;
+	}   
   </style>
   </head>
 <body>
-	<input type="hidden" id="rule" value="${tp}">
-  <%@ include file="navbar.jsp" %>
+	<%@ include file="navbar.jsp" %>
 	
-  <!-- Centered Heading -->
-  <h1>Published Products</h1>
-
-  <!-- Container for the three divs -->
-  <div class="container">
-    <!-- First div -->
-    <div class="box disappear" id="p1">
-      <img src="<%=pi1 %>" alt="Image 1">
-      <label><%=pn1 %></label>
-      <label>Quantity :<%=pq1 %></label>
-      <label>Price:<%=pp1 %></label>
-      <button>View</button>
-    </div>
-
-    <!-- Second div -->
-    <div class="box disappear" id="p2">
-      <img src="<%=pi2 %>" alt="Image 2">
-      <label><%=pn2%></label>
-      <label>Quantity :<%=pq2 %></label>
-      <label>Price:<%=pp2 %></label>
-      <button>View</button>
-    </div>
-
-    <!-- Third div -->
-    <div class="box disappear" id="p3">
-      <img src="<%=pi3 %>" alt="Image 3">
-      <label><%=pn3 %></label>
-      <label>Quantity :<%=pq3 %></label>
-      <label>Price:<%=pp3 %></label>
-      <button>View</button>
-    </div>
-    <div style="display: none;" class="box disappear" id="p4">
-      <img src="image1.jpg" alt="Image">
-      <label>Service 1</label>
-      <label>Details about Service 1</label>
-      <label>Price: $99</label>
-      <button>Learn More</button>
-    </div>
-    
-  </div>
+	<h1>Published Products</h1> 
+	<section class="product-list" id="parent">
+        
+    </section> 
   
 	<script type="text/javascript">
-	var a = document.getElementById("rule").value;
-	var n = "p";
-	var b = 1;
-	for (var i = 1; i <= a; i++) {
-		var label = document.getElementById(n+b);
-		label.classList.remove("disappear");
-		b++;	
+	
+	// Convert the Java array into a comma-separated string
+    var name_ary = "<%= String.join(",", (String[]) request.getAttribute("productname")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    name_ary = name_ary.split(",");
+    
+ 	// Convert the Java array into a comma-separated string
+    var id_ary = "<%= String.join(",", (String[]) request.getAttribute("productid")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    id_ary = id_ary.split(",");
+
+ 	// Convert the Java array into a comma-separated string
+    var qty_ary = "<%= String.join(",", (String[]) request.getAttribute("productqty")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    qty_ary = qty_ary.split(",");
+    
+ 	// Convert the Java array into a comma-separated string    
+    var price_ary = "<%= String.join(",", (String[]) request.getAttribute("productprice")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    price_ary = price_ary.split(",");
+    
+ 	// Convert the Java array into a comma-separated string    
+    var sales_ary = "<%= String.join(",", (String[]) request.getAttribute("productsales")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    sales_ary = sales_ary.split(",");
+    
+ 	// Convert the Java array into a comma-separated string    
+    var expiry_ary = "<%= String.join(",", (String[]) request.getAttribute("productexpiry")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    expiry_ary = expiry_ary.split(",");
+    
+ 	// Convert the Java array into a comma-separated string    
+    var img_ary = "<%= String.join(",", (String[]) request.getAttribute("productimg")) %>"; 
+	
+    // Convert the comma-separated string into a JavaScript array
+    img_ary = img_ary.split(",");
+    
+    var total = ${count};
+	var divlead  = document.getElementById("parent");
+	for(var m = 0; m<=total-1;m++){
+	var divmain = document.createElement("div");
+	divmain.classList.add('product-card');
+	
+	divlead.appendChild(divmain);
+	
+	var pimage = document.createElement("img");
+	var pname = document.createElement("h1");
+	var pid = document.createElement("h4");
+	var pprice = document.createElement("h2");
+	var pquantity = document.createElement("h3");
+	var pexpiry = document.createElement("h5");
+	var psales = document.createElement("h6");
+	
+	pid.textContent = "Product id : " + id_ary[m];
+	pimage.src = img_ary[m]; 
+	pimage.alt = "image is " + m;
+	pimage.classList.add("img-new");
+	pname.textContent = "Product Name : " + name_ary[m]; 
+	pprice.textContent = "Product Price : " + price_ary[m]; 
+	pquantity.textContent = "Product Quantity : " + qty_ary[m]; 
+	pexpiry.textContent = "Product Expiry Date : " + expiry_ary[m]; 
+	psales.textContent = "Product Sales End Date : " + sales_ary[m]; 
+	
+	divmain.appendChild(pid);
+	divmain.appendChild(pimage);
+	divmain.appendChild(pname);
+	divmain.appendChild(pprice);
+	divmain.appendChild(pquantity);
+	divmain.appendChild(pexpiry);
+	divmain.appendChild(psales);
+	
 	}
 	</script>
 </body>
