@@ -41,7 +41,7 @@ public class YourProductServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	/*protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
@@ -95,6 +95,32 @@ public class YourProductServlet extends HttpServlet {
 		} else {
 			System.out.println("bye");
 		}
+	}*/
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String id = request.getParameter("secret");
+		Database db = new Database();
+		String[][] product = new String[8][];
+		try {
+			product = db.readYourProduct(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("crtid", id);
+		request.setAttribute("count", product[0][0]);
+		request.setAttribute("productname", product[1]);
+		request.setAttribute("productid", product[2]);
+		request.setAttribute("productqty", product[3]);
+		request.setAttribute("productprice", product[4]);
+		request.setAttribute("productsales", product[5]);
+		request.setAttribute("productexpiry", product[6]);
+		request.setAttribute("productimg", product[7]);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("YProduct.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 
 }

@@ -114,7 +114,7 @@ public class Database {
 		}
 		return list;
 	}
-	//@SuppressWarnings({ "unchecked", "rawtypes" })
+	/*//@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List readYour(String cond) throws SQLException {
 		// TODO Auto-generated method stub
 		
@@ -148,8 +148,58 @@ public class Database {
 			e.printStackTrace(); 
 		}
 		return li;
+	}*/
+
+
+	public String[][] readYourProduct(String cond) throws SQLException {
+		String[][] product = new String[8][];
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			Statement stmt = con.createStatement();
+			ResultSet rstmt = stmt.executeQuery("select count(cmid) from sell_p where cmid = '" + cond + "';");
+			rstmt.next();
+			int count = rstmt.getInt(1);
+			String[] total = new String[1];
+			total[0] = String.valueOf(count);
+			String[] productn = new String[count];
+			String[] productid = new String[count];
+			String[] productqty = new String[count];
+			String[] productp = new String[count];
+			String[] productsd = new String[count];
+			String[] productex = new String[count];
+			String[] productimg = new String[count];
+			Statement st = con.createStatement();
+			ResultSet rset = st.executeQuery("select * from sell_p where cmid = '" + cond + "';");
+			int i = 0;
+			while(rset.next()) {
+				productn[i]	= rset.getString(1);
+				productid[i] = String.valueOf(rset.getInt(2));
+				productqty[i] = String.valueOf(rset.getInt(3));
+				productp[i]	= String.valueOf(rset.getInt(4));
+				productsd[i] = rset.getString(5);
+				productex[i] = rset.getString(6);
+				productimg[i] = rset.getString(7);
+				productimg[i] = productimg[i].replace("\\", "\\\\");
+				i = i + 1;	
+			}
+			product[0] = total;
+			product[1] = productn;
+			product[2] = productid;
+			product[3] = productqty;
+			product[4] = productp;
+			product[5] = productsd;
+			product[6] = productex;
+			product[7] = productimg;
+			con.close();
+			return product;	
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		}
+		return product;
 	}
-	
+
 	public List readGschemes() throws SQLException{
 		String id = "Loading...";
 		System.out.println(id);
