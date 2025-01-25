@@ -42,7 +42,7 @@
     .navbar .nav-links button:hover {
       color:#2E3B4E;
       background-color : #E8F1F2 ;
-      
+      border-bottom : 2px solid limegreen; 
     }
     
     .nav-id{

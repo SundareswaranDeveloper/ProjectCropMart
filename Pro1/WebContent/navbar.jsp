@@ -5,7 +5,7 @@
     </div>
     <form class="nav-links" action="FarmContol" method="post">
       <button type="submit" onclick="click1()" id="nav-one">Sell Product</button>
-      <button type="submit" onclick="click2()" id="nav-two">Your Product</button>
+      <button type="submit" onclick="click2()" id="nav-two">My Products</button>
       <button type="submit" onclick="click3()" id="nav-three">Motivational Corner</button>
       <button type="submit" onclick="click4()" id="nav-four">Tips</button>
       <button type="submit" onclick="click5()" id="nav-five">Government Schemes</button>
