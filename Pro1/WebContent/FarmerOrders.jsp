@@ -8,6 +8,13 @@
 <title>Farmer/Customer Orders</title>
 <style type="text/css">
 	<%@ include file="navCss.jsp" %>
+	body{
+	background-color: #F7CAC9;
+	}
+	#nav-six{
+   		border-top : 2px solid #16A085;
+		border-bottom : 2px solid #16A085;
+	}
 	#title{
 	text-align : center;
 	margin: 10px;
@@ -55,6 +62,7 @@
 	.product-image{
 	   	display: block;
 	    width: 200px;
+	    height: 200px;
 	    margin: 5px auto 5px auto;
 	}
 	.disable-button{

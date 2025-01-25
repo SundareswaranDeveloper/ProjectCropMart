@@ -10,16 +10,17 @@
   <style>
     <%@ include file="navCss.jsp" %>
     body{
-		background-color:  #FFEBEE;
+		background-color: #FFE4C4 ;
     }
     #nav-two{
     	border-top : 2px solid #16A085;
 		border-bottom : 2px solid #16A085;
-	}
-    h1 {
+	} 
+    #title-product {
 		text-align: center;
-		margin-top: 20px;
+		margin: 20px;
       	font-size: 32px;
+      	color : darkgreen;
     }
 	.product-list {
 		display: flex;
@@ -28,30 +29,61 @@
 	    flex-wrap: wrap;
 	}
 	.product-card {
-		background-color: white;
+		background-color: #FFEBEE;
 	    border-radius: 8px;
-	    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	    width: 250px;
+	    margin-bottom : 20px;
 	    padding: 15px;
-	    text-align: center;
+	    text-align: left;
+	    line-height : 30px;
+	    flex-basis: 30%;
+	    
 	}
 	.product-card img {
-	    width: 100%;
-	    height: auto;
+		display : block;
+	    width: 200px;
+	    height: 200px;
+	    margin : 3px auto;
 	    border-radius: 8px;
 	}
-	.product-card h3 {
-	    margin: 10px 0;
-	}
-	.product-card p {
-	    color: #888;
-	}   
+	  
+	.product-id{
+		font-size: 16px;
+		color : red;
+		text-align: center;	
+		margin-bottom : 3px;
+	} 
+	.product-name{
+		font-size: 24px;
+		color : #6495ED;
+		text-align : left;
+		margin : 3px 0px 5px 20%;	
+	} 
+	.product-quantity{
+		font-size: 18px;
+		color : #9932CC;
+		margin : 5px 0px 5px 20%;	
+	} 
+	.product-price{
+		font-size: 22px;
+		color : #FF8C00;
+		margin : 5px 0px 5px 20%;			
+	} 
+	.product-sales{
+		font-size: 18px;
+		color : #4B0082;
+		margin : 5px 0px 5px 20%;		
+	} 
+	.product-expiry{
+		font-size: 20px;
+		color : #32CD32;
+		margin : 5px 0px 5px 20%;	
+	} 
   </style>
   </head>
 <body>
 	<%@ include file="navbar.jsp" %>
 	
-	<h1>Published Products</h1> 
+	<h1 id="title-product">Published Products</h1> 
 	<section class="product-list" id="parent">
         
     </section> 
@@ -117,14 +149,20 @@
 	var psales = document.createElement("h6");
 	
 	pid.textContent = "Product id : " + id_ary[m];
+	pid.classList.add("product-id");
 	pimage.src = img_ary[m]; 
 	pimage.alt = "image is " + m;
 	pimage.classList.add("img-new");
 	pname.textContent = "Product Name : " + name_ary[m]; 
-	pprice.textContent = "Product Price : " + price_ary[m]; 
-	pquantity.textContent = "Product Quantity : " + qty_ary[m]; 
+	pname.classList.add("product-name");
+	pprice.textContent = "Product Price : " + price_ary[m] + " INR"; 
+	pprice.classList.add("product-price");
+	pquantity.textContent = "Product Quantity : " + qty_ary[m] + " Kg"; 
+	pquantity.classList.add("product-quantity");
 	pexpiry.textContent = "Product Expiry Date : " + expiry_ary[m]; 
+	pexpiry.classList.add("product-expiry");
 	psales.textContent = "Product Sales End Date : " + sales_ary[m]; 
+	psales.classList.add("product-sales");
 	
 	divmain.appendChild(pid);
 	divmain.appendChild(pimage);
