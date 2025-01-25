@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,70 +88,50 @@ public class Database {
 		return id;
 	}
 	
-	
-	public List readTips() throws SQLException{
+	public String[][] readTips() throws SQLException{
 		String id = "Loading...";
 		System.out.println(id);
-		List<Object> list = new ArrayList<Object>();
+		String[][] tips = new String[4][];
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			
 			Statement stmt = con.createStatement();
+			String[] total = new String[1];
+			
 			ResultSet rstmt = stmt.executeQuery("select count(t_c) from A_Tips;");
 			rstmt.next();
 			int count = rstmt.getInt(1);
-			list.add(count);
+			total[0] = String.valueOf(count);
+			String[] tip_data = new String[count];
+			String[] tip_date = new String[count];
+			String[] tip_time = new String[count];
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from A_Tips;");
+			int i = 0;
 			while(rs.next()) {
-			list.add(rs.getString(2));
+			tip_data[i] = rs.getString(2);
+			tip_data[i] = tip_data[i].replaceAll(",", "\\$\\$\\$");
+			Timestamp timestamp = rs.getTimestamp(3);
+			String stamp = timestamp.toString();
+			int split = stamp.indexOf(' ');
+			int endsplit = stamp.lastIndexOf(':');
+			tip_date[i] = stamp.substring(0, split);
+			tip_time[i] = stamp.substring(split + 1,endsplit);
+			i++;
 			}
 			con.close();
-			return list;	
+			tips[0] = total;
+			tips[1] = tip_data;
+			tips[2] = tip_date;
+			tips[3] = tip_time;
+			return tips;	
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		return tips;
 	}
-	/*//@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List readYour(String cond) throws SQLException {
-		// TODO Auto-generated method stub
-		
-		List<Object> li = new ArrayList<Object>();
-		System.out.println("hii");
-		System.out.println(li);
-		System.out.println("hii");
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			
-			Statement stmt = con.createStatement();
-			ResultSet rstmt = stmt.executeQuery("select count(cmid) from sell_p where cmid = '" + cond + "';");
-			rstmt.next();
-			int count = rstmt.getInt(1);
-			li.add(count);
-			System.out.println(li);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from sell_p where cmid = '" + cond + "';");
-			while(rs.next()) {
-			li.add(rs.getString(1));
-			li.add(rs.getInt(3));
-			li.add(rs.getFloat(4));
-			li.add(rs.getString(7));
-			System.out.println(li);
-			}
-			con.close();
-			return li;	
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace(); 
-		}
-		return li;
-	}*/
-
-
+	
 	public String[][] readYourProduct(String cond) throws SQLException {
 		String[][] product = new String[8][];
 		try {
@@ -199,59 +180,93 @@ public class Database {
 		}
 		return product;
 	}
-
-	public List readGschemes() throws SQLException{
-		String id = "Loading...";
-		System.out.println(id);
-		List<Object> glist = new ArrayList<Object>();
+	
+	public String[][] readSchemes() throws SQLException{
+		String[][] schemes = new String[4][];
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			
 			Statement stmt = con.createStatement();
+			String[] total = new String[1];
+			
 			ResultSet rstmt = stmt.executeQuery("select count(g_c) from g_scheme;");
 			rstmt.next();
 			int count = rstmt.getInt(1);
-			glist.add(count);
+			total[0] = String.valueOf(count);
+			String[] schemes_data = new String[count];
+			String[] schemes_date = new String[count];
+			String[] schemes_time = new String[count];
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from g_scheme;");
+			int i = 0;
 			while(rs.next()) {
-			glist.add(rs.getString(2));
+			schemes_data[i] = rs.getString(2);
+			schemes_data[i] = schemes_data[i].replaceAll(",", "\\$\\$\\$");
+			Timestamp timestamp = rs.getTimestamp(3);
+			String stamp = timestamp.toString();
+			int split = stamp.indexOf(' ');
+			int endsplit = stamp.lastIndexOf(':');
+			schemes_date[i] = stamp.substring(0, split);
+			schemes_time[i] = stamp.substring(split + 1,endsplit);
+			i++;
 			}
 			con.close();
-			return glist;	
+			schemes[0] = total;
+			schemes[1] = schemes_data;
+			schemes[2] = schemes_date;
+			schemes[3] = schemes_time;
+			return schemes;	
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return glist;
+		return schemes;
 	}
-	public List readMc() throws SQLException {
-		String id = "Loading...";
-		System.out.println(id);
-		List<Object> list = new ArrayList<Object>();
+
+	public String[][] readCorner() throws SQLException{
+		String[][] info = new String[4][];
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			
 			Statement stmt = con.createStatement();
+			String[] total = new String[1];
+			
 			ResultSet rstmt = stmt.executeQuery("select count(m_c) from m_corner;");
 			rstmt.next();
 			int count = rstmt.getInt(1);
-			list.add(count);
+			total[0] = String.valueOf(count);
+			String[] info_data = new String[count];
+			String[] info_date = new String[count];
+			String[] info_time = new String[count];
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from m_corner;");
+			int i = 0;
 			while(rs.next()) {
-			list.add(rs.getString(2));
+			info_data[i] = rs.getString(2);
+			info_data[i] = info_data[i].replaceAll(",", "\\$\\$\\$");
+			Timestamp timestamp = rs.getTimestamp(3);
+			String stamp = timestamp.toString();
+			int split = stamp.indexOf(' ');
+			int endsplit = stamp.lastIndexOf(':');
+			info_date[i] = stamp.substring(0, split);
+			info_time[i] = stamp.substring(split + 1,endsplit);
+			i++;
 			}
 			con.close();
-			return list;	
+			info[0] = total;
+			info[1] = info_data;
+			info[2] = info_date;
+			info[3] = info_time;
+			return info;	
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		return info;
 	}
+	
 	public List readSearch(String cond1, String cond2) throws SQLException {
 		String id = "Loading...";
 		System.out.println(id);
