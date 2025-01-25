@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <title>My Orders/Customer</title>
 <style type="text/css">
+body{
+	background-color: #DDE2E6;
+}
 header {
     background-color: #333;
     color: white;
@@ -49,6 +52,7 @@ form input{
 .user{
 	font-size : 25px;
 	color : blue;
+	letter-spacing : 2px;
 }
 header nav ul {
     list-style: none;
@@ -77,6 +81,7 @@ header nav ul li button:hover {
 	font-size: 40px;
 	background-color: beige;
 }
+
 .product{
     margin: 10px;
     background-color: burlywood;
@@ -93,6 +98,14 @@ header nav ul li button:hover {
     margin: 20px;
     padding: 20px;
 }
+
+.product-card label{
+	display : block;
+	font-size : 32px;
+	text-align : left;
+	margin : 2px 2px 2px 15%;
+}
+
 .customer-card{
     height: 500px;
     flex-basis: 27%;
@@ -101,6 +114,14 @@ header nav ul li button:hover {
     margin: 20px;
     padding: 20px;
 }
+
+.customer-card label{
+	display : block;
+	font-size : 32px;
+	text-align : left;
+	margin : 2px 2px 2px 15%;
+}
+
 .order-status{
     height: 500px;
     flex-basis: 27%;
@@ -109,14 +130,19 @@ header nav ul li button:hover {
     margin: 20px;
     padding: 20px;
 }
-#order label {
-    display: block;
-    text-align: center;
-    font-size: 32px;
+
+.order-status label{
+	display : block;
+	font-size : 32px;
+	text-align : left;
+	margin : 2px 2px 2px 15%;
 }
+
 .product-image{
    	display: block;
     width: 200px;
+    height : 200px;
+    border-radius : 20px;
     margin: 5px auto 5px auto;
 }
 
@@ -183,8 +209,7 @@ header nav ul li button:hover {
             </form>  
         </nav>
         <div class="user">
-        	<i class="fa-solid fa-user"></i>
-        	<label id="hide">${cropmart_id}</label>
+        	<i class="fa-solid fa-user" id="hide">${cropmart_id}</i>
     	</div>
     </header>
 
@@ -462,6 +487,7 @@ header nav ul li button:hover {
 		}
 		var cmid = document.getElementById("hide").textContent;
 		document.getElementById("nav-cmid").innerText = cmid;
+		document.getElementById("sid").innerText = cmid;
 		var a = 0;
 		function keyvalue1() {
 			a = 6;

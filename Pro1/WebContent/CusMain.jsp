@@ -56,6 +56,7 @@ form input{
 .user{
 	font-size : 25px;
 	color : blue;
+	letter-spacing : 2px;
 }
 header nav ul {
     list-style: none;
@@ -195,8 +196,7 @@ header nav ul li button:hover {
             </form>  
         </nav>
         <div class="user">
-        	<i class="fa-solid fa-user"></i>
-        	<label id="hide">${crtid}</label>
+        	<i class="fa-solid fa-user" id="nav-cropmart">${crtid}</i>
     	</div>
     </header>
     <div id="head">
@@ -229,7 +229,7 @@ header nav ul li button:hover {
         <h2>You can purchase the product from a minimum quantity of 50 kg if your delivery district is different from the product farmer's district.</h2>
     </section>
    <script type="text/javascript">
-    var cmid = document.getElementById("hide").textContent;
+    var cmid = document.getElementById("nav-cropmart").textContent;
 	document.getElementById("sid").innerText = cmid;
 	document.getElementById("nav-cmid").innerText = cmid;
 	var a = 0;

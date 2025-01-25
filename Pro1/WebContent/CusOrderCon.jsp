@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<title>Insert title here</title>
+<title>Customer/Place Order</title>
 <style type="text/css">
 		/* Basic Reset */
     * {
@@ -16,6 +16,13 @@
     body{
     background-color:  #FAF3E0;
     }
+    #title-order{
+    	font-size : 36px;
+    	text-align : center;
+  	 	color: darkgreen; 
+  	 	margin : 10px;
+  	 	padding: 5px;
+    }
 	#title{
 	 display : block;
 	 text-align : center;
@@ -24,44 +31,73 @@
 	 font-size: 32px;
 	
 	}
-    /* Navbar Styles */
-    .navbar {
-      display: flex;
-     
-      justify-content: space-between;
-      align-items: center;
-      background-color: #009688;
-      padding: 10px 20px;
-    }
 
-    /* Logo styles */
-    .navbar .logo img {
-      height: 40px; /* Adjust the size of your logo */
-    }
+	header {
+	    background-color: #333;
+	    color: white;
+	    padding: 10px 20px;
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+	header .logo h1 {
+	    margin: 0;
+	    font-size: 32px;
+	    color: limegreen;
+	    padding: 5px;
+	}
+	form label{
+		color : lightgreen;
+		font-weight: bold;
+		font-size : 25px;
+		padding : 5px;
+	}
+	form input{
+		font-size: 22px;
+		border-radius:20px;
+		color : darkgreen;
+		padding: 5px;
+	}
+	#search-button{
+		 padding: 10px 20px;
+		 background-color:#5FF1C9;
+		 color: #228B22;
+		 border: none;
+		 font-size: 25px;
+		 cursor: pointer;
+		 border-radius: 20px;
+	}
+	#search-button:hover{
+		 background-color:  #D1F7C4;
+		 color: #1C1C1C;
+	}
+	.user{
+		font-size : 25px;
+		color : blue;
+		letter-spacing : 2px;
+	}
+	header nav ul {
+	    list-style: none;
+	    padding: 0;
+	    margin: 0;
+	    display: flex;
+	}
+	header nav ul li {
+	    margin-left: 20px;
+	}
+	header nav ul li button {
+	    color: gold;
+	    font-size : 25px;
+	    background-color: #333;
+	    border: 1px solid #333;
+	    text-decoration: none;
+	    font-weight: bold;
+	}
+	header nav ul li button:hover {
+	    text-decoration: underline;
+	}
 
-
-   #brand{
-   	color: #32CD32;
-   	font-size: 32px;
-   }
-   #cen{
-    flex-basis: 60%;
-    background-color: #388E3C;
-    text-align: center;
-    border-radius: 20px;
-   }
-   #con{
-   	width: fit-content;
-   	padding: 10px;
-   	font-size: 32px;
-   	color: lawngreen;
-   
-   }
-    .navbar .user {
-     align-items: center;
-
-    }
-     .container {
+    .container {
       display: flex;
       justify-content: center;
       padding: 20px;
@@ -80,9 +116,10 @@
 
     /* Image styles */
     .box img {
-      width: 100%; 
-      height: auto;
-      margin-bottom: 15px;
+   	  display : block;
+      width: 250px; 
+      height: 250px;
+      margin: 15px auto;
       border-radius: 5px;
     }
 
@@ -91,6 +128,9 @@
       display: block;
       margin: 5px 0;
       font-size: 20px;
+      color : blue;
+      padding-left: 20%;
+      text-align: left; 
     }
     .input-group{
       display: flex;
@@ -133,41 +173,50 @@
 	</style>
 </head>
 <body>
-<div class="navbar">
-    <!-- Logo on the left -->
-    <div class="logo">
-      <img src="C:\Users\Mani\Downloads\CMLogo.jpeg"  alt="Logo">
-      <label id="brand">Crop Mart</label>
-    </div>
-
-    <div id="cen" >
-    	<label id="con">Order Confirmation Section</label>
-    </div>
-
-    <!-- User Image on the right -->
-    <div class="user">
-      <i class="fa-solid fa-user"></i>
-      <label id="hide">${crtid}</label>
-    </div>
-  </div>
-  <form action="ConfirmCustomerOrder" method="post">
-  <input type="hidden" value="${crtid}" name="cropmart_id">
-  <input type="hidden" id="reference_id" name="p_id">
-  <label id="title"> Fill below details to Place Order</label>
-  <div class="sub"> Product Details</div>
-  <div class="container"> 
-    <div class="box">
-      <img id="product_image" alt="Image" >
-      <label id="product_name"></label>
-      <label id="product_id"></label>
-      <label id="product_expiry"></label>
-      <label id="product_quantity"></label>
-      <label id="product_price"></label>
-
-    </div> 
-  </div>
-
-  <div class="sub"> Custommer Details</div>
+	<header>
+        <div class="logo">
+            <h1>CROP MART</h1>
+        </div>
+        <form action="SearchServlet" method="post">
+            <input type="hidden" id="sid" name="cid">
+            <label>Buy Products here</label>
+            <input type="text" name="cond2" value="ex: Apple">
+            <label>Delivery District :</label>
+            <input type="text" name="cond1" value="ex: Tenkasi">
+            <input type="submit" id="search-button" value="Search" >
+        </form>
+        <nav>
+        	<form action="FarmContol" method="post">
+	        	<input type="hidden" name="secret" id="key-id">
+	      		<input type="hidden" name="avalue" id="nav-key">
+            <ul>
+                <li><button type="submit" onclick="keyvalue1()">My Products </button></li>
+                <li><button type="submit" onclick="keyvalue2()">My Cart</button></li>         
+            </ul> 
+            </form>  
+        </nav>
+        <div class="user">
+        	<i class="fa-solid fa-user" id="nav-cropmart">${crtid}</i>
+    	</div>
+    </header>
+    <h1 id="title-order">Order Confirmation Section</h1>
+	<form action="ConfirmCustomerOrder" method="post">
+    <input type="hidden" value="${crtid}" name="cropmart_id">
+    <input type="hidden" id="reference_id" name="p_id">
+    <label id="title"> Fill below details to Place Order</label>
+    <div class="sub"> Product Details</div>
+    <div class="container"> 
+	    <div class="box">
+	      <img id="product_image" alt="Image" >
+	      <label id="product_name"></label>
+	      <label id="product_id"></label>
+	      <label id="product_expiry"></label>
+	      <label id="product_quantity"></label>
+	      <label id="product_price"></label>
+	
+	    </div> 
+	</div>
+	<div class="sub"> Custommer Details</div>
 <table id="tab">
   <tr>
     <td><label>Customer Name</label>  </td>
@@ -204,20 +253,31 @@
 </table>
   <input type="hidden" value="${crtid}" name="cmid">
   </form>
-  <script type="text/javascript">
-  function success(){
+ <script type="text/javascript">
+  	var setid = document.getElementById("nav-cropmart").textContent;
+	document.getElementById("sid").innerText = setid;
+	document.getElementById("key-id").innerText = setid;
+	var cluenav = 0;
+	function keyvalue1(){
+		cluenav = 6;
+		document.getElementById("nav-key").innerText = cluenav;
+	}function keyvalue2(){
+		cluenav = 7;
+		document.getElementById("nav-key").innerText = cluenav;
+	}  	
+	function success(){
 	  alert("Order Request sent successfully");
-  }
+	}
 //Convert the Java array into a comma-separated string
   var product_ary = "<%= String.join(",", (String[]) request.getAttribute("data")) %>";
   product_ary = product_ary.split(",");
   document.getElementById("product_name").textContent = "Name : " + product_ary[0];
-  document.getElementById("product_id").textContent = "Id : " + product_ary[1];
+  document.getElementById("product_id").textContent = "ID : " + product_ary[1];
   document.getElementById("reference_id").value = product_ary[1];
-  document.getElementById("product_quantity").textContent = "Quantity : " +  product_ary[2];
-  document.getElementById("product_price").textContent = "Price : " +  product_ary[3];
+  document.getElementById("product_quantity").textContent = "Quantity : " +  product_ary[2] +" Kg";
+  document.getElementById("product_price").textContent = "Price : " +  product_ary[3] + " INR";
   document.getElementById("product_expiry").textContent = "Expiry Date : " +  product_ary[4];
   document.getElementById("product_image").src = product_ary[5];
-  </script>
+</script>
 </body>
 </html>
