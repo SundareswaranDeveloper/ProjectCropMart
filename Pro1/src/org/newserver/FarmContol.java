@@ -79,7 +79,7 @@ public class FarmContol extends HttpServlet {
 		    dispatcher.forward(request, response);		
 		}else if(a==7) {
 			request.setAttribute("crtid",id);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("CustomerMyCart");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("CartServlet");
 		    dispatcher.forward(request, response);		
 		}else if(a==8) {
 			request.setAttribute("crtid",id);

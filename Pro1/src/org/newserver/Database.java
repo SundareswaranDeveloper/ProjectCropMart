@@ -9,26 +9,33 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Database {
 
 	public String readId() throws SQLException{
-		String id = "";
+		String id = "FA000";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from id_sf;");
+			ResultSet rs = st.executeQuery("select count(fid) from f_id;");
 			rs.next();
-			id = rs.getString(1);
-			String query = "delete from id_sf where fn = '" + id + "' ;";
-			Statement ps = con.createStatement();
-			ps.executeUpdate(query);
+			int count = rs.getInt(1) + 1;
+			id = id + count;
+			if(count > 9) {
+				id = "FA00" + count;
+			}else if(count > 99) {
+				id = "FA0" + count;
+			}else if(count > 999) {
+				id = "FA" + count;
+			}
 			con.close();
 			return id;	
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return id;
@@ -68,21 +75,25 @@ public class Database {
 	}
 	
 	public String readCusId() throws SQLException{
-		String id = "";
+		String id = "CA500";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from id_sc;");
+			ResultSet rs = st.executeQuery("select count(cid) from c_id;");
 			rs.next();
-			id = rs.getString(1);
-			String query = "delete from id_sc where cn = '" + id + "' ;";
-			Statement ps = con.createStatement();
-			ps.executeUpdate(query);
-			con.close();
+			int count = rs.getInt(1) + 1;
+			id = id + count;
+			if(count > 9) {
+				id = "CA50" + count;
+			}else if(count > 99) {
+				id = "CA5" + count;
+			}else if(count > 999) {
+				count = count + 5000;
+				id = "CA" + count;
+			}
 			return id;	
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return id;
@@ -479,7 +490,7 @@ public class Database {
 	}
 	
 	public String[] readSearchProduct(String productId) throws SQLException {
-		String[] product = new String[6];
+		String[] product = new String[7];
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
@@ -493,6 +504,7 @@ public class Database {
 			product[4] = rstmt.getString(6);
 			product[5] = rstmt.getString(7);
 			product[5] = product[5].replace("\\", "\\\\");
+			product[6] = rstmt.getString(9);
 			return product;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -546,8 +558,10 @@ public class Database {
 				cus_name[c] = rs.getString(3);
 				cus_mobile[c]	= String.valueOf(rs.getLong(4));
 				cus_address[c] = rs.getString(5);
+				cus_address[c] = cus_address[c].replaceAll(",", "\\$\\$\\$");
 				cus_pincode[c] = rs.getString(6);
 				cus_landmark[c] = rs.getString(7);
+				cus_landmark[c] = cus_landmark[c].replaceAll(",", "\\$\\$\\$");
 				order_date[c] = rs.getDate(9).toString();
 				order_time[c] = rs.getTime(10).toString();
 				c++;
@@ -663,8 +677,10 @@ public class Database {
 				cus_name[c] = rs.getString(3);
 				cus_mobile[c]	= String.valueOf(rs.getLong(4));
 				cus_address[c] = rs.getString(5);
+				cus_address[c] = cus_address[c].replaceAll(",", "\\$\\$\\$");
 				cus_pincode[c] = rs.getString(6);
 				cus_landmark[c] = rs.getString(7);
+				cus_landmark[c] = cus_landmark[c].replaceAll(",", "\\$\\$\\$");
 				order_date[c] = rs.getDate(9).toString();
 				order_time[c] = rs.getTime(10).toString();
 			}
@@ -702,6 +718,61 @@ public class Database {
 			group[18] = cus_reason;
 			group[19] = delivery_date;
 			group[20] = delivery_time;
+			return group;	
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return group;
+	}
+	
+	public String[][] readCart(String cmid) throws SQLException {
+		String[][] group = new String[8][];
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			Statement stmt = con.createStatement();
+			Set<Integer> set = new LinkedHashSet<Integer>();
+			ResultSet rstmt = stmt.executeQuery("select product_id from cart where cmid = '" + cmid + "';" );
+			while(rstmt.next()) {
+				set.add(rstmt.getInt(1));
+			}
+			int n = set.size();
+			String[] total = new String[1];
+			total[0] = String.valueOf(n);
+			String[] productn = new String[n];
+			String[] productid = new String[n];
+			String[] productqty = new String[n];
+			String[] productp = new String[n];
+			String[] productsd = new String[n];
+			String[] productex = new String[n];
+			String[] productimg = new String[n];
+			
+			List<Integer> list = new LinkedList<Integer>(set);
+			for(int s=0;s<=n-1;s++) {
+				Integer product = list.get(s);
+				ResultSet rset = stmt.executeQuery("select * from sell_p where p_id = '" + product + "';" );
+				rset.next();
+				productn[s]	= rset.getString(1);
+				productid[s] = String.valueOf(rset.getInt(2));
+				productqty[s] = String.valueOf(rset.getInt(3));
+				productp[s]	= String.valueOf(rset.getInt(4));
+				productsd[s] = rset.getString(5);
+				productex[s] = rset.getString(6);
+				productimg[s] = rset.getString(7);
+				productimg[s] = productimg[s].replace("\\", "\\\\");
+			
+			}
+			
+			con.close();
+			group[0] = total;
+			group[1] = productn;
+			group[2] = productid;
+			group[3] = productqty;
+			group[4] = productp;
+			group[5] = productsd;
+			group[6] = productex;
+			group[7] = productimg;
 			return group;	
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

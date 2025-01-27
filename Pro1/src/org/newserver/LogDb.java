@@ -336,4 +336,50 @@ public class LogDb {
 		}
 		return result;
 	}
+	
+	public boolean cart_insert(int id, String cmid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "insert into cart(product_id,cmid) values (?,?);";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.setString(2,cmid);
+		
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean cart_remove(int id, String cmid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "delete from cart where product_id = ? and cmid = ?;";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.setString(2,cmid);
+		
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
 }
