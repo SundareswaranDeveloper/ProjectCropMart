@@ -240,7 +240,7 @@
   </tr>
    <tr>
     <td><label> District Name</label> </td>
-    <td><label>${location}</label></td>
+    <td><label id="district"></label></td>
   </tr>
   <tr>
     <td colspan ="2"><input type="checkbox"> <label>Trust me, above given details are true  </label></td>
@@ -278,6 +278,7 @@
   document.getElementById("product_price").textContent = "Price : " +  product_ary[3] + " INR";
   document.getElementById("product_expiry").textContent = "Expiry Date : " +  product_ary[4];
   document.getElementById("product_image").src = product_ary[5];
+  document.getElementById("district").textContent = product_ary[6];
 </script>
 </body>
 </html>

@@ -275,10 +275,12 @@
     	var cpincode = document.createElement("label");
     	var clandmark = document.createElement("label");
     	cname.textContent = "Customer Name : " + cus_name[i];
-    	cmobile.textContent = "Customer Mobile Number : " + cus_mobile[i]; 
-    	caddress.textContent = "Customer Address : " + cus_address[i]; 
+    	cmobile.textContent = "Customer Mobile Number : " + cus_mobile[i];
+    	var customer_address = cus_address[i].split("$$$").join(",");
+    	caddress.textContent = "Customer Address : " + customer_address; 
     	cpincode.textContent = "Customer Pincode : " + cus_pincode[i]; 
-    	clandmark.textContent = "Customer Landmark : " + cus_landmark[i]; 
+    	var customer_landmark = cus_landmark[i].split("$$$").join(",");
+    	clandmark.textContent = "Customer Landmark : " + customer_landmark; 
     	divcustomer.appendChild(cname);
     	divcustomer.appendChild(cmobile);
     	divcustomer.appendChild(caddress);

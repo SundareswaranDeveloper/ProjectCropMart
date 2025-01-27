@@ -225,9 +225,9 @@ header nav ul li button:hover {
     </div>
     <form action="CusOrderServlet" method="post">
 	<section class="products">
+		<input type="hidden" id="solvepath" value="0" name="solve">
 		<input type="hidden" id="idbuy" name="sellid">
 		<input type="hidden" id="cusid" name="cmid">
-		<input type="hidden" value="${slocation}" name="location">
         <h2 class="product-head">Products starts from Quantity 5 Kg</h2>
         <div class="product-list" id="parent">
         
@@ -336,8 +336,6 @@ header nav ul li button:hover {
 	
 	var count = ${total1};
 	var divlead  = document.getElementById("parent");
-	var find = "sellId"
-	var name = "contain";
 	var a = 1;
 	for(var i = 0; i<=count-1;i++){
 	var divmain = document.createElement("div");
@@ -368,7 +366,7 @@ header nav ul li button:hover {
 	pname.textContent = "Product Name : " + name_ary[i]; 
 	pname.classList.add("product-name");
 	
-	pprice.textContent = "Product Price : " + price_ary[i] + "INR";
+	pprice.textContent = "Product Price : " + price_ary[i] + " INR";
 	pprice.classList.add("product-price");
 	
 	pquantity.textContent = "Product Quantity : " + qty_ary[i] + " Kg"; 
@@ -383,12 +381,12 @@ header nav ul li button:hover {
 	section.classList.add("product-section");
 	
 	pbuy.textContent = "Buy Product"; 
-	pbuy.id = find+a;
 	pbuy.setAttribute('onclick','call(this)');
 	pbuy.classList.add("product-button");
 	
 	padd.textContent = "Add to Cart"; 
 	padd.classList.add("product-button");
+	padd.setAttribute('onclick','call(this)');
 	
 	divmain.appendChild(pid);
 	divmain.appendChild(pimage);
@@ -407,7 +405,6 @@ header nav ul li button:hover {
 	var divhead  = document.getElementById("parent-head");
 	for(var t = 0; t<=count_a-1;t++){
 		var maindiv = document.createElement("div");
-		maindiv.id = name+b;
 		maindiv.classList.add('product-card');
 		
 		divhead.appendChild(maindiv);
@@ -450,11 +447,11 @@ header nav ul li button:hover {
 		
 		stockbuy.classList.add("product-button");
 		stockbuy.textContent = "Buy Product"; 
-		stockbuy.id = find+b;
 		stockbuy.setAttribute('onclick','call(this)');
 		
 		stockadd.textContent = "Add to Cart"; 
 		stockadd.classList.add("product-button");
+		stockadd.setAttribute('onclick','call(this)');
 		
 		maindiv.appendChild(stockid);
 		maindiv.appendChild(stockimage);
@@ -472,7 +469,10 @@ header nav ul li button:hover {
 	    	var parentDiv = element.parentElement;
 	    	var headDiv = parentDiv.parentElement;
 	    	var buyId = headDiv.querySelector("h4").textContent;
-	    	document.getElementById("idbuy").value = buyId;  	
+	    	document.getElementById("idbuy").value = buyId; 
+	    	if(element.textContent == "Add to Cart"){
+	    		document.getElementById("solvepath").value = "1";
+	    	}
 	    }
 	var cluenav = 0;
 	function keyvalue1(){
