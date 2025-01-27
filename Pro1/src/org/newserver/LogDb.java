@@ -238,14 +238,28 @@ public class LogDb {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			String query = "update Order_Status set status = ?,ex_delivery_date = ? where order_id = '" + orderid + "';";
+			Statement stmt = con.createStatement();
+			ResultSet rset = stmt.executeQuery("select * from otp_data where order_id = '1';");
+			rset.next();
+			int cus_otp = rset.getInt(2);
+		
+			String command = "update otp_data set order_id = ? where otp = ? ;";
+			PreparedStatement pstmt = con.prepareStatement(command);
+			
+			pstmt.setString(1, orderid);
+			pstmt.setInt(2, cus_otp);
+			
+			int row1 = pstmt.executeUpdate();	
+			
+			String query = "update Order_Status set status = ?,ex_delivery_date = ?, c_otp = ? where order_id = '" + orderid + "';";
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setString(1, "Accepted by Farmer");
 			ps.setString(2,deliverydate);
+			ps.setInt(3,cus_otp);
+			int row2 = ps.executeUpdate();
 			
-			int rs = ps.executeUpdate();
-			if (rs > 0) {
+			if (row1 > 0 && row2 > 0) {
 				result = true;
 			}
 			con.close();

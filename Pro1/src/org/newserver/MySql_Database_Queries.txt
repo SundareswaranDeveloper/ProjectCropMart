@@ -1,16 +1,6 @@
 create database farmer;
 use farmer;
 
--- id_sf : table id_sf is used to store initial Cropmart ID for Farmers.
-create table id_sf(fn varchar(10));
-insert into id_sf values("FA0001"),("FA0002"),("FA0003"),("FA0004"),("FA0005"),("FA0006"),("FA0007"),("FA0008"),("FA0009"),("FA0010");
-select * from id_sf;
-
--- id_sc : table id_sc is used to store initial Cropmart ID for Customers.
-create table id_sc(cn varchar(10));
-insert into id_sc values("CA5001"),("CA5002"),("CA5003"),("CA5004"),("CA5005"),("CA5006"),("CA5007"),("CA5008"),("CA5009"),("CA5010");
-select * from id_sc;
-
 -- f_id : table f_id is used to store user farmer ID and password.
 create table f_id(fid varchar(10) primary key, fid_pass varchar(100), fdata int);
 select * from f_id;
@@ -20,7 +10,7 @@ create table c_id (cid varchar(10),cidpass varchar(100));
 select * from c_id;
 
 -- fdata : table fdata is used to store new farmer details.
-create table fdata(f_sno int auto_increment primary key, name varchar(15), mobile int  , landno varchar(25),landaddress varchar(100),landlocation varchar(100),houseaddress varchar(100) );
+create table fdata(f_sno int auto_increment primary key, name varchar(15), mobile bigint  , landno varchar(25),landaddress varchar(100),landlocation varchar(100),houseaddress varchar(100) );
 select * from fdata;
 
 -- cdata : table cdata is used to store new customer details.
@@ -47,10 +37,19 @@ select * from g_scheme;
 create table sell_p(p_name varchar(20), p_id int auto_increment primary key, p_quntity int, p_price float , p_sales_ed varchar(25) , p_expiry_d varchar(25), p_image varchar(1000), cmid varchar(10), p_location varchar(100));
 select * from sell_p;
 
+-- cart : table cart is used to store customer add to cart product details.
+create table cart(cart_id int auto_increment primary key, product_id int , cmid varchar(10));
+select * from cart;
+
 -- Customer_Orders : table Customer_Orders is used to store customer order product details and customer delivery address details.
 create table Customer_Orders(order_id varchar(10) primary key, product_id int, customer_name varchar(15), c_mobile bigint, delivery_address varchar(100), pincode varchar(15),
 	landmark varchar(50), c_cmid varchar(10), o_date date, o_time time);
 select * from Customer_Orders;
+
+-- otp_data : table otp_data is used to store otp for order_id product.
+create table otp_data (id int auto_increment primary key, otp int, order_id varchar(10) default('1'));
+insert into otp_data(otp) values(123456),(941379),(752694),(853475),(635489),(258649),(896547),(789658),(369456),(548652);
+select * from otp_data;
 
 -- Order_Status : table Order_Status is used to store customer order product delivery status details.
 create table Order_Status(order_id varchar(10) primary key, c_cmid varchar(10), f_cmid varchar(10), status varchar(50) default("Order Request sent!"), c_cancel boolean default(false),
