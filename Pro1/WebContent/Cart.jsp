@@ -74,10 +74,25 @@ header nav ul li button {
     font-weight: bold;
 }
 header nav ul li button:hover {
-    text-decoration: underline;
+	border-bottom : 2px solid limegreen; 
 }
-
-	
+#nav-cart{
+	border-top : 2px solid #16A085;
+	border-bottom : 2px solid #16A085;
+}
+#logout{
+	text-decoration : none;
+	color : red;
+	margin : 3px;
+	padding : 3px;
+	border : 3px solid inherit;
+	font-weight : bolder;
+}
+#logout:hover{
+	border-radius : 20px;
+	background-color: lightgreen;
+	border : 3px solid limegreen;
+}	
 .products {
     padding: 20px;
 }
@@ -188,12 +203,13 @@ header nav ul li button:hover {
 	      		<input type="hidden" name="avalue" id="nav-key">
             <ul>
                 <li><button type="submit" onclick="keyvalue1()">My Products </button></li>
-                <li><button type="submit" onclick="keyvalue2()">My Cart</button></li>         
+                <li><button id="nav-cart" type="submit" onclick="keyvalue2()">My Cart</button></li>         
             </ul> 
             </form>  
         </nav>
         <div class="user">
         	<i class="fa-solid fa-user" id="nav-cropmart">${crtid}</i>
+        	<a id="logout" href="Log.jsp">Log Out</a>
     	</div>
     </header>
     <form action="CusOrderServlet" method="post">

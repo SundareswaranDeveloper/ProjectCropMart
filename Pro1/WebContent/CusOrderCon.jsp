@@ -40,11 +40,17 @@
 	    justify-content: space-between;
 	    align-items: center;
 	}
+	header .logo img {
+	    height: 40px; 
+	    border-radius : 50%;
+	    }
 	header .logo h1 {
-	    margin: 0;
-	    font-size: 32px;
-	    color: limegreen;
-	    padding: 5px;
+		display : inline;
+	    font-size : 32px;
+	    margin : 3px;
+	    padding : 10px;
+	    color : limegreen;
+	    text-align: center;    
 	}
 	form label{
 		color : lightgreen;
@@ -96,7 +102,19 @@
 	header nav ul li button:hover {
 	    text-decoration: underline;
 	}
-
+	#logout{
+		text-decoration : none;
+		color : red;
+		margin : 3px;
+		padding : 3px;
+		border : 3px solid inherit;
+		font-weight : bolder;
+	}
+	#logout:hover{
+		border-radius : 20px;
+		background-color: lightgreen;
+		border : 3px solid limegreen;
+	}
     .container {
       display: flex;
       justify-content: center;
@@ -175,6 +193,7 @@
 <body>
 	<header>
         <div class="logo">
+        	<img src="C:\Users\Mani\Downloads\CMLogo.jpeg"  alt="Logo">
             <h1>CROP MART</h1>
         </div>
         <form action="SearchServlet" method="post">
@@ -197,6 +216,7 @@
         </nav>
         <div class="user">
         	<i class="fa-solid fa-user" id="nav-cropmart">${crtid}</i>
+        	<a id="logout" href="Log.jsp">Log Out</a>
     	</div>
     </header>
     <h1 id="title-order">Order Confirmation Section</h1>
