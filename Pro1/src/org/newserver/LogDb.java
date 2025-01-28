@@ -208,7 +208,7 @@ public class LogDb {
 			ps.setString(1, order_id);
 			ps.setInt(2, product_id);
 			ps.setString(3, customer_name);
-			ps.setFloat(4, phone_number);
+			ps.setLong(4, phone_number);
 			ps.setString(5, address);
 			ps.setString(6, pincode);
 			ps.setString(7, landmark);

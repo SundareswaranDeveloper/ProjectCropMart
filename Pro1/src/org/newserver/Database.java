@@ -168,7 +168,7 @@ public class Database {
 				productn[i]	= rset.getString(1);
 				productid[i] = String.valueOf(rset.getInt(2));
 				productqty[i] = String.valueOf(rset.getInt(3));
-				productp[i]	= String.valueOf(rset.getInt(4));
+				productp[i]	= String.valueOf(rset.getFloat(4));
 				productsd[i] = rset.getString(5);
 				productex[i] = rset.getString(6);
 				productimg[i] = rset.getString(7);
@@ -439,7 +439,7 @@ public class Database {
 			productn[i]	= rset.getString(1);
 			productid[i] = String.valueOf(rset.getInt(2));
 			productqty[i] = String.valueOf(rset.getInt(3));
-			productp[i]	= String.valueOf(rset.getInt(4));
+			productp[i]	= String.valueOf(rset.getFloat(4));
 			productsd[i] = rset.getString(5);
 			productex[i] = rset.getString(6);
 			productimg[i] = rset.getString(7);
@@ -455,7 +455,7 @@ public class Database {
 			namep[z]	= set.getString(1);
 			idp[z] = String.valueOf(set.getInt(2));
 			qtyp[z] = String.valueOf(set.getInt(3));
-			pricep[z]	= String.valueOf(set.getInt(4));
+			pricep[z]	= String.valueOf(set.getFloat(4));
 			sdp[z] = set.getString(5);
 			exp[z] = set.getString(6);
 			imgp[z] = set.getString(7);
@@ -500,7 +500,7 @@ public class Database {
 			product[0]	= rstmt.getString(1);
 			product[1] = String.valueOf(rstmt.getInt(2));
 			product[2] = String.valueOf(rstmt.getInt(3));
-			product[3]	= String.valueOf(rstmt.getInt(4));
+			product[3]	= String.valueOf(rstmt.getFloat(4));
 			product[4] = rstmt.getString(6);
 			product[5] = rstmt.getString(7);
 			product[5] = product[5].replace("\\", "\\\\");
@@ -564,6 +564,8 @@ public class Database {
 				cus_landmark[c] = cus_landmark[c].replaceAll(",", "\\$\\$\\$");
 				order_date[c] = rs.getDate(9).toString();
 				order_time[c] = rs.getTime(10).toString();
+				int split = order_time[c].lastIndexOf(':');
+				order_time[c] = order_time[c].substring(0, split);
 				c++;
 			}
 			
@@ -576,6 +578,8 @@ public class Database {
 				cus_otp[i] = String.valueOf(rset.getInt(9));
 				delivery_date[i] = rset.getDate(11).toString();
 				delivery_time[i] = rset.getTime(12).toString();
+				int split = delivery_time[i].lastIndexOf(':');
+				delivery_time[i] = delivery_time[i].substring(0, split);
 				i = i + 1;	
 			}
 			for(int z=0;z<=productid.length-1;z++) {
@@ -666,6 +670,8 @@ public class Database {
 				cus_otp[i] = String.valueOf(rset.getInt(9));
 				delivery_date[i] = rset.getDate(11).toString();
 				delivery_time[i] = rset.getTime(12).toString();
+				int split = delivery_time[i].lastIndexOf(':');
+				delivery_time[i] = delivery_time[i].substring(0, split);
 				i = i + 1;	
 			}
 			
@@ -683,6 +689,9 @@ public class Database {
 				cus_landmark[c] = cus_landmark[c].replaceAll(",", "\\$\\$\\$");
 				order_date[c] = rs.getDate(9).toString();
 				order_time[c] = rs.getTime(10).toString();
+				int split = order_time[c].lastIndexOf(':');
+				order_time[c] = order_time[c].substring(0, split);
+				
 			}
 			
 			for(int z=0;z<=productid.length-1;z++) {
@@ -756,7 +765,7 @@ public class Database {
 				productn[s]	= rset.getString(1);
 				productid[s] = String.valueOf(rset.getInt(2));
 				productqty[s] = String.valueOf(rset.getInt(3));
-				productp[s]	= String.valueOf(rset.getInt(4));
+				productp[s]	= String.valueOf(rset.getFloat(4));
 				productsd[s] = rset.getString(5);
 				productex[s] = rset.getString(6);
 				productimg[s] = rset.getString(7);

@@ -31,43 +31,116 @@
 	    border-radius: 20px;
 	}
 	.product-card{
-	    height: 500px;
-	    flex-basis: 27%;
-	    flex-grow: 1;
-	    background-color: beige;
-	    margin: 20px;
-	    padding: 20px;
+		height: 700px;
+		flex-basis: 27%;
+		flex-grow: 1;
+		background-color: beige;
+		padding: 50px 20px 20px 20px;
+		margin: 20px;
+		display : flex;
+		flex-direction : column;
+		gap : 2px;
+	}
+	.product-card label{
+		display : block;
+		font-size : 32px;
+		text-align : left;
+		margin : 2px 2px 2px 15%;
+		font-weight: bolder;
 	}
 	.customer-card{
-	    height: 500px;
-	    flex-basis: 27%;
-	    flex-grow: 1;
-	    background-color: salmon;
-	    margin: 20px;
-	    padding: 20px;
+		height: 700px;
+		flex-basis: 27%;
+		flex-grow: 1;
+		background-color: salmon;
+		margin: 20px;
+		display : flex;
+		flex-direction : column;
+		padding : 50px 20px 20px 20px;
+		gap : 2px;
+	}
+	.customer-card label{
+		display : block;
+		font-size : 32px;
+		text-align : left;
+		margin : 2px 2px 2px 15%;
+	}
+	.cus-design{
+		color : blue;
+		background-color : lightgreen;
+		border-radius : 20px;
+		padding : 5px;
+		line-height: 30px;
+		min-height: 20px;
+		max-height: 500px; 
 	}
 	.order-status{
-	    height: 500px;
+	    height: 700px;
 	    flex-basis: 27%;
 	    flex-grow: 1;
 	    background-color: lightskyblue;
 	    margin: 20px;
-	    padding: 20px;
+	    padding: 50px 20px 20px 20px;
+	    display : flex;
+	    flex-direction : column;
+	    gap : 2px;
 	}
-	#order label {
+	.order-status label{
+		display : block;
+		font-size : 32px;
+		text-align : left;
+		margin : 2px 2px 2px 15%;
+	}
+	.product-title{
+		text-align: center;
+		margin : 2px;
+		padding : 5px;
+		font-size : 32px;
+	}
+	.customer-title{
+		text-align: center;
+		margin : 2px;
+		padding : 5px;
+		font-size : 32px;
+	}
+	.order-title{
+		text-align: center;
+		margin : 2px;
+		padding : 5px;
+		font-size : 32px;
+	}
+	/* #order label {
 	    display: block;
 	    text-align: center;
 	    font-size: 32px;
-	}
+	} */
 	.product-image{
 	   	display: block;
 	    width: 200px;
 	    height: 200px;
+	    border-radius : 20px;
 	    margin: 5px auto 5px auto;
 	}
-	.disable-button{
-		pointer-events : none;
+	.product-span{
+		color : red;
 	}
+	.order-span{
+		color : darkgreen;
+	}
+	.status-label{
+	    text-align : center;
+		width : 70%;
+		margin : 5px 15%;
+		padding : 5px;
+		font-size : 32px;
+		color : darkgreen;
+		border : 2px solid green;
+		background-color: lavender;
+		border-radius : 20px;
+	}
+	/* .disable-button{
+		pointer-events : none;
+	} */
 	.order-button{
 		display: block;
 		width: fit-content;
@@ -84,20 +157,33 @@
 		 background-color:  #D1F7C4;
 		 color: #1C1C1C;
 	}
+	.cancel-label{
+		font-size : 32px;
+		text-align : center;
+		margin : 10px;
+		color: darkgreen;
+		text-align : center;
+	}
 	.field-input {
-	display: block;
-	font-size: 23px;
-	border: 2px solid green;
-	border-radius: 20px;
-	margin : 5px auto 5px auto;
-	width: 200px;
-	background-color: #E0E0E0;
+		display: block;
+		font-size: 23px;
+		border: 2px solid green;
+		border-radius: 20px;
+		margin : 5px 15%;
+		width: 70%;
+		background-color: #E0E0E0;
 	}
 	.order-guide{
-	background-color: lightgrey;
+		font-size : 32px;
+		text-align : left;
+		margin : 2px 2px 2px 15%;
+		color: blue;
+		background-color: lightgrey;
+		border-radius : 20px;
 	}
 	.display-hide{
-	display : none;	}
+		display : none;
+	}
 </style>
 </head>
 <body>
@@ -244,65 +330,176 @@
     	var divproduct = document.createElement("div");
     	divproduct.classList.add('product-card');
     	divdetails.appendChild(divproduct);
-    	
+    	    	
+    	var pt = document.createElement("h1");
     	var pid = document.createElement("label");
     	var pimage = document.createElement("img");
     	var pname = document.createElement("label");
     	var pquantity = document.createElement("label");
     	var pexpiry = document.createElement("label");
     	var pprice = document.createElement("label");
-    	pid.textContent = "Product ID : " + product_id[i];
+    	
+    	var pid_value = document.createTextNode("Product ID : ");
+    	var pname_value  = document.createTextNode("Product Name : ");
+    	var pquantity_value  = document.createTextNode("Product Quantity : ");
+    	var pexpiry_value  = document.createTextNode("Product Expiry Date : ");
+    	var pprice_value  = document.createTextNode("Product Price : ");
+    	
+    	var pid_value2 = document.createElement('span');
+    	var pname_value2  = document.createElement('span');
+    	var pquantity_value2  = document.createElement('span');
+    	var pexpiry_value2  = document.createElement('span');
+    	var pprice_value2  = document.createElement('span');
+    	
+    	pt.textContent = "Product Details";
+    	pt.classList.add("product-title");
+    	
+    	pid_value2.textContent = product_id[i];
+    	pid_value2.classList.add("product-span");
+    	
     	pimage.src = product_image[i]; 
     	pimage.alt = "Product image " + i;
     	pimage.classList.add("product-image");
-    	pname.textContent = "Product Name :" + product_name[i]; 
-    	pprice.textContent = "Product Price :" + product_price[i]; 
-    	pquantity.textContent = "Product Quantity :" + product_qty[i]; 
-    	pexpiry.textContent = "Product Expiry Date :" + product_expiry[i]; 
-    	divproduct.appendChild(pid);
+    	
+    	pname_value2.textContent = product_name[i]; 
+    	pname_value2.classList.add("product-span");
+    	
+    	pprice_value2.textContent = product_price[i] + " INR"; 
+    	pprice_value2.classList.add("product-span");
+    	
+    	pquantity_value2.textContent = product_qty[i] + " Kg"; 
+    	pquantity_value2.classList.add("product-span");
+    	
+    	pexpiry_value2.textContent = product_expiry[i]; 
+    	pexpiry_value2.classList.add("product-span");
+    	
+    	divproduct.appendChild(pt);
     	divproduct.appendChild(pimage);
+    	divproduct.appendChild(pid);
     	divproduct.appendChild(pname);
     	divproduct.appendChild(pquantity);
     	divproduct.appendChild(pexpiry);
     	divproduct.appendChild(pprice);
     	
+    	pid.appendChild(pid_value);
+    	pid.appendChild(pid_value2);
+    	
+    	pname.appendChild(pname_value);
+    	pname.appendChild(pname_value2);
+    	
+    	pquantity.appendChild(pquantity_value);
+    	pquantity.appendChild(pquantity_value2);
+    	
+    	pexpiry.appendChild(pexpiry_value);
+    	pexpiry.appendChild(pexpiry_value2);
+    	
+    	pprice.appendChild(pprice_value);
+    	pprice.appendChild(pprice_value2);
+    	
+    	
     	var divcustomer = document.createElement("div");
     	divcustomer.classList.add('customer-card');
     	divdetails.appendChild(divcustomer);
+    	var ct = document.createElement("h1");
     	var cname = document.createElement("label");
     	var cmobile = document.createElement("label");
     	var caddress = document.createElement("label");
     	var cpincode = document.createElement("label");
     	var clandmark = document.createElement("label");
-    	cname.textContent = "Customer Name : " + cus_name[i];
-    	cmobile.textContent = "Customer Mobile Number : " + cus_mobile[i];
+    	
+    	var c_name = document.createElement("label");
+    	var c_mobile = document.createElement("label");
+    	var c_address = document.createElement("label");
+    	var c_pincode = document.createElement("label");
+    	var c_landmark = document.createElement("label");
+    	
+    	ct.textContent = "Customer Details";
+    	ct.classList.add("customer-title");
+    	
+    	cname.textContent = "Customer Name ";
+    	c_name.textContent = cus_name[i];
+    	c_name.classList.add("cus-design");
+    	
+    	cmobile.textContent = "Customer Mobile Number "; 
+    	c_mobile.textContent = cus_mobile[i]; 
+    	c_mobile.classList.add("cus-design");
+    	
     	var customer_address = cus_address[i].split("$$$").join(",");
-    	caddress.textContent = "Customer Address : " + customer_address; 
-    	cpincode.textContent = "Customer Pincode : " + cus_pincode[i]; 
+    	caddress.textContent = "Customer Address "; 
+    	c_address.textContent = customer_address; 
+    	c_address.classList.add("cus-design");
+    	
+    	cpincode.textContent = "Customer Pincode";
+    	c_pincode.textContent =  cus_pincode[i]; 
+    	c_pincode.classList.add("cus-design");
+    	
     	var customer_landmark = cus_landmark[i].split("$$$").join(",");
-    	clandmark.textContent = "Customer Landmark : " + customer_landmark; 
+    	clandmark.textContent = "Customer Landmark ";
+    	c_landmark.textContent = customer_landmark; 
+    	c_landmark.classList.add("cus-design");
+    	
+    	divcustomer.appendChild(ct);
     	divcustomer.appendChild(cname);
+    	divcustomer.appendChild(c_name);
     	divcustomer.appendChild(cmobile);
+    	divcustomer.appendChild(c_mobile);
     	divcustomer.appendChild(caddress);
+    	divcustomer.appendChild(c_address);
     	divcustomer.appendChild(cpincode);
+    	divcustomer.appendChild(c_pincode);
     	divcustomer.appendChild(clandmark);
+    	divcustomer.appendChild(c_landmark);
     	
     	var divorder = document.createElement("div");
     	divorder.classList.add('order-status');
     	divdetails.appendChild(divorder);
+    	
+    	var ot = document.createElement("h1");
+    	ot.textContent = "Order Details";
+    	ot.classList.add("order-title");
+    	
     	var status = order_status[i];
+    	
     	var o_id = document.createElement("label");
     	var o_status = document.createElement("label");
+    	var o_status_value = document.createElement("h4");
     	var o_date = document.createElement("label");
     	var o_time = document.createElement("label");
-    	o_id.textContent = "Order ID : " + order_id[i];
-    	o_status.textContent = "Order Status : " + order_status[i]; 
-    	o_date.textContent = "Order Date : " + order_date[i]; 
-    	o_time.textContent = "Order Time : " + order_time[i];
+    	
+    	var o_id_value = document.createTextNode("Order ID : ");
+    	var o_date_value = document.createTextNode("Order Date : ");
+    	var o_time_value = document.createTextNode("Order Time : ");
+    	
+    	var o_id_value2 = document.createElement("span");
+    	var o_date_value2 = document.createElement("span");
+    	var o_time_value2 = document.createElement("span");
+    	 
+    	o_id_value2.textContent = order_id[i];
+    	o_id_value2.classList.add("order-span");
+    	
+    	o_status.textContent = "Order Status "; 
+    	o_status_value.textContent = order_status[i];
+    	o_status_value.classList.add("status-label");
+    	 
+    	o_date_value2.textContent = order_date[i]; 
+    	o_date_value2.classList.add("order-span");
+    	 
+    	o_time_value2.textContent = order_time[i] + " IST";
+    	o_time_value2.classList.add("order-span");
+    	
+    	divorder.appendChild(ot);
     	divorder.appendChild(o_id);
+    	o_id.appendChild(o_id_value);
+    	o_id.appendChild(o_id_value2);
     	divorder.appendChild(o_status);
+    	divorder.appendChild(o_status_value);
     	divorder.appendChild(o_date);
+    	o_date.appendChild(o_date_value);
+    	o_date.appendChild(o_date_value2);
     	divorder.appendChild(o_time);
+    	o_time.appendChild(o_time_value);
+    	o_time.appendChild(o_time_value2);
+    	
     	if(status.charAt(0) == 'O') {
     		let formstatus = document.createElement("form");
     		formstatus.setAttribute("action", "FarmerOrderStatus");
@@ -322,13 +519,14 @@
         	demoid.classList.add("display-hide");
      	    demoid.setAttribute("name", "order-id-demo");
      	    
-     	    var info = document.createElement("label");
+     	    var info = document.createElement("h2");
        		info.textContent = "Enter below details to Accept (or) Cancel Order";
        		info.classList.add("order-guide");
     	   
      	    
-    		var o_delivery = document.createElement("label");
+    		var o_delivery = document.createElement("h3");
         	o_delivery.textContent = " Excepted Delivery Date "; 
+        	o_delivery.classList.add("cancel-label");
         	delivery_input = document.createElement("input");
         	delivery_input.setAttribute("type", "text");
      	    delivery_input.setAttribute("name", "deliverydate");
@@ -339,8 +537,9 @@
      	    acceptbutton.setAttribute("type", "submit");
      	    acceptbutton.textContent = "Accept Order";
    	   		
-   	   		var cancelreason = document.createElement("label");
+   	   		var cancelreason = document.createElement("h3");
         	cancelreason.textContent = " Cancel Order Reason  ";
+        	cancelreason.classList.add("cancel-label");
         	cancel_input = document.createElement("input");
         	cancel_input.setAttribute("type", "text");
      	    cancel_input.setAttribute("name", "cancelreason");
@@ -381,13 +580,14 @@
      	    var o_delivery = document.createElement("label");
         	o_delivery.textContent = " Excepted Delivery Date : " + order_delivery[i];
      	    
-     	    var info = document.createElement("label");
+     	    var info = document.createElement("h2");
        		info.textContent = "Enter below details to Delivery (or) Cancel Order";
        		info.classList.add("order-guide");
     	   
      	    
-    		var o_otp = document.createElement("label");
-        	o_otp.textContent = " OTP "; 
+    		var o_otp = document.createElement("h3");
+        	o_otp.textContent = " OTP ";
+        	o_otp.classList.add("cancel-label");
         	delivery_input = document.createElement("input");
         	delivery_input.setAttribute("type", "number");
      	    delivery_input.setAttribute("name", "deliveryotp");
@@ -398,8 +598,9 @@
      	    acceptbutton.setAttribute("type", "submit");
      	    acceptbutton.textContent = "Delivery Order";
    	   		
-   	   		var cancelreason = document.createElement("label");
+   	   		var cancelreason = document.createElement("h3");
         	cancelreason.textContent = " Cancel Order Reason  ";
+        	cancelreason.classList.add("cancel-label");
         	cancel_input = document.createElement("input");
         	cancel_input.setAttribute("type", "text");
      	    cancel_input.setAttribute("name", "cancelreason");
@@ -422,30 +623,58 @@
         	formstatus.appendChild(cancelbutton);
         	divorder.appendChild(formstatus);
 		}else if(status.charAt(0) == 'C'){
-			var cancellabel = document.createElement("label");
-        	cancellabel.textContent = " Cancel Order Reason  ";
-        	var cancelreason = document.createElement("label");
-        	cancelreason.textContent = cus_reason[i];
-        	divorder.appendChild(cancellabel);
-        	divorder.appendChild(cancelreason);
+			var o_reason = document.createElement("label");
+			var o_reason_value = document.createTextNode("Order Cancel Reason : ");
+			var o_reason_value2 = document.createElement("span");
+			o_reason_value2.textContent = cus_reason[i];
+			o_reason_value2.classList.add("order-span");
+			divorder.appendChild(o_reason);
+			o_reason.appendChild(o_reason_value);
+			o_reason.appendChild(o_reason_value2);
 		}else if(status.charAt(0) == 'D'){
 			var o_delivery = document.createElement("label");
-        	var o_otp = document.createElement("label");
-        	o_delivery.textContent = "Excepted Delivery Date : " + order_delivery[i]; 
-        	o_otp.textContent = "OTP : " + cus_otp[i]; 
-        	var d_date = document.createElement("label");
-        	var d_time = document.createElement("label");
-        	d_date.textContent = "Delivered Date : " + delivery_date[i]; 
-        	d_time.textContent = "Delivered Time : " + delivery_time[i];
-        	var o_success = document.createElement("button");
-        	o_success.textContent = "Order Delivered Successfully";
-        	o_success.classList.add("order-button");
-        	o_success.classList.add("disable-button");
-        	divorder.appendChild(o_delivery);
-        	divorder.appendChild(o_otp);
-        	divorder.appendChild(d_date);
-        	divorder.appendChild(d_time);
-        	divorder.appendChild(o_success);
+			var o_delivery_value = document.createTextNode("Excepted Delivery Date : ");
+			var o_delivery_value2 = document.createElement("span");
+			o_delivery_value2.textContent = order_delivery[i];
+			o_delivery_value2.classList.add("order-span");
+			
+			var o_otp = document.createElement("label");
+			var o_otp_value = document.createTextNode("OTP : ");
+			var o_otp_value2 = document.createElement("span");
+			o_otp_value2.textContent = cus_otp[i];
+			o_otp_value2.classList.add("order-span");
+			
+			var d_date = document.createElement("label");
+			var d_date_value = document.createTextNode("Delivered Date : ");
+			var d_date_value2 = document.createElement("span");
+			d_date_value2.textContent = delivery_date[i];
+			d_date_value2.classList.add("order-span");
+			
+			var d_time = document.createElement("label");
+			var d_time_value = document.createTextNode("Delivered Time : ");
+			var d_time_value2 = document.createElement("span");
+			d_time_value2.textContent = delivery_time[i] + " IST";
+			d_time_value2.classList.add("order-span");
+			
+			divorder.appendChild(o_delivery);
+			
+			o_delivery.appendChild(o_delivery_value);
+			o_delivery.appendChild(o_delivery_value2);
+			
+			divorder.appendChild(o_otp);
+			
+			o_otp.appendChild(o_otp_value);
+			o_otp.appendChild(o_otp_value2);
+			
+			divorder.appendChild(d_date);
+			
+			d_date.appendChild(d_date_value);
+			d_date.appendChild(d_date_value2);
+			
+			divorder.appendChild(d_time);
+			
+			d_time.appendChild(d_time_value);
+			d_time.appendChild(d_time_value2);
 		}
 	}
     
