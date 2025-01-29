@@ -8,7 +8,7 @@
 <title>Customer/Cart</title>
 <style type="text/css">
 body{
-	background-color: skyblue;
+	background-color: #A2D9CE;
 }
 
 
@@ -20,11 +20,17 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+header .logo img {
+    height: 40px; 
+    border-radius : 50%;
+}
 header .logo h1 {
-    margin: 0;
-    font-size: 32px;
-    color: limegreen;
-    padding: 5px;
+    display : inline;
+    font-size : 32px;
+    margin : 3px;
+    padding : 10px;
+    color : limegreen;
+    text-align: center;    
 }
 form label{
 	color : lightgreen;
@@ -72,6 +78,8 @@ header nav ul li button {
     border: 1px solid #333;
     text-decoration: none;
     font-weight: bold;
+    margin : 5px;
+    padding : 5px;
 }
 header nav ul li button:hover {
 	border-bottom : 2px solid limegreen; 
@@ -84,23 +92,26 @@ header nav ul li button:hover {
 	text-decoration : none;
 	color : red;
 	margin : 3px;
-	padding : 3px;
+	padding : 10px;
 	border : 3px solid inherit;
 	font-weight : bolder;
+	background-color: #80E27E;
+	border-radius : 20px;
 }
 #logout:hover{
 	border-radius : 20px;
-	background-color: lightgreen;
+	background-color: #A2D9CE;
+	color : #2C6B3F;
 	border : 3px solid limegreen;
-}	
-.products {
-    padding: 20px;
 }
 
 .product-head{
 	text-align : center;
-    font-size: 28px;
+    font-size: 40px;
     margin-bottom: 20px;
+    background-color: #CFD8DC;
+    padding : 10px;
+    color : purple;
 }
 .product-list {
 	display: flex;
@@ -187,7 +198,8 @@ header nav ul li button:hover {
 <body>
 	<header>
         <div class="logo">
-            <h1>CROP MART</h1>
+        	<img src="C:\Users\Mani\Downloads\CMLogo.jpeg"  alt="Logo">
+            <h1>CROP MART</h1>  
         </div>
         <form action="SearchServlet" method="post">
             <input type="hidden" id="sid" name="cid">
@@ -202,7 +214,7 @@ header nav ul li button:hover {
 	        	<input type="hidden" name="secret" id="key-id">
 	      		<input type="hidden" name="avalue" id="nav-key">
             <ul>
-                <li><button type="submit" onclick="keyvalue1()">My Products </button></li>
+                <li><button type="submit" onclick="keyvalue1()">My Orders</button></li>
                 <li><button id="nav-cart" type="submit" onclick="keyvalue2()">My Cart</button></li>         
             </ul> 
             </form>  

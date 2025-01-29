@@ -98,21 +98,26 @@
 	    border: 1px solid #333;
 	    text-decoration: none;
 	    font-weight: bold;
+	    margin : 5px;
+    	padding : 5px;
 	}
 	header nav ul li button:hover {
-	    text-decoration: underline;
+	    border-bottom : 2px solid limegreen; 
 	}
 	#logout{
 		text-decoration : none;
 		color : red;
 		margin : 3px;
-		padding : 3px;
+		padding : 10px;
 		border : 3px solid inherit;
 		font-weight : bolder;
+		background-color: #80E27E;
+		border-radius : 20px;
 	}
 	#logout:hover{
 		border-radius : 20px;
-		background-color: lightgreen;
+		background-color: #A2D9CE;
+		color : #2C6B3F;
 		border : 3px solid limegreen;
 	}
     .container {
@@ -209,7 +214,7 @@
 	        	<input type="hidden" name="secret" id="key-id">
 	      		<input type="hidden" name="avalue" id="nav-key">
             <ul>
-                <li><button type="submit" onclick="keyvalue1()">My Products </button></li>
+                <li><button type="submit" onclick="keyvalue1()">My Orders</button></li>
                 <li><button type="submit" onclick="keyvalue2()">My Cart</button></li>         
             </ul> 
             </form>  
@@ -223,6 +228,7 @@
 	<form action="ConfirmCustomerOrder" method="post">
     <input type="hidden" value="${crtid}" name="cropmart_id">
     <input type="hidden" id="reference_id" name="p_id">
+    <input type="hidden" id="reference_button" name="ref_condition">
     <label id="title"> Fill below details to Place Order</label>
     <div class="sub"> Product Details</div>
     <div class="container"> 
@@ -266,8 +272,8 @@
     <td colspan ="2"><input type="checkbox"> <label>Trust me, above given details are true  </label></td>
   </tr>
    <tr>
-    <td><button type="submit" onclick="success()" id="form-button">Place Order</button></td>
-    <td><button type="submit" id="form-button">Cancel Order</button></td>
+    <td><button type="submit" onclick="call(this)" id="form-button">Place Order</button></td>
+    <td><button type="submit" onclick="call(this)" id="form-button">Cancel Order</button></td>
   </tr>
 
 </table>
@@ -285,8 +291,11 @@
 		cluenav = 7;
 		document.getElementById("nav-key").innerText = cluenav;
 	}  	
-	function success(){
-	  alert("Order Request sent successfully");
+	function call(element){
+		if(element.textContent == "Place Order"){
+    		document.getElementById("reference_button").value = "1";
+    		alert("Order Request sent successfully");
+    	} 
 	}
 //Convert the Java array into a comma-separated string
   var product_ary = "<%= String.join(",", (String[]) request.getAttribute("data")) %>";

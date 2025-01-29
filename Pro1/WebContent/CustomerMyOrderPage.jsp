@@ -8,7 +8,7 @@
 <title>My Orders/Customer</title>
 <style type="text/css">
 body{
-	background-color: #DDE2E6;
+	background-color: #FAE1DC;
 }
 header {
     background-color: #333;
@@ -77,6 +77,8 @@ header nav ul li button {
     border: 1px solid #333;
     text-decoration: none;
     font-weight: bold;
+    margin : 5px;
+    padding : 5px;
 }
 header nav ul li button:hover {
    	border-bottom : 2px solid limegreen; 
@@ -89,21 +91,25 @@ header nav ul li button:hover {
 	text-decoration : none;
 	color : red;
 	margin : 3px;
-	padding : 3px;
+	padding : 10px;
 	border : 3px solid inherit;
 	font-weight : bolder;
+	background-color: #80E27E;
+	border-radius : 20px;
 }
 #logout:hover{
 	border-radius : 20px;
-	background-color: lightgreen;
+	background-color: #A2D9CE;
+	color : #2C6B3F;
 	border : 3px solid limegreen;
 }
 #title{
 	text-align : center;
 	margin: 10px;
 	padding : 5px;
-	font-size: 40px;
-	background-color: beige;
+	font-size: 50px;
+	background-color: #A2D9CE;
+	color : brown;
 }
 
 .product{
@@ -118,7 +124,7 @@ header nav ul li button:hover {
     height: 700px;
     flex-basis: 27%;
     flex-grow: 1;
-    background-color: beige;
+    background-color: #FFF8DC;
     margin: 20px;
     padding: 50px 20px 20px 20px;
     display : flex;
@@ -138,7 +144,7 @@ header nav ul li button:hover {
     height: 700px;
     flex-basis: 27%;
     flex-grow: 1;
-    background-color: salmon;
+    background-color: #FFF8DC;
     margin: 20px;
     padding: 50px 20px 20px 20px;
     display : flex;
@@ -157,7 +163,7 @@ header nav ul li button:hover {
     height: 700px;
     flex-basis: 27%;
     flex-grow: 1;
-    background-color: lightskyblue;
+    background-color: #FFF8DC;
     margin: 20px;
     padding: 50px 20px 20px 20px;
     display : flex;
@@ -170,24 +176,29 @@ header nav ul li button:hover {
 	font-size : 32px;
 	text-align : left;
 	margin : 2px 2px 2px 15%;
+	color : #4E4A46;
+	font-weight: bolder;
 }
 .product-title{
 	text-align: center;
 	margin : 2px;
 	padding : 5px;
-	font-size : 32px;
+	font-size : 40px;
+	color : orange;
 }
 .customer-title{
 	text-align: center;
 	margin : 2px;
 	padding : 5px;
-	font-size : 32px;
+	font-size : 40px;
+	color : #2C6B3F;
 }
 .order-title{
 	text-align: center;
 	margin : 2px;
 	padding : 5px;
-	font-size : 32px;
+	font-size : 40px;
+	color : #3700B3;
 }
 .cus-design{
 	color : blue;
@@ -210,6 +221,7 @@ header nav ul li button:hover {
 }
 .order-span{
 	color : darkgreen;
+	font-weight : normal;
 }
 
 .status-label{
@@ -218,9 +230,9 @@ header nav ul li button:hover {
 	margin : 5px 15%;
 	padding : 5px;
 	font-size : 32px;
-	color : darkgreen;
+	color : #4B0082;
 	border : 2px solid green;
-	background-color: lavender;
+	background-color: #CFD8DC;
 	border-radius : 20px;
 }
 .cancel-button{
@@ -245,6 +257,7 @@ header nav ul li button:hover {
 	margin : 10px;
 	color: darkgreen;
 	text-align : center;
+	
 }
 .field-input {
 	display: block;
@@ -257,11 +270,15 @@ header nav ul li button:hover {
 	}
 .order-guide{
 	font-size : 32px;
-	text-align : left;
+	text-align : center;
 	margin : 2px 2px 2px 15%;
+	padding : 5px;
 	color: blue;
 	background-color: lightgrey;
 	border-radius : 20px;
+	min-height: 20px;
+	max-height: 500px; 
+	width : 70%;
 }
 .display-hide{
 	display : none;	
@@ -289,7 +306,7 @@ header nav ul li button:hover {
         	<input type="hidden" name="secret" id="nav-cmid">
       		<input type="hidden" name="avalue" id="nav-key">
             <ul>
-                <li><button id="nav-order" type="submit" onclick="keyvalue1()">My Orders </button></li>
+                <li><button id="nav-order" type="submit" onclick="keyvalue1()">My Orders</button></li>
                 <li><button type="submit" onclick="keyvalue2()">My Cart</button></li>         
             </ul> 
             </form>  

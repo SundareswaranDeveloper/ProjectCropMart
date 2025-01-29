@@ -80,21 +80,26 @@ header nav ul li button {
     border: 1px solid #333;
     text-decoration: none;
     font-weight: bold;
+    margin : 5px;
+    padding : 5px;
 }
 header nav ul li button:hover {
-    text-decoration: underline;
+    border-bottom : 2px solid limegreen; 
 }
 #logout{
 	text-decoration : none;
 	color : red;
 	margin : 3px;
-	padding : 3px;
+	padding : 10px;
 	border : 3px solid inherit;
 	font-weight : bolder;
+	background-color: #80E27E;
+	border-radius : 20px;
 }
 #logout:hover{
 	border-radius : 20px;
-	background-color: lightgreen;
+	background-color: #A2D9CE;
+	color : #2C6B3F;
 	border : 3px solid limegreen;
 }
 #head{
@@ -210,7 +215,7 @@ header nav ul li button:hover {
         	<input type="hidden" name="secret" id="nav-cmid">
       		<input type="hidden" name="avalue" id="nav-key">
             <ul>
-                <li><button type="submit" onclick="keyvalue1()">My Products </button></li>
+                <li><button type="submit" onclick="keyvalue1()">My Orders</button></li>
                 <li><button type="submit" onclick="keyvalue2()">My Cart</button></li>         
             </ul> 
             </form>  
