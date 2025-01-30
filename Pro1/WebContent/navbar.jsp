@@ -15,6 +15,7 @@
     </form>
     <div class="user">
       <i class="fa-solid fa-user nav-id" id="hide">${crtid}</i>
+      <a id="logout" href="Log.jsp">Log Out</a>
     </div>
   </div>
   <script type="text/javascript">
