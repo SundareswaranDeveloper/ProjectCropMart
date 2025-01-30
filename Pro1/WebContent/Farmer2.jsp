@@ -5,33 +5,29 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	
-	<title>Farmer Main Screen</title>
+	<title>Farmer/Motivational Corner</title>
 	<style type="text/css">
-		
 		<%@ include file="navCss.jsp" %>
-		
 		body{
 			background-color: #DCDCDC;	
 		}
 		#nav-three{
-   		border-top : 2px solid #16A085;
-		border-bottom : 2px solid #16A085;
+	   		border-top : 2px solid #16A085;
+			border-bottom : 2px solid #16A085;
 		}
 		.info-box{
 			margin: 0px;
 			padding: 10px;
 		}
 		.date-view{
-			
-			font-size : 15px;
+			font-size : 25px;
 			display : block;
-			width : 250px;
+			width : 500px;
 			text-align:center;
 			line-height : 25px;
 			margin: 10px auto;
 			padding: 5px;
-			color: orange;
+			color: darkgreen;
 			background-color: beige;
 			border-radius: 30px;
 			border: 2px solid red;
@@ -39,13 +35,13 @@
 		.info-view{
 			width: fit-content;
 			line-height: 25px;
-			font-size : 18px;
+			font-size : 28px;
 			margin: 10px;
-			padding: 5px;
+			padding: 10px;
 			letter-spacing: 2px;
 			word-spacing: 3px;
-			color: blue;
-			background-color: lightskyblue;
+			color: #d2691e;
+			background-color: #fffacd;
 			border-radius: 20px;
 			border: 2px solid moccasin;
 		}
@@ -79,6 +75,7 @@
     
     var total = ${count};
 	var divlead  = document.getElementById("parent-info");
+	
 	for(var m = 0; m<=total-1;m++){
 	var divmain = document.createElement("div");
 	divmain.classList.add('info-box');
@@ -88,7 +85,7 @@
 	var postdate = document.createElement("label");
 	var infocontent = document.createElement("p");
 	
-	postdate.textContent = "Posted on : " + date_ary[m] + " at " + time_ary[m]; 
+	postdate.textContent = "Posted on " + date_ary[m] + " at " + time_ary[m] + " IST"; 
 	
 	var con_info = data_ary[m];
 	

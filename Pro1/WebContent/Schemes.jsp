@@ -9,7 +9,7 @@
 <style type="text/css">
 <%@ include file="navCss.jsp" %>
 	body{
-		background-color:  beige;
+		background-color:  #A2D9CE;
 		
 	}
 	#nav-five{
@@ -22,14 +22,14 @@
 	}
 	.date-view{
 		
-		font-size : 15px;
+		font-size : 25px;
 		display : block;
-		width : 250px;
+		width : 500px;
 		text-align:center;
 		line-height : 25px;
 		margin: 10px auto;
 		padding: 5px;
-		color: orange;
+		color: darkgreen;
 		background-color: beige;
 		border-radius: 30px;
 		border: 2px solid red;
@@ -37,13 +37,13 @@
 	.scheme-view{
 		width: fit-content;
 		line-height: 25px;
-		font-size : 18px;
+		font-size : 28px;
 		margin: 10px;
-		padding: 5px;
+		padding: 10px;
 		letter-spacing: 2px;
 		word-spacing: 3px;
-		color: blue;
-		background-color: lightskyblue;
+		color: d2691e;
+		background-color: #fffacd;
 		border-radius: 20px;
 		border: 2px solid moccasin;
 	}
@@ -87,7 +87,7 @@
 	var postdate = document.createElement("label");
 	var schemecontent = document.createElement("p");
 	
-	postdate.textContent = "Scheme posted on : " + date_ary[m] + " at " + time_ary[m]; 
+	postdate.textContent = "Scheme posted on " + date_ary[m] + " at " + time_ary[m] + " IST"; 
 	
 	var con_scheme = data_ary[m];
 	

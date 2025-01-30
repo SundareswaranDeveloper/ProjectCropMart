@@ -21,26 +21,32 @@
 		.contain{
 			display: block;
 			margin: 20px auto 0 auto;
-			width: 500px ;
+			width: 650px ;
 		}
 		
 		#title-head{
 			display: block;
-			font-size: 25px;
+			font-size: 32px;
 			text-align: center;
-			color:  #4E342E ;
+			color:  #c71585 ;
+			margin : 5px;
+			padding : 5px;
+			
 		}
 		#form-button{
 			background-color: #792099;
 			color: lawngreen;
 			border: 1px solid #792099;
-			border-radius: 10px;
+			border-radius: 20px;
 			margin: 20px 0px;
-			padding: 10px;
+			padding: 20px 10px;
 			cursor: pointer;
-			font-size: 20px;
+			font-size: 32px;
 			width: 100%;
-
+		}
+		#form-button:hover{
+			color : #388e3c;
+			background-color: #c8e6c9;
 		}
 		.input-group{
 			display: flex;
@@ -51,22 +57,19 @@
 
 		}
 		.input-group label{
-			font-size: 20px;
+			font-size: 25px;
 			width: 40%;
 			padding: 10px;
 			color: #388E3C;
 		}
 		.input-group input{
 			border-radius: 10px;
-			font-size: 20px;
+			font-size: 23px;
 			margin-top: 5px;
 			padding: 10px;
 			border: 1px solid blue;
-		}	
-		#fs{
 			width: 50%;
-			color: blue;
-		}
+		}	
 	</style>
 </head>
 <body>
@@ -98,9 +101,9 @@
 			</div>
 			<div class="input-group">
 				<label>Product Image</label>
-				<input id="fs" type="file" name="image"  >
+				<input type="file" name="image"  >
 			</div>
-			<label style="visibility: hidden;" id="cm">${crtid}</label>
+			<label style="display: none;" id="cm">${crtid}</label>
 			<input type="hidden" id="store" name="mart" >
 			
 			<button type="submit" id="form-button">Sell Product</button>

@@ -23,14 +23,14 @@
 		}
 		.date-view{
 			
-			font-size : 15px;
+			font-size : 25px;
 			display : block;
-			width : 250px;
+			width : 500px;
 			text-align:center;
 			line-height : 25px;
 			margin: 10px auto;
 			padding: 5px;
-			color: orange;
+			color: darkgreen;
 			background-color: beige;
 			border-radius: 30px;
 			border: 2px solid red;
@@ -38,13 +38,13 @@
 		.tip-view{
 			width: fit-content;
 			line-height: 25px;
-			font-size : 18px;
+			font-size : 28px;
 			margin: 10px;
-			padding: 5px;
+			padding: 10px;
 			letter-spacing: 2px;
 			word-spacing: 3px;
-			color: blue;
-			background-color: lightskyblue;
+			color: d2691e;
+			background-color: #fffacd;
 			border-radius: 20px;
 			border: 2px solid moccasin;
 		}
@@ -86,7 +86,7 @@
 	var postdate = document.createElement("label");
 	var tipcontent = document.createElement("p");
 	
-	postdate.textContent = "Tip posted on : " + date_ary[m] + " at " + time_ary[m]; 
+	postdate.textContent = "Tip posted on " + date_ary[m] + " at " + time_ary[m] + " IST"; 
 	
 	var con_tip = data_ary[m];
 	var con = con_tip.split("$$$").join(",");
