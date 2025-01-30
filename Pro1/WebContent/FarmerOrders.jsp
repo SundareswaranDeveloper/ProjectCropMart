@@ -10,6 +10,7 @@
 	<%@ include file="navCss.jsp" %>
 	body{
 	background-color: #F7CAC9;
+	/*background-color: #FAE1DC;*/
 	}
 	#nav-six{
    		border-top : 2px solid #16A085;
@@ -20,7 +21,8 @@
 	margin: 10px;
 	padding : 5px;
 	font-size: 40px;
-	background-color: beige;
+	background-color: #e8eaf6;
+	color : brown;
 	}
 	.product{
 	    margin: 10px;
@@ -34,7 +36,7 @@
 		height: 700px;
 		flex-basis: 27%;
 		flex-grow: 1;
-		background-color: beige;
+		background-color: #FFF8DC;
 		padding: 50px 20px 20px 20px;
 		margin: 20px;
 		display : flex;
@@ -52,7 +54,7 @@
 		height: 700px;
 		flex-basis: 27%;
 		flex-grow: 1;
-		background-color: salmon;
+		background-color: #FFF8DC;
 		margin: 20px;
 		display : flex;
 		flex-direction : column;
@@ -78,42 +80,42 @@
 	    height: 700px;
 	    flex-basis: 27%;
 	    flex-grow: 1;
-	    background-color: lightskyblue;
+	    background-color: #FFF8DC;
 	    margin: 20px;
 	    padding: 50px 20px 20px 20px;
 	    display : flex;
 	    flex-direction : column;
-	    gap : 2px;
+	    gap : 2px;    
 	}
 	.order-status label{
 		display : block;
 		font-size : 32px;
 		text-align : left;
 		margin : 2px 2px 2px 15%;
+		color : #4E4A46;
+		font-weight: bolder;
 	}
 	.product-title{
 		text-align: center;
 		margin : 2px;
 		padding : 5px;
-		font-size : 32px;
+		font-size : 40px;
+		color : orange;
 	}
 	.customer-title{
 		text-align: center;
 		margin : 2px;
 		padding : 5px;
-		font-size : 32px;
+		font-size : 40px;
+		color : #2C6B3F;
 	}
 	.order-title{
 		text-align: center;
 		margin : 2px;
 		padding : 5px;
-		font-size : 32px;
+		font-size : 40px;
+		color : #3700B3;
 	}
-	/* #order label {
-	    display: block;
-	    text-align: center;
-	    font-size: 32px;
-	} */
 	.product-image{
 	   	display: block;
 	    width: 200px;
@@ -126,6 +128,7 @@
 	}
 	.order-span{
 		color : darkgreen;
+		font-weight: normal;
 	}
 	.status-label{
 	    text-align : center;
@@ -133,9 +136,9 @@
 		margin : 5px 15%;
 		padding : 5px;
 		font-size : 32px;
-		color : darkgreen;
+		color : #4B0082;
 		border : 2px solid green;
-		background-color: lavender;
+		background-color: #CFD8DC;
 		border-radius : 20px;
 	}
 	/* .disable-button{
@@ -175,11 +178,15 @@
 	}
 	.order-guide{
 		font-size : 32px;
-		text-align : left;
+		text-align : center;
 		margin : 2px 2px 2px 15%;
+		padding : 5px;
 		color: blue;
 		background-color: lightgrey;
 		border-radius : 20px;
+		min-height: 20px;
+		max-height: 500px; 
+		width : 70%;
 	}
 	.display-hide{
 		display : none;
@@ -188,7 +195,7 @@
 </head>
 <body>
 	<%@ include file="navbar.jsp" %>
-	 <h2 id="title"> My Orders </h2>
+	 <h2 id="title"> Customer Orders </h2>
     <section id="order">
         
     </section>
