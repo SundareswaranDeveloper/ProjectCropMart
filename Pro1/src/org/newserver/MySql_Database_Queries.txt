@@ -20,17 +20,21 @@ select * from cdata;
 -- A_Tips : table A_Tips is used to store Farmer tips data.
 create table A_Tips(t_id int auto_increment primary key, t_c varchar(200));
 insert into A_Tips(t_c) values ("Water Management: Use techniques like drip irrigation and rainwater harvesting to conserve water. This is especially important for areas experiencing water scarcity.");
-insert into A_Tips(t_c) values ("December is comming , cultivate the fields Safe!!");
+insert into A_Tips(t_c) values ("Stay updated with weather forecasts to protect crops from extreme weather conditions and plan your farming activities accordingly.");
+insert into A_Tips(t_c) values ("Utilize Farm Waste : Recycle farm waste by converting it into compost, or animal feed, which reduces waste and provides additional resources for the farm.");
 select * from A_Tips;
 
 -- m_corner : table m_corner is used to store motivational corner data for farmer.
 create table m_corner(m_id int auto_increment primary key, m_c varchar(200));
 insert into m_corner(m_c) values ("The discovery of agriculture was the first big step toward a civilized life.");
+insert into m_corner(m_c) values ("Utilize farm waste : Recycle farm waste by converting it into compost or animal feed. This reduces waste and provides additional resources for the farm.");
 select * from m_corner;
 
 -- g_scheme : table g_scheme is used to store government scheme data for farmer.
 create table g_scheme(g_id int auto_increment primary key, g_c varchar(200));
-insert into g_scheme(g_c) values ("Do You Know : INDIA has 1000 + Government Schemes for Farmers!");
+insert into g_scheme(g_c) values ("Pradhan Mantri Kisan Samman Nidhi (PM-KISAN) : Under the scheme an income support of 6,000 Rupees per year in three equal installments will be provided to all land holding farmer families.");
+insert into g_scheme(g_c) values ("Pradhan Mantri Krishi Sinchayee Yojana (PMKSY) : Aiming to provide irrigation to every farm, it focuses on improving water use efficiency and expanding irrigation coverage.");
+insert into g_scheme(g_c) values ("Kisan Credit Card (KCC) : This scheme helps farmers access short-term, low-interest credit for purchasing seeds, fertilizers, and other farming inputs.");
 select * from g_scheme;
 
 -- sell_p : table sell_p is used to store sell product details data given from farmer.
