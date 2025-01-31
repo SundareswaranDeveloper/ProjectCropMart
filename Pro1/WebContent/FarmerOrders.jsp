@@ -191,13 +191,29 @@
 	.display-hide{
 		display : none;
 	}
+	.view-hide label{
+		display : block;
+		background-color: #A5D6A7;
+		color : #B71C1C;
+		font-size : 32px;
+		margin : 10px;
+		padding : 10px 20px;
+		text-align : center;
+		border-radius : 20px;
+		font-weight: bold;
+	}
+	.disappear{
+		display : none;
+	}
 </style>
 </head>
 <body>
 	<%@ include file="navbar.jsp" %>
 	 <h2 id="title"> Customer Orders </h2>
     <section id="order">
-        
+    	<div id="note1" class="view-hide disappear">
+        	<label>Customer orders are empty. Once the customer purchases your product, it will be updated.</label>
+        </div>
     </section>
 	<script type="text/javascript">
 	
@@ -327,8 +343,12 @@
     // Convert the comma-separated string into a JavaScript array
     product_count = product_count.split(",");
     
-    var section  = document.getElementById("order");
     var count = product_count[0];
+    if(count == 0){
+    	var article = document.getElementById("note1");
+    	article.classList.remove("disappear");
+    }
+    var section  = document.getElementById("order");
     for (var i = 0; i <=count-1; i++) {
     	var divdetails = document.createElement("div");
     	divdetails.classList.add('product');
