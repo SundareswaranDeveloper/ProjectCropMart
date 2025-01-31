@@ -10,19 +10,18 @@
 	<%@ include file="navCss.jsp" %>
 	body{
 	background-color: #F7CAC9;
-	/*background-color: #FAE1DC;*/
 	}
 	#nav-six{
    		border-top : 2px solid #16A085;
 		border-bottom : 2px solid #16A085;
 	}
 	#title{
-	text-align : center;
-	margin: 10px;
-	padding : 5px;
-	font-size: 40px;
-	background-color: #e8eaf6;
-	color : brown;
+		text-align : center;
+		margin: 10px;
+		padding : 5px;
+		font-size: 40px;
+		background-color: #e8eaf6;
+		color : brown;
 	}
 	.product{
 	    margin: 10px;
@@ -141,9 +140,6 @@
 		background-color: #CFD8DC;
 		border-radius : 20px;
 	}
-	/* .disable-button{
-		pointer-events : none;
-	} */
 	.order-button{
 		display: block;
 		width: fit-content;

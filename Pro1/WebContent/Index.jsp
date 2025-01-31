@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Crop Mart Welcome Page</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crop Mart</title>
+<title>Crop Mart Welcome Page</title>
 <style type="text/css">
 	body{
 		margin: 0;

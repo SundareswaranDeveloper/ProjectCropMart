@@ -17,28 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SellServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SellServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
 		String product = request.getParameter("product");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		Float price = Float.parseFloat(request.getParameter("price"));
@@ -46,7 +25,6 @@ public class SellServlet extends HttpServlet {
 		String expiry = request.getParameter("expiry");
 		String image = request.getParameter("image");
 		String crop = request.getParameter("mart");
-		System.out.println(crop + "empty");
 		if(crop.isEmpty()) {
 			crop = "error";
 		}

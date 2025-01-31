@@ -15,14 +15,11 @@ import java.time.LocalTime;
 public class LogDb {
 
 	public boolean cus_insert(CusCheck c) throws SQLException {
-		// TODO Auto-generated method stub
 		boolean result = false;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			// com.mysql.jdbc.Driver
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			// jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024
 			String query = "insert into cdata(c_name,c_ph,c_address) values (?,?,?);";
 
 			PreparedStatement ps = con.prepareStatement(query);
@@ -36,8 +33,6 @@ public class LogDb {
 			if (rs > 0) {
 				result = true;
 			}
-			// System.out.println("Numbers of rows affected : " + rs);
-
 			con.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -52,9 +47,7 @@ public class LogDb {
 		int[] nums = new int[2];
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			// com.mysql.jdbc.Driver
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			// jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024
 			String query = "insert into fdata(name,mobile,landno,landaddress,landlocation,houseaddress) values (?,?,?,?,?,?);";
 
 			PreparedStatement ps = con.prepareStatement(query);
@@ -77,7 +70,6 @@ public class LogDb {
 				rset.next();
 				nums[1] = rset.getInt(1);
 			}
-			// System.out.println("Numbers of rows affected : " + rs);
 
 			con.close();
 			return nums;
@@ -89,10 +81,8 @@ public class LogDb {
 	}
 	
 	public boolean id_insert(UserCheck uc,String a) throws SQLException {
-		// TODO Auto-generated method stub
 		boolean result = false;
 		String b = "Farmer";
-		String c = "Customer";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
@@ -119,8 +109,6 @@ public class LogDb {
 			if (rs > 0) {
 				result = true;
 			}
-			// System.out.println("Numbers of rows affected : " + rs);
-
 			con.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -131,20 +119,15 @@ public class LogDb {
 	}
 	
 	public boolean sell_insert(SellCheck c) throws SQLException {
-		// TODO Auto-generated method stub
 		boolean result = false;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			// com.mysql.jdbc.Driver
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			// jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select fdata from f_id where fid ='" + c.getUserId() +"';");
 			rs.next();
 			int key = rs.getInt(1);
-			
-			Statement stmt = con.createStatement();
 			ResultSet rset = st.executeQuery("select landlocation from fdata where f_sno = '" + key + "';");
 			rset.next();
 			String district = rset.getString(1);
@@ -168,8 +151,6 @@ public class LogDb {
 			if (row > 0) {
 				result = true;
 			}
-			// System.out.println("Numbers of rows affected : " + rs);
-
 			con.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -180,7 +161,7 @@ public class LogDb {
 	}
 
 	public boolean order_insert(Integer product_id, String customer_name, Long phone_number, String address, String pincode, String landmark, String cmid) throws SQLException {
-		// TODO Auto-generated method stub
+	
 		boolean result = false;
 		LocalDate local_date = LocalDate.now();
 		Date date = Date.valueOf(local_date);

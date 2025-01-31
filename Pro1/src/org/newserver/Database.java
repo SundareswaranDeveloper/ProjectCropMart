@@ -3,12 +3,10 @@ package org.newserver;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +40,7 @@ public class Database {
 	}
 	
 	public boolean readCheck(EntryCheck ec, int h) throws SQLException {
-		System.out.println(ec.getUserid() + " , " + ec.getPassword());
+		
 		boolean result = false;
 		
 		String query= "insert into error";
@@ -51,7 +49,6 @@ public class Database {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
 			if (h == 1) {
 				query = "select * from f_id where fid = '" + ec.getUserid() + "';";
-				System.out.println(query);
 			} else if(h == 2){
 				query = "select * from c_id where cid = '" + ec.getUserid() + "';";
 			}
@@ -59,9 +56,7 @@ public class Database {
 			ResultSet rs = st.executeQuery(query);
 			rs.next();
 			String us_id = rs.getString(1);
-			System.out.println(us_id);
 			String us_pass = rs.getString(2);
-			System.out.println(us_pass);
 			if(us_id.equals(ec.getUserid()) && us_pass.equals(ec.getPassword())) {
 				result = true;
 			}
@@ -100,8 +95,6 @@ public class Database {
 	}
 	
 	public String[][] readTips() throws SQLException{
-		String id = "Loading...";
-		System.out.println(id);
 		String[][] tips = new String[4][];
 		
 		try {
@@ -278,125 +271,8 @@ public class Database {
 		return info;
 	}
 	
-	public List readSearch(String cond1, String cond2) throws SQLException {
-		String id = "Loading...";
-		System.out.println(id);
-		
-		List<Object> list = new ArrayList<Object>();
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			
-			Statement stmt = con.createStatement();
-			ResultSet rstmt = stmt.executeQuery("select count(p_id) from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "';" );
-			rstmt.next();
-			int count = rstmt.getInt(1);
-			list.add(count);
-			
-			ResultSet rs = stmt.executeQuery("select * from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "';" );
-			while(rs.next()) {
-			list.add(rs.getString(1));
-			list.add(rs.getInt(2));
-			list.add(rs.getInt(3));
-			list.add(rs.getFloat(4));
-			list.add(rs.getString(5));
-			list.add(rs.getString(6));
-			list.add(rs.getString(7));
-
-			}
-			con.close();
-			return list;	
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return list;
-	}
-	
-	public List[] readSearchCount(String cond1, String cond2) throws SQLException {
-		String id = "Loading...";
-		System.out.println(id);
-		List[] product = new List[15];
-		
-		try {
-			
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			List<Integer> count = new ArrayList<Integer>();
-			List<String> np_name = new ArrayList<String>();
-			List<Integer> np_id = new ArrayList<Integer>();
-			List<Integer> np_qty = new ArrayList<Integer>();
-			List<Float> np_price = new ArrayList<Float>();
-			List<String> np_sa = new ArrayList<String>();
-			List<String> np_ex = new ArrayList<String>();
-			List<String> np_img = new ArrayList<String>();
-			List<String> p_name = new ArrayList<String>();
-			List<Integer> p_id = new ArrayList<Integer>();
-			List<Integer> p_qty = new ArrayList<Integer>();
-			List<Float> p_price = new ArrayList<Float>();
-			List<String> p_sa = new ArrayList<String>();
-			List<String> p_ex = new ArrayList<String>();
-			List<String> p_img = new ArrayList<String>();
-			Statement stmt = con.createStatement();
-			ResultSet rstmt = stmt.executeQuery("select count(p_id) from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "' AND p_quntity < 50;" );
-			rstmt.next();
-			count.add(rstmt.getInt(1));
-			
-			ResultSet rs = stmt.executeQuery("select count(p_id) from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "' AND p_quntity >=50;" );
-			rs.next();
-			count.add(rs.getInt(1));
-			product[0] = count;
-			//int total = rstmt.getInt(1) + rs.getInt(1);
-			ResultSet rset = stmt.executeQuery("select * from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "' AND p_quntity < 50;" );
-			while(rset.next()) {
-			np_name.add(rset.getString(1));
-			np_id.add(rset.getInt(2));
-			np_qty.add(rset.getInt(3));
-			np_price.add(rset.getFloat(4));
-			np_sa.add(rset.getString(5));
-			np_ex.add(rset.getString(6));
-			np_img.add(rset.getString(7));
-			}
-			ResultSet set = stmt.executeQuery("select * from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "' AND p_quntity >= 50;" );
-			while(set.next()) {
-			p_name.add(set.getString(1));
-			p_id.add(set.getInt(2));
-			p_qty.add(set.getInt(3));
-			String na =  String.valueOf(set.getInt(3));
-			System.out.println(na);
-			p_price.add(set.getFloat(4));
-			p_sa.add(set.getString(5));
-			p_ex.add(set.getString(6));
-			p_img.add(set.getString(7));
-			}
-			con.close();
-			product[1] = np_name;
-			product[2] = np_id;
-			product[3] = np_qty;
-			product[4] = np_price;
-			product[5] = np_sa;
-			product[6] = np_ex;
-			product[7] = np_img;
-			product[8] = p_name;
-			product[9] = p_id;
-			product[10] = p_qty;
-			product[11] = p_price;
-			product[12] = p_sa;
-			product[13] = p_ex;
-			product[14] = p_img;
-			return product;	
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return product;
-	}
-	
-	
 	public String[][] readSearchCountNew(String cond1, String cond2) throws SQLException {
-		String id = "Loading...";
-		System.out.println(id);
-		List[] product = new List[15];
+		
 		String[][] group = new String[15][];
 		try {
 			
@@ -405,9 +281,7 @@ public class Database {
 			Statement stmt = con.createStatement();
 			ResultSet rstmt = stmt.executeQuery("select count(p_id) from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "' AND p_quntity < 50;" );
 			rstmt.next();
-			System.out.println("h5 " + rstmt.getInt(1));
 			int n = rstmt.getInt(1);
-			System.out.println("h5 --> " + n);
 			String[] total = new String[2];
 			total[0] = String.valueOf(n);
 			String[] productn = new String[n];
@@ -420,9 +294,7 @@ public class Database {
 			
 			ResultSet rs = stmt.executeQuery("select count(p_id) from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "' AND p_quntity >=50;" );
 			rs.next();
-			System.out.println("h1 " + rs.getInt(1));
 			int num = rs.getInt(1);
-			System.out.println("h1 --> " + num);
 			total[1] = String.valueOf(num);
 			String[] namep = new String[num];
 			String[] idp = new String[num];
@@ -465,9 +337,7 @@ public class Database {
 			con.close();
 			group[0] = total;
 			group[1] = productn;
-			for(String o:productn) {
-				System.out.println("===> "+ o);
-			}
+			
 			group[2] = productid;
 			group[3] = productqty;
 			group[4] = productp;
@@ -514,8 +384,7 @@ public class Database {
 	}
 	
 	public String[][] readCustomerOrders(String cmid) throws SQLException {
-		String id = "Loading...Your Orders....";
-		System.out.println(id);
+		
 		String[][] group = new String[21][];
 		try {
 			
@@ -524,9 +393,7 @@ public class Database {
 			Statement stmt = con.createStatement();
 			ResultSet rstmt = stmt.executeQuery("select count(order_id) from Order_Status where c_cmid = '" + cmid + "';" );
 			rstmt.next();
-			System.out.println("count " + rstmt.getInt(1));
 			int n = rstmt.getInt(1);
-			System.out.println("count --> " + n);
 			String[] total = new String[1];
 			total[0] = String.valueOf(n);
 			String[] productname = new String[n];
@@ -624,8 +491,7 @@ public class Database {
 	}
 	
 	public String[][] readFarmerOrders(String cmid) throws SQLException {
-		String id = "Loading...Your Orders....";
-		System.out.println(id);
+		
 		String[][] group = new String[21][];
 		try {
 			
@@ -634,9 +500,7 @@ public class Database {
 			Statement stmt = con.createStatement();
 			ResultSet rstmt = stmt.executeQuery("select count(order_id) from Order_Status where f_cmid = '" + cmid + "';" );
 			rstmt.next();
-			System.out.println("count " + rstmt.getInt(1));
 			int n = rstmt.getInt(1);
-			System.out.println("count --> " + n);
 			String[] total = new String[1];
 			total[0] = String.valueOf(n);
 			String[] productname = new String[n];

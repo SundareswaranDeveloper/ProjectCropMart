@@ -7,14 +7,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <title>Customer/Place Order</title>
 <style type="text/css">
-		/* Basic Reset */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
     }
     body{
-    background-color:  #FAF3E0;
+    	background-color:  #FAF3E0;
     }
     #title-order{
     	font-size : 36px;
@@ -24,14 +23,12 @@
   	 	padding: 5px;
     }
 	#title{
-	 display : block;
-	 text-align : center;
-	 background-color:#F3E5F5; 
-  	 color: #1E3A8A; 
-	 font-size: 32px;
-	
+		display : block;
+		text-align : center;
+		background-color:#F3E5F5; 
+		color: #1E3A8A; 
+		font-size: 32px;	
 	}
-
 	header {
 	    background-color: #333;
 	    color: white;
@@ -43,7 +40,7 @@
 	header .logo img {
 	    height: 40px; 
 	    border-radius : 50%;
-	    }
+	}
 	header .logo h1 {
 		display : inline;
 	    font-size : 32px;
@@ -126,8 +123,6 @@
       padding: 20px;
       margin-top: 10px; 
     }
-
-    /* Individual div inside the container */
     .box {
       width: 30%;
       text-align: center;
@@ -136,8 +131,6 @@
       border-radius: 8px;
       background-color: #f9f9f9;
     }
-
-    /* Image styles */
     .box img {
    	  display : block;
       width: 250px; 
@@ -145,8 +138,6 @@
       margin: 15px auto;
       border-radius: 5px;
     }
-
-    /* Label styles inside the div */
     .box label {
       display: block;
       margin: 5px 0;
@@ -183,7 +174,7 @@
       padding: 10px;
       border: 1px solid blue;
     } 
-	 .sub{
+	.sub{
     text-align: center;
     font-size: 32px;
     color: springgreen;
@@ -193,7 +184,7 @@
     width: fit-content;
     margin : 10px auto;
    }
-	</style>
+</style>
 </head>
 <body>
 	<header>

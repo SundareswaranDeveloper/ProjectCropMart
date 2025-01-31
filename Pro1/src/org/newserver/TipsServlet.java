@@ -2,9 +2,6 @@ package org.newserver;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +17,7 @@ public class TipsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("welcome");
+	
 		String[][] tips = new String[4][];
 		Database db = new Database();
 		String id = (String)request.getAttribute("crtid");
