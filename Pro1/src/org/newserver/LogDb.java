@@ -15,14 +15,11 @@ import java.time.LocalTime;
 public class LogDb {
 
 	public boolean cus_insert(CusCheck c) throws SQLException {
-		// TODO Auto-generated method stub
 		boolean result = false;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			// com.mysql.jdbc.Driver
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			// jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024
 			String query = "insert into cdata(c_name,c_ph,c_address) values (?,?,?);";
 
 			PreparedStatement ps = con.prepareStatement(query);
@@ -36,8 +33,6 @@ public class LogDb {
 			if (rs > 0) {
 				result = true;
 			}
-			// System.out.println("Numbers of rows affected : " + rs);
-
 			con.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -52,9 +47,7 @@ public class LogDb {
 		int[] nums = new int[2];
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			// com.mysql.jdbc.Driver
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			// jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024
 			String query = "insert into fdata(name,mobile,landno,landaddress,landlocation,houseaddress) values (?,?,?,?,?,?);";
 
 			PreparedStatement ps = con.prepareStatement(query);
@@ -77,7 +70,6 @@ public class LogDb {
 				rset.next();
 				nums[1] = rset.getInt(1);
 			}
-			// System.out.println("Numbers of rows affected : " + rs);
 
 			con.close();
 			return nums;
@@ -89,10 +81,8 @@ public class LogDb {
 	}
 	
 	public boolean id_insert(UserCheck uc,String a) throws SQLException {
-		// TODO Auto-generated method stub
 		boolean result = false;
 		String b = "Farmer";
-		String c = "Customer";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
@@ -119,8 +109,6 @@ public class LogDb {
 			if (rs > 0) {
 				result = true;
 			}
-			// System.out.println("Numbers of rows affected : " + rs);
-
 			con.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -131,20 +119,15 @@ public class LogDb {
 	}
 	
 	public boolean sell_insert(SellCheck c) throws SQLException {
-		// TODO Auto-generated method stub
 		boolean result = false;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			// com.mysql.jdbc.Driver
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			// jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select fdata from f_id where fid ='" + c.getUserId() +"';");
 			rs.next();
 			int key = rs.getInt(1);
-			
-			Statement stmt = con.createStatement();
 			ResultSet rset = st.executeQuery("select landlocation from fdata where f_sno = '" + key + "';");
 			rset.next();
 			String district = rset.getString(1);
@@ -168,8 +151,6 @@ public class LogDb {
 			if (row > 0) {
 				result = true;
 			}
-			// System.out.println("Numbers of rows affected : " + rs);
-
 			con.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -180,7 +161,7 @@ public class LogDb {
 	}
 
 	public boolean order_insert(Integer product_id, String customer_name, Long phone_number, String address, String pincode, String landmark, String cmid) throws SQLException {
-		// TODO Auto-generated method stub
+	
 		boolean result = false;
 		LocalDate local_date = LocalDate.now();
 		Date date = Date.valueOf(local_date);
@@ -208,7 +189,7 @@ public class LogDb {
 			ps.setString(1, order_id);
 			ps.setInt(2, product_id);
 			ps.setString(3, customer_name);
-			ps.setFloat(4, phone_number);
+			ps.setLong(4, phone_number);
 			ps.setString(5, address);
 			ps.setString(6, pincode);
 			ps.setString(7, landmark);
@@ -238,14 +219,28 @@ public class LogDb {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
-			String query = "update Order_Status set status = ?,ex_delivery_date = ? where order_id = '" + orderid + "';";
+			Statement stmt = con.createStatement();
+			ResultSet rset = stmt.executeQuery("select * from otp_data where order_id = '1';");
+			rset.next();
+			int cus_otp = rset.getInt(2);
+		
+			String command = "update otp_data set order_id = ? where otp = ? ;";
+			PreparedStatement pstmt = con.prepareStatement(command);
+			
+			pstmt.setString(1, orderid);
+			pstmt.setInt(2, cus_otp);
+			
+			int row1 = pstmt.executeUpdate();	
+			
+			String query = "update Order_Status set status = ?,ex_delivery_date = ?, c_otp = ? where order_id = '" + orderid + "';";
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setString(1, "Accepted by Farmer");
 			ps.setString(2,deliverydate);
+			ps.setInt(3,cus_otp);
+			int row2 = ps.executeUpdate();
 			
-			int rs = ps.executeUpdate();
-			if (rs > 0) {
+			if (row1 > 0 && row2 > 0) {
 				result = true;
 			}
 			con.close();
@@ -325,6 +320,52 @@ public class LogDb {
 			ps.setBoolean(2,true);
 			ps.setString(3,reason);
 			
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean cart_insert(int id, String cmid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "insert into cart(product_id,cmid) values (?,?);";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.setString(2,cmid);
+		
+			int rs = ps.executeUpdate();
+			if (rs > 0) {
+				result = true;
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		}
+		return result;
+	}
+	
+	public boolean cart_remove(int id, String cmid) throws SQLException {
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/farmer", "root", "Sql@2024");
+			String query = "delete from cart where product_id = ? and cmid = ?;";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.setString(2,cmid);
+		
 			int rs = ps.executeUpdate();
 			if (rs > 0) {
 				result = true;

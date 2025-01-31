@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Crop Mart Welcome Page</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crop Mart</title>
+<title>Crop Mart Welcome Page</title>
 <style type="text/css">
 	body{
 		margin: 0;
@@ -34,7 +33,8 @@
 	    font-size: 28px;
 	    color:  #D1A054 ;
 	}
-	.hero button {
+	.hero a {
+		text-decoration : none;
 	    padding: 10px 20px;
 	    background-color:#5FF1C9;
 	    color: #228B22;
@@ -45,7 +45,7 @@
 	    border-radius: 20px;
 	}
 
-	.hero button:hover {
+	.hero a:hover {
 	    background-color:  #D1F7C4;
 	    color: #1C1C1C;
 	}
@@ -78,7 +78,7 @@
 	<section class="hero">
 		<h1>CROP MART</h1>
         <h2>" A e-commerce system for Farmers to sell their products and Customers to purchase their required products "</h2>
-        <button onclick="log()">Get Started</button>
+        <a href="Log.jsp">Get Started</a>
     </section>
     <h2>How to Start?</h2>
     <div class="container">
@@ -99,10 +99,5 @@
 			<p> Explore Cropmart! </p> 
 		</div>
 	</div>
-	<script>
-	function log(){
-		open("Log.jsp");
-	}
-	</script>
 </body>
 </html>

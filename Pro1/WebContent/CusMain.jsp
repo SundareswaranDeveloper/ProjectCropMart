@@ -22,11 +22,17 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+header .logo img {
+    height: 40px; 
+    border-radius : 50%;
+    }
 header .logo h1 {
-    margin: 0;
-    font-size: 32px;
-    color: limegreen;
-    padding: 5px;
+	display : inline;
+    font-size : 32px;
+    margin : 3px;
+    padding : 10px;
+    color : limegreen;
+    text-align: center;    
 }
 form label{
 	color : lightgreen;
@@ -56,6 +62,7 @@ form input{
 .user{
 	font-size : 25px;
 	color : blue;
+	letter-spacing : 2px;
 }
 header nav ul {
     list-style: none;
@@ -73,54 +80,46 @@ header nav ul li button {
     border: 1px solid #333;
     text-decoration: none;
     font-weight: bold;
+    margin : 5px;
+    padding : 5px;
 }
 header nav ul li button:hover {
-    text-decoration: underline;
+    border-bottom : 2px solid limegreen; 
 }
-#head{
-    text-align: center;
+#logout{
+	text-decoration : none;
+	color : red;
+	margin : 3px;
+	padding : 10px;
+	border : 3px solid inherit;
+	font-weight : bolder;
+	background-color: #80E27E;
+	border-radius : 20px;
+}
+#logout:hover{
+	border-radius : 20px;
+	background-color: #A2D9CE;
+	color : #2C6B3F;
+	border : 3px solid limegreen;
+}
+#intro{
 	background-color: lawngreen;
 	display: flex;
 	align-items: center;
 	flex-direction: row;
-	padding: 20px;
 }
-.child{
-    flex-basis: 40%;
-    flex-grow: 1;
-}
-#cover{
+
+#intro img{
+	margin : 10px;
+	padding : 10px;
 	border-radius: 20%;
-    height: 450px;
+	height: 500px;
+	width : 500px;
+	flex-basis : 40%;
+	flex-grow : 1;
 }
-#head img{
-	border-radius: 20%;
-	height: 450px;
-}
-.image-container {
-	position: relative;
-	display: inline-block;
-}
-.image {
-     display: block;  
-}
-.text {
-     position: absolute;
-     width: 70%;
-     top: 60%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     color: white; 
-     font-size: 20px; 
-     font-weight: bold; 
-     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
-}
-.extra{
-     top:50%;
-     color: beige;
-     font-weight: bold;
-     letter-spacing: 1px;
-}
+
+
 .categories {
     padding: 20px;
     text-align: center;
@@ -174,6 +173,7 @@ header nav ul li button:hover {
 <body>
     <header>
         <div class="logo">
+        	<img src="C:\Users\Mani\Downloads\CMLogo.jpeg"  alt="Logo">
             <h1>CROP MART</h1>
         </div>
         <form action="SearchServlet" method="post">
@@ -189,23 +189,20 @@ header nav ul li button:hover {
         	<input type="hidden" name="secret" id="nav-cmid">
       		<input type="hidden" name="avalue" id="nav-key">
             <ul>
-                <li><button type="submit" onclick="keyvalue1()">My Products </button></li>
+                <li><button type="submit" onclick="keyvalue1()">My Orders</button></li>
                 <li><button type="submit" onclick="keyvalue2()">My Cart</button></li>         
             </ul> 
             </form>  
         </nav>
         <div class="user">
-        	<i class="fa-solid fa-user"></i>
-        	<label id="hide">${crtid}</label>
+        	<i class="fa-solid fa-user" id="nav-cropmart">${crtid}</i>
+        	<a id="logout" href="Log.jsp">Log Out</a>
     	</div>
     </header>
-    <div id="head">
-		<div class="child"><img src="C:\Users\Mani\OneDrive\Desktop\Project\Cover.png" ></div>
-		<div id="cover" class="image-container child">
-            <div><img src="C:\Users\Mani\OneDrive\Desktop\Project\cover2.jpg" class="image" ></div>
-        <h1 class="text extra">Crop Mart</h1>
-		<h2 class="text">" A destination to buy Organic products from Farmers and delivered to your door steps "</h2></div>
-	</div>
+    <div id="intro">
+    	<img src="C:\Users\Mani\OneDrive\Desktop\Project\Cover.png" >
+    	<img src="C:\Users\Mani\Downloads\Your paragraph text.png">
+    </div>
     <section class="categories">
         <h2>Product Categories</h2>
         <div class="category-list">
@@ -229,7 +226,7 @@ header nav ul li button:hover {
         <h2>You can purchase the product from a minimum quantity of 50 kg if your delivery district is different from the product farmer's district.</h2>
     </section>
    <script type="text/javascript">
-    var cmid = document.getElementById("hide").textContent;
+    var cmid = document.getElementById("nav-cropmart").textContent;
 	document.getElementById("sid").innerText = cmid;
 	document.getElementById("nav-cmid").innerText = cmid;
 	var a = 0;

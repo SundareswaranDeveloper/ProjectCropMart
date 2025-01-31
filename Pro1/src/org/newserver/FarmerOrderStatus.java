@@ -15,11 +15,8 @@ public class FarmerOrderStatus extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmid = (String) request.getParameter("cropmartid");
-		System.out.println(cmid);
 		String orderid = (String) request.getParameter("order-id-demo");
-		System.out.println(orderid);
 		String guide = (String) request.getParameter("clue");
-		System.out.println(guide);
 		int way = 0;
 		if(guide.equals("4")) {
 			guide = "2";
@@ -62,9 +59,7 @@ public class FarmerOrderStatus extends HttpServlet {
 			break;
 		}
 		if(result) {
-			System.out.println(result);
 			request.setAttribute("cropmart",cmid);
-			System.out.println(cmid + "hello" );
 			if(way>0) {
 				request.setAttribute("clue",6);
 			}else {

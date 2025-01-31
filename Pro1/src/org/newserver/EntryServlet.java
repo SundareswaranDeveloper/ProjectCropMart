@@ -17,31 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 public class EntryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EntryServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+		
 		String user = request.getParameter("userid");
 		String pass = request.getParameter("password");
-		System.out.println("hiii " + "  " + pass);
 		EntryCheck ec = new EntryCheck(user,pass);
 		Database db = new Database();
 		boolean ans = false;
@@ -59,7 +38,6 @@ public class EntryServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(ans);
 		if (ans) {
 			if (help == 1) {
 				request.setAttribute("crtid", user);

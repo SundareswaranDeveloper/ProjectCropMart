@@ -1,64 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<% 
-String tip1 =(String) request.getAttribute("tip1"); 
-String tip2 =(String) request.getAttribute("tip2");
-String tip3 =(String) request.getAttribute("tip3"); 
-String tip4 =(String) request.getAttribute("tip4"); 
-String tip5 =(String) request.getAttribute("tip5");
-%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<title>Insert title here</title>
+<title>Farmer/Tips</title>
 <style type="text/css">
-<%@ include file="navCss.jsp" %>
+		<%@ include file="navCss.jsp" %>
 		body{
-			background-color:  #32CD32;
+			background-color:  lavender;
 			
 		}
-	
-		.group{
-			line-height: 20px;
-			width: 100%;
-			background-color: beige;
-			gap: 100px;
-			border-radius: 10px;
-			margin: 20px;
+		#nav-four{
+    		border-top : 2px solid #16A085;
+			border-bottom : 2px solid #16A085;
+		}
+		.tip-box{
+			margin: 0px;
 			padding: 10px;
+		}
+		.date-view{
 			
+			font-size : 25px;
+			display : block;
+			width : 500px;
+			text-align:center;
+			line-height : 25px;
+			margin: 10px auto;
+			padding: 5px;
+			color: darkgreen;
+			background-color: beige;
+			border-radius: 30px;
+			border: 2px solid red;
 		}
-		.disappear{
-		display:none;
+		.tip-view{
+			width: fit-content;
+			line-height: 25px;
+			font-size : 28px;
+			margin: 10px;
+			padding: 10px;
+			letter-spacing: 2px;
+			word-spacing: 3px;
+			color: d2691e;
+			background-color: #fffacd;
+			border-radius: 20px;
+			border: 2px solid moccasin;
 		}
-
 	</style>
 </head>
 <body>
-	<input type="hidden" id="total" value="${count}">
 	<%@ include file="navbar.jsp" %>
-	<div>
-		<div class="group disappear" id="content1">
-			<p> <%=tip1 %> </p>
-		</div>
-		<div class="group disappear" id="content2"><p> <%=tip2 %> </p> </div>
-		<div class="group disappear" id="content3"> <p> <%=tip3 %> </p></div>
-		<div class="group disappear" id="content4"><p> <%=tip4 %> </p></div>
-		<div class="group disappear" id="content5"><p> <%=tip5 %> </p> </div>
-		
-
-	</div>
+	<section id="parent-tip">
+	
+	</section>
 	<script type="text/javascript">
-	var a = document.getElementById("total").value;
-	var n = "content";
-	var b = 1;
-	for (var i = 1; i <= a; i++) {
-		var label = document.getElementById(n+b);
-		label.classList.remove("disappear");
-		b++;	
+	
+	// Convert the Java array into a comma-separated string
+    var data_ary = "<%= String.join(",", (String[]) request.getAttribute("data-tip")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    data_ary = data_ary.split(",");
+    
+ 	// Convert the Java array into a comma-separated string
+    var date_ary = "<%= String.join(",", (String[]) request.getAttribute("date-tip")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    date_ary = date_ary.split(",");
+
+ 	// Convert the Java array into a comma-separated string
+    var time_ary = "<%= String.join(",", (String[]) request.getAttribute("time-tip")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    time_ary = time_ary.split(",");
+    
+    var total = ${count};
+	var divlead  = document.getElementById("parent-tip");
+	for(var m = 0; m<=total-1;m++){
+	var divmain = document.createElement("div");
+	divmain.classList.add('tip-box');
+	
+	divlead.appendChild(divmain);
+	
+	var postdate = document.createElement("label");
+	var tipcontent = document.createElement("p");
+	
+	postdate.textContent = "Tip posted on " + date_ary[m] + " at " + time_ary[m] + " IST"; 
+	
+	var con_tip = data_ary[m];
+	var con = con_tip.split("$$$").join(",");
+	
+	tipcontent.textContent = con;
+	
+	postdate.classList.add('date-view');
+	tipcontent.classList.add('tip-view');
+	
+	divmain.appendChild(postdate);
+	divmain.appendChild(tipcontent);
 	}
 	</script>
 </body>
