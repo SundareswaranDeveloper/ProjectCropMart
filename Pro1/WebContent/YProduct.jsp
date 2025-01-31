@@ -78,6 +78,20 @@
 		color : #32CD32;
 		margin : 5px 0px 5px 20%;	
 	} 
+	.view-hide label{
+		display : block;
+		background-color: #A5D6A7;
+		color : #B71C1C;
+		font-size : 32px;
+		margin : 10px;
+		padding : 10px 20px;
+		text-align : center;
+		border-radius : 20px;
+		font-weight: bold;
+	}
+	.disappear{
+		display : none;
+	}
   </style>
   </head>
 <body>
@@ -85,7 +99,12 @@
 	
 	<h1 id="title-product">Published Products</h1> 
 	<section class="product-list" id="parent">
-        
+        <div id="note1" class="view-hide disappear">
+        	<label>Your products are empty. Once you publish your product, it will be updated.</label>
+        </div>
+        <div id="note2" class="view-hide disappear">
+        	<label>Here are the steps to publish your product: Click the 'Sell Product' button, enter the details of your available product, and then click the 'Sell Product' button at the bottom to complete the process.</label>
+        </div>
     </section> 
   
 	<script type="text/javascript">
@@ -133,6 +152,14 @@
     img_ary = img_ary.split(",");
     
     var total = ${count};
+    if(total == 0){
+    	var article = document.getElementById("note1");
+    	article.classList.remove("disappear");
+    
+    	var article2 = document.getElementById("note2");
+    	article2.classList.remove("disappear");
+    }   
+    
 	var divlead  = document.getElementById("parent");
 	for(var m = 0; m<=total-1;m++){
 	var divmain = document.createElement("div");
