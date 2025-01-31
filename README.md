@@ -1,22 +1,22 @@
-Project Crop Mart 
+# Project Crop Mart 
 
-Introduction :
+# Introduction :
 
-Project Crop Mart is the idea of developing the E-commerce system for Farmers to sell their products and Customers to purchase their required products.
+Project Crop Mart was the idea of developing an e-commerce system for farmers to sell their products and customers to purchase their required products.
 
 Using Java, Jsp, Servlet for backend services, HTML, CSS and JavaScript for frontend UI.
 
-Designing and implementing a secure MYSQL database, ensuring seamless integration with backend services for Data transfer operations.
+Designed and implemented a secure MySQL database, ensuring seamless integration with backend services for data transfer operations.
 
 Utilized Eclipse as a development environment.
 
-Project Link :
+# Project Link :
 
-Developing a Project Crop Mart, shared in my Github account SundareswaranDeveloper and the link shown below.
+Developed a Project Crop Mart, shared in my Github account SundareswaranDeveloper and the link shown below.
 
 Github : https://github.com/SundareswaranDeveloper/ProjectCropMart
 
-General File Information :
+# General File Information :
 
 .java : These files are represented for backend services like Servlet, JBDC connection, etc.
 
@@ -32,31 +32,35 @@ Cus1.jsp : Customer Registration page.
 
 Id.jsp : Crop Mart user id allocation and password verification page.
 
-Farmer2.jsp : Motivational Corner page for Farmers from admin.
+Farmer2.jsp : Motivational Corner page for Farmers.
 
 CusMain.jsp : Customer Home page.
 
-CusPage.jsp : Customer Search Product primary result page.
+CheckTrail.jsp : Customer Search Product result page.
 
-CusTrail.jsp : Customer Search Product result page under testing.
+navbar.jsp : Common nav bar code for Farmer pages.
 
-navbar.jsp : Common nav bar code page for Farmers.
+navCss.jsp : Common nav bar style for Farmer pages.
 
-navCss.jsp : Common nav bar style page for Farmers.
+SellProduct.jsp : A product registration page for farmers to sell their products.
 
-SellProduct.jsp : Sell Product registration page for Farmers.
+YProduct.jsp : Farmer's Published Products page.
 
-YProduct.jsp : Farmer Published Products page.
+Tips.jsp : Farming Tips Page for Farmers.
 
-Tips.jsp : Tips for Farmers about farming from admin.
-
-Schemes.jsp : Government Schemes for farmers are shown in this page from admin.
+Schemes.jsp : Page to Share Details About Government Schemes and Benefits for Farmers.
 
 CusOrderCon.jsp : Customer Order Confirmation page.
 
-Database.java : This file provide JBDC operations.
+CustomerMyOrderPage.jsp : Page to Display Product Order Details for Customers.
 
-LogDb.java : This file also provide JBDC operations.
+FarmerOrders.jsp : When a customer purchases a farmer's product, the order details are displayed on this page for the farmer.
+
+Cart.jsp : Add to cart page for customers.
+
+Database.java : This file handles JDBC operations for reading data from the database.
+
+LogDb.java : This file manages JDBC operations for inserting data into the database..
 
 LogServlet.java : This file act as servlet to process the Farmer Registration operation.
 
@@ -66,15 +70,15 @@ Customer.java : Act as Servlet to process the Customer Registration operation.
 
 CusCheck.java : Act as POJO class to store the Customer Registration data.
 
-NewUser.java : Act as Servlet to process the New Crop Mart Id creation operation.
+NewUser.java : Act as Servlet to process the New Crop Mart ID creation operation.
 
-UserCheck.java : Act as POJO class to store the id and password from users.
+UserCheck.java : Act as POJO class to store the ID and password from users.
 
-EntryServlet.java : Act as Servlet to find the user  (Farmer/Customer) and navigate to their page.
+EntryServlet.java : Acts as a servlet to validate the user ID and password, then redirects the user to their respective page.
 
-EntryCheck.java : Act as POJO class to store Login page input.
+EntryCheck.java : Act as POJO class to store user Login page input.
 
-SearchServlet : Act as Servlet to process the Customer Search Product and navigate to the CusTrail page.
+SearchServlet : Acts as a servlet to process customer product searches and displays the results on the CheckTrail.jsp page.
 
 McServlet.java : Act as Servlet fetch data from admin database about Motivational Corner and navigate to Farmer2.jsp .
 
