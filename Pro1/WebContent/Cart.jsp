@@ -190,7 +190,21 @@ header nav ul li button:hover {
 
 .product-button:hover {
 	color : red;
-    background-color: skyblue;
+    background-color: #A5D6A7;
+    font-weight: bold;
+}
+.view-hide label{
+	display : block;
+	background-color: #A5D6A7;
+	color : #B71C1C;
+	font-size : 32px;
+	margin : 10px;
+	padding : 10px 20px;
+	text-align : center;
+	border-radius : 20px;
+}
+.disappear{
+	display : none;
 }
 	</style>
 
@@ -231,7 +245,9 @@ header nav ul li button:hover {
 		<input type="hidden" id="cusid" name="cmid">
         <h2 class="product-head"> Add to Cart Products</h2>
         <div class="product-list" id="parent">
-        
+	        <div id="note1" class="view-hide disappear">
+	        	<label>Your cart is empty. Add products to your cart and visit again!</label>
+	        </div>
         </div>  
     </section>
     </form>
@@ -279,12 +295,18 @@ header nav ul li button:hover {
         // Convert the comma-separated string into a JavaScript array
         img_ary = img_ary.split(",");
    		
+        var count = ${count};  
+        if(count == 0){
+        	var article = document.getElementById("note1");
+        	article.classList.remove("disappear");
+        }
+        
         var setid = document.getElementById("nav-cropmart").textContent;
     	document.getElementById("sid").innerText = setid;
     	document.getElementById("key-id").innerText = setid;
     	document.getElementById("cusid").value = setid;
     	
-    	var count = ${count};
+    	
     	var divlead  = document.getElementById("parent");
     	var a = 1;
     	for(var i = 0; i<=count-1;i++){

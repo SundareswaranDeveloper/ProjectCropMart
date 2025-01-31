@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<title>My Orders/Customer</title>
+<title>Customer/My Orders</title>
 <style type="text/css">
 body{
 	background-color: #FAE1DC;
@@ -283,7 +283,20 @@ header nav ul li button:hover {
 .display-hide{
 	display : none;	
 }
-
+.view-hide label{
+	display : block;
+	background-color: #A5D6A7;
+	color : #B71C1C;
+	font-size : 32px;
+	margin : 10px;
+	padding : 10px 20px;
+	text-align : center;
+	border-radius : 20px;
+	font-weight : bold;
+}
+.disappear{
+	display : none;
+}
     </style>
 
 </head>
@@ -319,7 +332,9 @@ header nav ul li button:hover {
 
     <h2 id="title"> My Orders </h2>
     <section id="order">
-        
+        <div id="note1" class="view-hide disappear">
+        	<label>Your orders are empty. Try buying a product and check again!.</label>
+        </div>
     </section>
 	<script type="text/javascript">
 	
@@ -449,8 +464,12 @@ header nav ul li button:hover {
     // Convert the comma-separated string into a JavaScript array
     product_count = product_count.split(",");
     
-    var section  = document.getElementById("order");
     var count = product_count[0];
+    if(count == 0){
+    	var article = document.getElementById("note1");
+    	article.classList.remove("disappear");
+    }
+    var section  = document.getElementById("order");
     for (var i = 0; i <=count-1; i++) {
     	var divdetails = document.createElement("div");
     	divdetails.classList.add('product');

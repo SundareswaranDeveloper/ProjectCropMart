@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<title>Customer/Product Results</title>
+<title>Customer/Product Search Results</title>
 
 <style type="text/css">
 body{
@@ -110,6 +110,7 @@ header nav ul li button:hover {
 	text-align : center;
     font-size: 28px;
     margin-bottom: 20px;
+    color : darkblue;
 }
 .product-list {
 	display: flex;
@@ -188,7 +189,8 @@ header nav ul li button:hover {
 
 .product-button:hover {
 	color : red;
-    background-color: skyblue;
+    background-color: #A5D6A7;
+    font-weight: bold;
 }
 .result{
 	display : flex;
@@ -209,8 +211,19 @@ header nav ul li button:hover {
     flex-basis : 30%;
     flex-grow : 1;
 }
-
-
+.view-hide label{
+	display : block;
+	background-color: #A5D6A7;
+	color : #B71C1C;
+	font-size : 32px;
+	margin : 10px;
+	padding : 10px 20px;
+	text-align : center;
+	border-radius : 20px;
+}
+.disappear{
+	display : none;
+}
 	</style>
 </head>
 <body>
@@ -254,14 +267,18 @@ header nav ul li button:hover {
 		<input type="hidden" id="cusid" name="cmid">
         <h2 class="product-head">Products starts from Quantity 5 Kg</h2>
         <div class="product-list" id="parent">
-        
+        	<div id="note1" class="view-hide disappear">
+        		<label>No products are available for your search at the moment. Please try searching for other products or try again later.</label>
+        	</div>
         </div>  
     </section>
     
     <section class="products">
         <h2 class="product-head">Products starts from Quantity 50 Kg</h2>
         <div class="product-list" id="parent-head">
-        
+        	<div id="note2" class="view-hide disappear">
+        		<label>No products are available for your search at the moment. Please try searching for other products or try again later.</label>
+        	</div>
         </div>  
     </section>
     </form>
@@ -350,15 +367,24 @@ header nav ul li button:hover {
 
         // Convert the comma-separated string into a JavaScript array
         img_stock = img_stock.split(",");
-       
-        
+    
+    var count = ${total1};
+    var count_a = ${total2};   
+    if(count == 0){
+    	var article = document.getElementById("note1");
+    	article.classList.remove("disappear");
+    }
+    if(count_a == 0){
+    	var article2 = document.getElementById("note2");
+    	article2.classList.remove("disappear");
+    }    
 
     var setid = document.getElementById("nav-cropmart").textContent;
 	document.getElementById("sid").innerText = setid;
 	document.getElementById("key-id").innerText = setid;
 	document.getElementById("cusid").value = setid;
 	
-	var count = ${total1};
+	
 	var divlead  = document.getElementById("parent");
 	var a = 1;
 	for(var i = 0; i<=count-1;i++){
@@ -424,7 +450,7 @@ header nav ul li button:hover {
 	divmain.appendChild(psales);
 	
 	}
-	var count_a = ${total2};
+	
 	var b = 1;
 	var divhead  = document.getElementById("parent-head");
 	for(var t = 0; t<=count_a-1;t++){
