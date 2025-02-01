@@ -2,7 +2,7 @@
 
 # Introduction :
 
-Project Crop Mart was the idea of developing an e-commerce system for farmers to sell their products and customers to purchase their required products.
+Project Crop Mart is the idea of developing an e-commerce system for farmers to sell their products and customers to purchase their required products.
 
 Using Java, Jsp, Servlet for backend services, HTML, CSS and JavaScript for frontend UI.
 
@@ -80,24 +80,30 @@ EntryCheck.java : Act as POJO class to store user Login page input.
 
 SearchServlet : Acts as a servlet to process customer product searches and displays the results on the CheckTrail.jsp page.
 
-McServlet.java : Act as Servlet fetch data from admin database about Motivational Corner and navigate to Farmer2.jsp .
+McServlet.java : Act as Servlet fetch data from database about Motivational Corner and navigate to Farmer2.jsp.
 
-FarmControl.java : Act as Servlet responsible to navigate to various page for Farmers.
+FarmControl.java : Act as the Controller Servlet, responsible for navigating between different pages for both Farmers and Customers.
 
 SellServlet.java :   Act as Servlet responsible to store Sell Product data from farmer to database.
 
 SellCheck.java : Act as POJO class responsible to store Sell Product Input data from Farmer.
 
-YourProductServlet :  Act as Servlet fetch data from admin database about Farmer Product and navigate to YProduct.jsp .
+YourProductServlet :  Act as Servlet fetch data from database about Farmer published Product and navigate to YProduct.jsp page.
 
-TipsServlet.java :  Act as Servlet fetch data from admin database about Tips for Farmer and navigate to Tips.jsp.
+TipsServlet.java :  Act as Servlet fetch data from database about Tips for Farmer and navigate to Tips.jsp page.
 
-GovernmentServlet.java :  Act as Servlet fetch data from admin database about Government Schemes for Farmers and navigate to Schemes.jsp .
+GovernmentServlet.java :  Act as Servlet fetch data from database about Government Schemes for Farmers and navigate to Schemes.jsp page.
 
-CusOrderServlet : Act as Servlet responsible to fetch the customer-selected product details from database.
+CusOrderServlet : Act as Servlet responsible to fetch data from database about customer-selected product and also responsible to insert and remove add to cart product details in the database.
 
-ConfirmCustomerOrder : Act as Servlet responsible to store Customer-selected Order product details and Customer Delivery details to admin Database.
+ConfirmCustomerOrder : Act as Servlet responsible to store Customer-selected Order product details and Customer Delivery details to Database and navigate to CustomerMyOrders servlet.
 
-CustomerMyOrders : Act as Servlet responsible to fetch the Customer order products details from database under testing.
+CustomerMyOrders : Act as Servlet responsible to fetch the Customer product order status details from database and navigate to CustomerMyOrderPage.jsp page.
 
-MySql__Database_Queries.txt : This file is used to show the MySql Database Queries and give information about the data table structure .
+FarmerOrderServlet : Act as Servlet responsible to fetch the Farmer sell product order status details from database and navigate to FarmerOrders.jsp page.
+
+FarmerOrderStatus : Act as Servlet responsible for updating the customer's product order status in the database.
+
+CartServlet : Act as Servlet fetch data from database about add to cart product for Customer and navigate to Cart.jsp page.
+
+MySql__Database_Queries.txt : This file is used to show the MySql Database Queries and give information about the data table structures.
