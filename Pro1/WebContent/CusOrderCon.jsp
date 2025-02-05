@@ -175,15 +175,18 @@
       border: 1px solid blue;
     } 
 	.sub{
-    text-align: center;
-    font-size: 32px;
-    color: springgreen;
-    background-color:  #0288D1;
-   }
-   #tab{
-    width: fit-content;
-    margin : 10px auto;
-   }
+	    text-align: center;
+	    font-size: 32px;
+	    color: springgreen;
+	    background-color:  #0288D1;
+    }
+	#tab{
+	    width: fit-content;
+	    margin : 10px auto;
+	}
+	.disappear{
+		display: none;
+	}
 </style>
 </head>
 <body>
@@ -257,7 +260,7 @@
   </tr>
    <tr>
     <td><label> District Name</label> </td>
-    <td><label id="district"></label></td>
+    <td><label class="disappear" id="district"></label><input class="disappear" type="text" id="district_input" name="district_value"></input></td>
   </tr>
   <tr>
     <td colspan ="2"><input type="checkbox"> <label>Trust me, above given details are true  </label></td>
@@ -288,17 +291,26 @@
     		alert("Order Request sent successfully");
     	} 
 	}
-//Convert the Java array into a comma-separated string
-  var product_ary = "<%= String.join(",", (String[]) request.getAttribute("data")) %>";
-  product_ary = product_ary.split(",");
-  document.getElementById("product_name").textContent = "Name : " + product_ary[0];
-  document.getElementById("product_id").textContent = "ID : " + product_ary[1];
-  document.getElementById("reference_id").value = product_ary[1];
-  document.getElementById("product_quantity").textContent = "Quantity : " +  product_ary[2] +" Kg";
-  document.getElementById("product_price").textContent = "Price : " +  product_ary[3] + " INR";
-  document.getElementById("product_expiry").textContent = "Expiry Date : " +  product_ary[4];
-  document.getElementById("product_image").src = product_ary[5];
-  document.getElementById("district").textContent = product_ary[6];
+	//Convert the Java array into a comma-separated string
+	var product_ary = "<%= String.join(",", (String[]) request.getAttribute("data")) %>";
+	product_ary = product_ary.split(",");
+	document.getElementById("product_name").textContent = "Name : " + product_ary[0];
+	document.getElementById("product_id").textContent = "ID : " + product_ary[1];
+	document.getElementById("reference_id").value = product_ary[1];
+	document.getElementById("product_quantity").textContent = "Quantity : " +  product_ary[2] +" Kg";
+	document.getElementById("product_price").textContent = "Price : " +  product_ary[3] + " INR";
+	document.getElementById("product_expiry").textContent = "Expiry Date : " +  product_ary[4];
+	document.getElementById("product_image").src = product_ary[5];
+	
+  	if(product_ary[2] < 50){
+  		var rule1 = document.getElementById("district");
+  		rule1.textContent = product_ary[6];
+  		document.getElementById("district_input").value = product_ary[6];
+  		rule1.classList.remove("disappear");
+  	}else{
+  		var rule2 = document.getElementById("district_input");
+  		rule2.classList.remove("disappear");
+  	}
 </script>
 </body>
 </html>
