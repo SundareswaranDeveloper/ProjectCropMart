@@ -2,13 +2,13 @@
 
 # Introduction :
 
-Project Crop Mart is the idea of developing an e-commerce system for farmers to sell their products and customers to purchase their required products.
+Developed a full-stack E-Commerce system for farmers to sell their products and customers to purchase required products.
 
-Using Java, Jsp, Servlet for backend services, HTML, CSS and JavaScript for frontend UI.
+Utilized Java, JSP, and Servlets for backend services, while using HTML, CSS, and JavaScript for the frontend UI.
 
-Designed and implemented a secure MySQL database, ensuring seamless integration with backend services for data transfer operations.
+Designed and implemented a secure MySQL database, ensuring seamless integration with backend services for efficient data transfer operations.
 
-Utilized Eclipse as a development environment.
+Developed the project using Eclipse as the integrated development environment (IDE).
 
 # Project Link :
 
