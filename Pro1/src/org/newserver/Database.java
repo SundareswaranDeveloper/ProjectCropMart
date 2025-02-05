@@ -292,7 +292,7 @@ public class Database {
 			String[] productex = new String[n];
 			String[] productimg = new String[n];
 			
-			ResultSet rs = stmt.executeQuery("select count(p_id) from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "' AND p_quntity >=50;" );
+			ResultSet rs = stmt.executeQuery("select count(p_id) from sell_p where p_name = '" + cond2 + "' AND p_quntity >=50;" );
 			rs.next();
 			int num = rs.getInt(1);
 			total[1] = String.valueOf(num);
@@ -319,7 +319,7 @@ public class Database {
 			i = i + 1;	
 			
 			}
-			ResultSet set = stmt.executeQuery("select * from sell_p where p_location = '" + cond1 + "' AND p_name = '" + cond2 + "' AND p_quntity >= 50;" );
+			ResultSet set = stmt.executeQuery("select * from sell_p where p_name = '" + cond2 + "' AND p_quntity >= 50;" );
 			int z = 0;
 			while(set.next()) {
 		
@@ -385,7 +385,7 @@ public class Database {
 	
 	public String[][] readCustomerOrders(String cmid) throws SQLException {
 		
-		String[][] group = new String[21][];
+		String[][] group = new String[22][];
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
@@ -416,7 +416,8 @@ public class Database {
 			String[] cus_reason = new String[n];
 			String[] delivery_date = new String[n];
 			String[] delivery_time = new String[n];
-
+			String[] cus_district = new String[n];
+			
 			ResultSet rs = stmt.executeQuery("select * from Customer_Orders where c_cmid = '" + cmid +"';" );
 			int c = 0;
 			while(rs.next()) {
@@ -426,11 +427,12 @@ public class Database {
 				cus_mobile[c]	= String.valueOf(rs.getLong(4));
 				cus_address[c] = rs.getString(5);
 				cus_address[c] = cus_address[c].replaceAll(",", "\\$\\$\\$");
-				cus_pincode[c] = rs.getString(6);
-				cus_landmark[c] = rs.getString(7);
+				cus_district[c] = rs.getString(6);
+				cus_pincode[c] = rs.getString(7);
+				cus_landmark[c] = rs.getString(8);
 				cus_landmark[c] = cus_landmark[c].replaceAll(",", "\\$\\$\\$");
-				order_date[c] = rs.getDate(9).toString();
-				order_time[c] = rs.getTime(10).toString();
+				order_date[c] = rs.getDate(10).toString();
+				order_time[c] = rs.getTime(11).toString();
 				int split = order_time[c].lastIndexOf(':');
 				order_time[c] = order_time[c].substring(0, split);
 				c++;
@@ -482,6 +484,7 @@ public class Database {
 			group[18] = cus_reason;
 			group[19] = delivery_date;
 			group[20] = delivery_time;
+			group[21] = cus_district;
 			return group;	
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -492,7 +495,7 @@ public class Database {
 	
 	public String[][] readFarmerOrders(String cmid) throws SQLException {
 		
-		String[][] group = new String[21][];
+		String[][] group = new String[22][];
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
@@ -523,7 +526,8 @@ public class Database {
 			String[] cus_reason = new String[n];
 			String[] delivery_date = new String[n];
 			String[] delivery_time = new String[n];
-
+			String[] cus_district = new String[n];
+			
 			ResultSet rset = stmt.executeQuery("select * from Order_Status where f_cmid = '" + cmid + "';" );
 			int i = 0;
 			while(rset.next()) {
@@ -548,11 +552,12 @@ public class Database {
 				cus_mobile[c]	= String.valueOf(rs.getLong(4));
 				cus_address[c] = rs.getString(5);
 				cus_address[c] = cus_address[c].replaceAll(",", "\\$\\$\\$");
-				cus_pincode[c] = rs.getString(6);
-				cus_landmark[c] = rs.getString(7);
+				cus_district[c] = rs.getString(6);
+				cus_pincode[c] = rs.getString(7);
+				cus_landmark[c] = rs.getString(8);
 				cus_landmark[c] = cus_landmark[c].replaceAll(",", "\\$\\$\\$");
-				order_date[c] = rs.getDate(9).toString();
-				order_time[c] = rs.getTime(10).toString();
+				order_date[c] = rs.getDate(10).toString();
+				order_time[c] = rs.getTime(11).toString();
 				int split = order_time[c].lastIndexOf(':');
 				order_time[c] = order_time[c].substring(0, split);
 				
@@ -591,6 +596,7 @@ public class Database {
 			group[18] = cus_reason;
 			group[19] = delivery_date;
 			group[20] = delivery_time;
+			group[21] = cus_district;
 			return group;	
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -18,7 +18,7 @@ public class FarmerOrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmid = (String) request.getAttribute("crtid");
 		Database db = new Database();
-		String[][] orders = new String[21][];
+		String[][] orders = new String[22][];
 		try {
 			orders = db.readFarmerOrders(cmid);
 		} catch (Exception e) {
@@ -47,6 +47,7 @@ public class FarmerOrderServlet extends HttpServlet {
 		request.setAttribute("cus_reason", orders[18]);
 		request.setAttribute("delivery_date", orders[19]);
 		request.setAttribute("delivery_time", orders[20]);
+		request.setAttribute("cus_district", orders[21]);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("FarmerOrders.jsp");
 	    dispatcher.forward(request, response);
 	}

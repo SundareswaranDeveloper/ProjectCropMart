@@ -25,7 +25,7 @@ public class CustomerMyOrders extends HttpServlet {
 			cmid = (String) request.getParameter("cropmart_id");
 		}
 		Database db = new Database();
-		String[][] Order = new String[21][];
+		String[][] Order = new String[22][];
 		try {
 			Order = db.readCustomerOrders(cmid);
 		} catch (SQLException e) {
@@ -54,6 +54,7 @@ public class CustomerMyOrders extends HttpServlet {
 		request.setAttribute("cus_reason", Order[18]);
 		request.setAttribute("delivery_date", Order[19]);
 		request.setAttribute("delivery_time", Order[20]);
+		request.setAttribute("cus_district", Order[21]);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("CustomerMyOrderPage.jsp");
 	    dispatcher.forward(request, response);
 	}

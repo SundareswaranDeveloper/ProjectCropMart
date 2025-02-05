@@ -30,12 +30,13 @@ public class ConfirmCustomerOrder extends HttpServlet {
 			String Customer_name = request.getParameter("customer_name");
 			Long phone_number = Long.parseLong(request.getParameter("mobile_number"));
 			String address = request.getParameter("address");
+			String district = request.getParameter("district_value");
 			String pincode = request.getParameter("Pincode");
 			String landmark = request.getParameter("landmark");
 			LogDb db = new LogDb();
 			boolean upload = false;
 			try {
-				upload = db.order_insert(product_id,Customer_name,phone_number,address,pincode,landmark,cmid);
+				upload = db.order_insert(product_id,Customer_name,phone_number,address,district,pincode,landmark,cmid);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

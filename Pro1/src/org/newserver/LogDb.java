@@ -160,7 +160,7 @@ public class LogDb {
 		return result;
 	}
 
-	public boolean order_insert(Integer product_id, String customer_name, Long phone_number, String address, String pincode, String landmark, String cmid) throws SQLException {
+	public boolean order_insert(Integer product_id, String customer_name, Long phone_number, String address,String district, String pincode, String landmark, String cmid) throws SQLException {
 	
 		boolean result = false;
 		LocalDate local_date = LocalDate.now();
@@ -184,18 +184,19 @@ public class LogDb {
 			ResultSet rstmt = stmt.executeQuery("select cmid from sell_p where p_id = '" + product_id + "';");
 			rstmt.next();
 			String f_cmid = rstmt.getString(1);
-			String query = "insert into Customer_Orders values (?,?,?,?,?,?,?,?,?,?);";
+			String query = "insert into Customer_Orders values (?,?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, order_id);
 			ps.setInt(2, product_id);
 			ps.setString(3, customer_name);
 			ps.setLong(4, phone_number);
 			ps.setString(5, address);
-			ps.setString(6, pincode);
-			ps.setString(7, landmark);
-			ps.setString(8, cmid);
-			ps.setDate(9, date);
-			ps.setTime(10, time);
+			ps.setString(6, district);
+			ps.setString(7, pincode);
+			ps.setString(8, landmark);
+			ps.setString(9, cmid);
+			ps.setDate(10, date);
+			ps.setTime(11, time);
 			int row1 = ps.executeUpdate();
 			String command = "insert into Order_Status(order_id,c_cmid,f_cmid) values (?,?,?);";
 			PreparedStatement pstmt = con.prepareStatement(command);

@@ -393,6 +393,12 @@ header nav ul li button:hover {
     cus_address = cus_address.split(",");
 	
  	// Convert the Java array into a comma-separated string
+    var cus_district = "<%= String.join(",", (String[]) request.getAttribute("cus_district")) %>"; 
+
+    // Convert the comma-separated string into a JavaScript array
+    cus_district = cus_district.split(",");
+    
+ 	// Convert the Java array into a comma-separated string
     var cus_pincode = "<%= String.join(",", (String[]) request.getAttribute("cus_pincode")) %>"; 
 
     // Convert the comma-separated string into a JavaScript array
@@ -551,12 +557,14 @@ header nav ul li button:hover {
     	var cname = document.createElement("label");
     	var cmobile = document.createElement("label");
     	var caddress = document.createElement("label");
+    	var cdistrict = document.createElement("label");
     	var cpincode = document.createElement("label");
     	var clandmark = document.createElement("label");
     	
     	var c_name = document.createElement("label");
     	var c_mobile = document.createElement("label");
     	var c_address = document.createElement("label");
+    	var c_district = document.createElement("label");
     	var c_pincode = document.createElement("label");
     	var c_landmark = document.createElement("label");
     	
@@ -576,6 +584,10 @@ header nav ul li button:hover {
     	c_address.textContent = customer_address; 
     	c_address.classList.add("cus-design");
     	
+    	cdistrict.textContent = "Customer District ";
+    	c_district.textContent = cus_district[i];
+    	c_district.classList.add("cus-design");
+    	
     	cpincode.textContent = "Customer Pincode";
     	c_pincode.textContent =  cus_pincode[i]; 
     	c_pincode.classList.add("cus-design");
@@ -592,6 +604,8 @@ header nav ul li button:hover {
     	divcustomer.appendChild(c_mobile);
     	divcustomer.appendChild(caddress);
     	divcustomer.appendChild(c_address);
+    	divcustomer.appendChild(cdistrict);
+    	divcustomer.appendChild(c_district);
     	divcustomer.appendChild(cpincode);
     	divcustomer.appendChild(c_pincode);
     	divcustomer.appendChild(clandmark);
